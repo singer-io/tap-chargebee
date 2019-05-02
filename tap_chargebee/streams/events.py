@@ -4,6 +4,8 @@ from tap_chargebee.streams.base import BaseChargebeeStream
 class EventsStream(BaseChargebeeStream):
     TABLE = 'events'
     ENTITY = 'event'
+    REPLICATION_METHOD = 'INCREMENTAL'
+    REPLICATION_KEY = 'occurred_at'
     KEY_PROPERTIES = ['id']
     BOOKMARK_PROPERTIES = ['occurred_at']
     SELECTED_BY_DEFAULT = True

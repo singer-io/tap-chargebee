@@ -4,6 +4,8 @@ from tap_chargebee.streams.base import BaseChargebeeStream
 class CustomersStream(BaseChargebeeStream):
     TABLE = 'customers'
     ENTITY = 'customer'
+    REPLICATION_METHOD = 'INCREMENTAL'
+    REPLICATION_KEY = 'updated_at'
     KEY_PROPERTIES = ['id']
     BOOKMARK_PROPERTIES = ['updated_at']
     SELECTED_BY_DEFAULT = True
