@@ -11,7 +11,6 @@ class PaymentSourcesStream(BaseChargebeeStream):
     SELECTED_BY_DEFAULT = True
     VALID_REPLICATION_KEYS = ['updated_at']
     INCLUSION = 'available'
-    SELECTED = True
     API_METHOD = 'GET'
 
     def get_url(self):

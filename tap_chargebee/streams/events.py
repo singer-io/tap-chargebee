@@ -11,7 +11,6 @@ class EventsStream(BaseChargebeeStream):
     SELECTED_BY_DEFAULT = True
     VALID_REPLICATION_KEYS = ['occurred_at']
     INCLUSION = 'available'
-    SELECTED = True
     API_METHOD = 'GET'
 
     def get_url(self):
