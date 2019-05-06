@@ -9,7 +9,7 @@ setup(name='tap-chargebee',
       classifiers=['Programming Language :: Python :: 3 :: Only'],
       py_modules=['tap_chargebee'],
       install_requires=[
-          'tap-framework==0.1.0'
+          'tap-framework==0.1.1'
       ],
       entry_points='''
           [console_scripts]
