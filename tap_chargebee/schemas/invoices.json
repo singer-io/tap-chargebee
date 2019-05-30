@@ -246,6 +246,15 @@
           "tax_rate": {
             "type": ["null", "integer"]
           },
+          "is_partial_tax_applied": {
+            "type": ["null", "boolean"]
+          },
+          "is_non_compliance_tax": {
+            "type": ["null", "boolean"]
+          },
+          "taxable_amount": {
+            "type": ["null", "integer"]
+          },
           "tax_amount": {
             "type": ["null", "integer"]
           },
@@ -257,6 +266,29 @@
           },
           "tax_juris_code": {
             "type": ["null", "string"]
+          }
+        }
+      }
+    },
+    "line_item_tiers": {
+      "type": ["null", "array"],
+      "items": {
+        "type": ["null", "object"],
+        "properties": {
+          "line_item_id": {
+            "type": ["null", "string"]
+          },
+          "starting_unit": {
+            "type": ["null", "integer"]
+          },
+          "ending_unit": {
+            "type": ["null", "integer"]
+          },
+          "quantity_used": {
+            "type": ["null", "integer"]
+          },
+          "unit_amount": {
+            "type": ["null", "integer"]
           }
         }
       }
@@ -373,7 +405,13 @@
           "id": {
             "type": ["null", "string"]
           },
+          "document_number": {
+            "type": ["null", "string"]
+          },
           "status": {
+            "type": ["null", "string"]
+          },
+          "order_type": {
             "type": ["null", "string"]
           },
           "reference_id": {

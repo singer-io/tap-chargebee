@@ -8,6 +8,9 @@
     "name": {
       "type": ["null", "string"]
     },
+    "invoice_name": {
+      "type": ["null", "string"]
+    },
     "discount_type": {
       "type": ["null", "string"]
     },
@@ -16,6 +19,9 @@
     },
     "discount_amount": {
       "type": ["null", "number"]
+    },
+    "currency_code": {
+      "type": ["null", "string"]
     },
     "duration_type": {
       "type": ["null", "string"]
@@ -61,6 +67,24 @@
     },
     "redemptions": {
       "type": ["null", "integer"]
+    },
+    "plan_ids": {
+      "type": ["null", "array"],
+      "items": {
+        "type": ["null", "string"]
+      }
+    },
+    "addon_ids": {
+      "type": ["null", "array"],
+      "items": {
+        "type": ["null", "string"]
+      }
+    }, 
+    "invoice_notes": {
+      "type": ["null", "string"]
+    },
+    "meta_data": {
+      "type": ["null", "string"]
     }
   }
 }

@@ -127,6 +127,33 @@
     "object": {
       "type": ["null", "string"]
     },
+    "setup_fee": {
+      "type": ["null", "integer"]
+    },
+    "gift_id": {
+      "type": ["null", "string"]
+    },
+    "pause_date": {
+      "type": ["null", "string"],
+      "format": "date-time"
+    },
+    "resume_date": {
+      "type": ["null", "string"],
+      "format": "date-time"
+    },
+    "created_from_ip": {
+      "type": ["null", "string"]
+    },
+    "due_since": {
+      "type": ["null", "string"],
+      "format": "date-time"
+    },
+    "total_dues": {
+      "type": ["null", "integer"]
+    },
+    "meta_data": {
+      "type": ["null", "string"]
+    },
     "addons": {
       "type": ["null", "array"],
       "items": {
@@ -139,6 +166,9 @@
             "type": ["null", "integer"]
           },
           "unit_price": {
+            "type": ["null", "integer"]
+          },
+          "amount": {
             "type": ["null", "integer"]
           },
           "trial_end": {
@@ -287,7 +317,7 @@
         "reward_status": {
           "type": ["null", "string"]
         },
-        "referral_status": {
+        "referral_system": {
           "type": ["null", "string"]
         },
         "account_id": {

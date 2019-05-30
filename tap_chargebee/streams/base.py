@@ -1,6 +1,8 @@
 import singer
+import json
 import os
 
+from .util import Util
 from dateutil.parser import parse
 from tap_framework.streams import BaseStream
 from tap_framework.schemas import load_schema_by_name
@@ -25,10 +27,11 @@ class BaseChargebeeStream(BaseStream):
         mdata = singer.metadata.new()
 
         metadata = {
+
             "forced-replication-method": self.REPLICATION_METHOD,
             "valid-replication-keys": self.VALID_REPLICATION_KEYS,
             "inclusion": self.INCLUSION,
-            "selected-by-default": self.SELECTED_BY_DEFAULT,
+            #"selected-by-default": self.SELECTED_BY_DEFAULT,
             "table-key-properties": self.KEY_PROPERTIES
         }
 
@@ -108,6 +111,9 @@ class BaseChargebeeStream(BaseStream):
         if self.ENTITY == 'event':
             params = {"occurred_at[after]": bookmark_date_posix}
             bookmark_key = 'occurred_at'
+        elif self.ENTITY == 'promotional_credit':
+            params = {"created_at[after]": bookmark_date_posix}
+            bookmark_key = 'created_at'
         else:
             params = {"updated_at[after]": bookmark_date_posix}
             bookmark_key = 'updated_at'
@@ -124,12 +130,32 @@ class BaseChargebeeStream(BaseStream):
 
             to_write = self.get_stream_data(response.get('list'))
 
+            if self.ENTITY == 'event':
+                for event in to_write:
+                    if event["event_type"] == 'plan_deleted':
+                        Util.plans.append(event['content']['plan'])
+                    elif event['event_type'] == 'addon_deleted':
+                        Util.addons.append(event['content']['addon'])
+                    elif event['event_type'] == 'coupon_deleted':
+                        Util.coupons.append(event['content']['coupon'])
+                
+            if self.ENTITY == 'plan':
+                for plan in Util.plans:
+                    to_write.append(plan)
+            if self.ENTITY == 'addon':
+                for addon in Util.addons:
+                    to_write.append(addon)
+            if self.ENTITY == 'coupon':
+                for coupon in Util.coupons:
+                    to_write.append(coupon) 
+
             with singer.metrics.record_counter(endpoint=table) as ctr:
                 singer.write_records(table, to_write)
 
                 ctr.increment(amount=len(to_write))
-
+                
                 for item in to_write:
+                    #if item.get(bookmark_key) is not None:
                     max_date = max(
                         max_date,
                         parse(item.get(bookmark_key))

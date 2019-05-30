@@ -1,9 +1,9 @@
 from tap_chargebee.streams.base import BaseChargebeeStream
 
 
-class CouponsStream(BaseChargebeeStream):
-    TABLE = 'coupons'
-    ENTITY = 'coupon'
+class GiftsStream(BaseChargebeeStream):
+    TABLE = 'gifts'
+    ENTITY = 'gift'
     REPLICATION_METHOD = 'INCREMENTAL'
     REPLICATION_KEY = 'updated_at'
     KEY_PROPERTIES = ['id']
@@ -13,6 +13,5 @@ class CouponsStream(BaseChargebeeStream):
     INCLUSION = 'available'
     API_METHOD = 'GET'
 
-
     def get_url(self):
-        return 'https://{}.chargebee.com/api/v2/coupons'.format(self.config.get('site'))
+        return 'https://{}.chargebee.com/api/v2/gifts'.format(self.config.get('site'))

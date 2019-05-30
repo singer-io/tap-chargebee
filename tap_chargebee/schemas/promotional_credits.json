@@ -1,0 +1,44 @@
+{
+  "type": ["null", "object"],
+  "additionalProperties": false,
+  "properties": {
+    "id": {
+      "type": ["null", "string"],
+      "maxLength": 150
+    },
+    "customer_id": {
+    	"type": ["null", "string"],
+    	"maxLength": 50
+    },
+    "type":{
+    	"type": ["null", "string"]
+    },
+    "amount": {
+    	"type": ["null", "string"]
+    },
+    "currency_code": {
+    	"type": ["null", "string"]
+    },
+    "description": {
+    	"type": ["null", "string"]
+    },
+    "credit_type": {
+    	"type": ["null", "string"]
+    },
+    "reference": {
+    	"type": ["null", "string"]
+    },
+    "closing_balance": {
+    	"type": ["null", "integer"],
+    	"minimum": 0
+    },
+    "done_by": {
+    	"type": ["null", "string"],
+    	"maxLength": 100
+    },
+    "created_at": {
+    	"type": ["null", "string"],
+    	"format": "date-time"
+    }
+   }
+}

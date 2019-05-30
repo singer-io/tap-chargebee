@@ -99,6 +99,22 @@
     "refunded_txn_id": {
       "type": ["null", "string"]
     },
+    "authorization_reason": {
+      "type": ["null", "string"]
+    },
+    "voided_at": {
+      "type": ["null", "string"],
+      "format": "date-time"
+    },
+    "reversal_transaction_id": {
+      "type": ["null", "string"]
+    },
+    "reference_authorization_id": {
+      "type": ["null", "string"]
+    },
+    "amount_capturable": {
+      "type": ["null", "string"]
+    },
     "linked_invoices": {
       "type": ["null", "array"],
       "items": {
@@ -178,6 +194,27 @@
           },
           "txn_amount": {
             "type": ["null", "integer"]
+          }
+        }
+      }
+    },
+    "linked_payments": {
+      "type": ["null", "array"],
+      "items": {
+        "type": ["null", "object"],
+        "properties": {
+          "id": {
+            "type": ["null", "string"]
+          },
+          "status": {
+            "type": ["null", "string"]
+          },
+          "amount": {
+            "type": ["null", "integer"]
+          },
+          "date": {
+            "type": ["null", "string"],
+            "format": "date-time"
           }
         }
       }

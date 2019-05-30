@@ -8,6 +8,9 @@
     "name": {
       "type": ["null", "string"]
     },
+    "invoice_name": {
+      "type": ["null", "string"]
+    },
     "description": {
       "type": ["null", "string"]
     },
@@ -38,6 +41,10 @@
     "status": {
       "type": ["null", "string"]
     },
+    "archived_at": {
+      "type": ["null", "string"],
+      "format": "date-time"
+    },
     "billing_cycles": {
       "type": ["null", "integer"]
     },
@@ -59,6 +66,105 @@
     },
     "tax_profile_id": {
       "type": ["null", "string"]
+    },
+    "enabled_in_hosted_pages": {
+      "type": ["null", "boolean"]
+    },
+    "enabled_in_portal": {
+      "type": ["null", "boolean"]
+    },
+    "addon_applicability": {
+      "type": ["null", "string"]
+    },
+    "tax_code": {
+      "type": ["null", "string"]
+    },
+    "avalara_sale_type": {
+      "type": ["null", "string"]
+    },
+    "avalara_transaction_type": {
+      "type": ["null", "integer"]
+    },
+    "avalara_service_type": {
+      "type": ["null", "integer"]
+    },
+    "account_code": {
+      "type": ["null", "string"]
+    },
+    "accounting_category1": {
+      "type": ["null", "string"]
+    },
+    "accounting_category2": {
+      "type": ["null", "string"]
+    },
+    "is_shippable": {
+      "type": ["null", "boolean"]
+    },
+    "shipping_frequency_period": {
+      "type": ["null", "integer"]
+    },
+    "shipping_frequency_period_unit": {
+      "type": ["null", "string"]
+    },
+    "resource_version": {
+      "type": ["null", "integer"]
+    },
+    "giftable": {
+      "type": ["null", "boolean"]
+    },
+    "claim_url": {
+      "type": ["null", "string"]
+    },
+    "meta_data": {
+      "type": ["null", "string"]
+    },
+    "tiers": {
+      "type": ["null", "array"],
+      "items": {
+        "type": ["null", "object"],
+        "properties": {
+          "starting_unit": {
+            "type": ["null", "integer"]
+          },
+          "ending_unit": {
+            "type": ["null", "integer"]
+          },
+          "price": {
+            "type": ["null", "integer"]
+          }
+        }
+      }
+    },
+    "applicable_addons": {
+      "type": ["null", "array"],
+      "items": {
+        "type": ["null", "object"],
+        "properties": {
+          "id": {
+            "type": ["null", "string"]
+          }
+        }
+      }
+    },
+    "event_based_addons": {
+      "type": ["null", "array"],
+      "items": {
+        "type": ["null", "object"],
+        "properties": {
+          "id": {
+            "type": ["null", "string"]
+          },
+          "quantity": {
+            "type": ["null", "integer"]
+          },
+          "on_event": {
+            "type": ["null", "string"]
+          },
+          "charge_once": {
+            "type": ["null", "boolean"]
+          }
+        }
+      }
     }
   }
 }
