@@ -253,7 +253,7 @@
               "items": {
                 "type": ["null", "string"]
               }
-            }, 
+            },
             "invoice_notes": {
               "type": ["null", "string"]
             },
@@ -1944,13 +1944,13 @@
                     },
                     "id": {
                       "type": ["null", "string"]
-                    }, 
+                    },
                     "status": {
                       "type": ["null", "string"]
-                    }, 
+                    },
                     "amount_adjusted": {
                       "type": ["null", "integer"]
-                    }, 
+                    },
                     "amount_refunded": {
                       "type": ["null", "integer"]
                     }
@@ -3418,7 +3418,6 @@
             }
           }
         }
-        
       }
     }
   }
