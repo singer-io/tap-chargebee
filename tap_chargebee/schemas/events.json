@@ -2943,14 +2943,6 @@
                 "type": ["null", "string"],
                 "maxLength": 50
               },
-              "date_from": {
-                "type": ["null", "string"],
-                "format": "date-time"
-              },
-              "date_to": {
-                "type": ["null", "string"],
-                "format": "date-time"
-              },
               "unit_amount": {
                 "type": ["null", "integer"]
               },
@@ -3013,6 +3005,61 @@
               }
             }
 
+          }
+        },
+        "coupon_code":{
+          "type":["null", "object"],
+          "additionalProperties": false,
+          "properties":{
+            "code": {
+              "type": ["null", "string"],
+              "maxLength": 50
+            },
+            "status": {
+              "type": ["null", "string"]
+            },
+            "coupon_id": {
+              "type": ["null", "string"],
+              "maxLength": 50
+            },
+            "coupon_site_id": {
+              "type": ["null", "string"],
+              "maxLength": 50
+            },
+            "coupon_set_name": {
+              "type": ["null", "string"],
+              "maxLength": 50
+            }
+          }
+        },
+        "coupon_set":{
+          "type":["null", "object"],
+          "additionalProperties": false,
+          "properties":{
+            "id": {
+              "type": ["null", "string"],
+              "maxLength": 50
+            },
+            "coupon_id": {
+              "type": ["null", "string"],
+              "maxLength": 50
+            },
+            "name": {
+              "type": ["null", "string"],
+              "maxLength": 50
+            },
+            "total_count": {
+              "type": ["null", "integer"]
+            },
+            "redeemed_count": {
+              "type": ["null", "integer"]
+            },
+            "archived_count": {
+              "type": ["null", "integer"]
+            },
+            "meta_data": {
+              "type": ["null", "string"]
+            }
           }
         },
         "quote": {
