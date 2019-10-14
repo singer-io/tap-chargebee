@@ -3,7 +3,7 @@
 from setuptools import setup, find_packages
 
 setup(name='tap-chargebee',
-      version='0.0.12',
+      version='1.0.0',
       description='Singer.io tap for extracting data from the Chargebee API',
       author='dwallace@envoy.com',
       classifiers=['Programming Language :: Python :: 3 :: Only'],
