@@ -50,7 +50,23 @@ class ChargebeeClient(BaseClient):
             headers=self.get_headers(),
             params=self.get_params(params),
             json=body)
+        try:
+            response.raise_for_status()
+            response = response.json()
+        except requests.exceptions.HTTPError as e:
+            response = response.json()
+            if 'api_error_code' in response.key():
+                if response['api_error_code'] == 'api_request_limit_exceeded':
+                    time.sleep(3)
+                    self.make_request(url,method,params)
+                elif response['api_error_code'] == 'api_authentication_failed':
+                    LOGGER.error('invalid api key')
+                    sys.exit(1)
+                elif response['api_error_code'] == 'api_authorization_failed':
+                    LOGGER.error('The key does not have required permissions')
+                    sys.exit(1)
+                elif response['api_error_code'] == 'site_not_found':
+                    LOGGER.error('invalid site name')
+                    sys.exit(1)
 
-        response.raise_for_status()
-
-        return response.json()
+        return response

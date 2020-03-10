@@ -1,4 +1,5 @@
 import singer
+import time
 import json
 import os
 
@@ -153,6 +154,11 @@ class BaseChargebeeStream(BaseStream):
                 url=self.get_url(),
                 method=api_method,
                 params=params)
+
+            if 'api_error_code' in response.keys():
+                if response['api_error_code'] == 'configuration_incompatible':
+                    LOGGER.error('{} is not configured'.format(response['error_code']))
+                    break
 
             records = response.get('list')
             
