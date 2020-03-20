@@ -1,12 +1,22 @@
+import backoff
 import time
 import requests
 import singer
 import json
 
+from singer import utils
 from tap_framework.client import BaseClient
 
 
 LOGGER = singer.get_logger()
+
+
+class Server4xxError(Exception):
+    pass
+
+
+class Server429Error(Exception):
+    pass
 
 
 class ChargebeeClient(BaseClient):
@@ -36,6 +46,11 @@ class ChargebeeClient(BaseClient):
 
         return params
 
+    @backoff.on_exception(backoff.expo,
+                          (Server4xxError, Server429Error),
+                          max_tries=5,
+                          factor=3)
+    @utils.ratelimit(100, 60)
     def make_request(self, url, method, params=None, body=None):
 
         if params is None:
@@ -50,23 +65,13 @@ class ChargebeeClient(BaseClient):
             headers=self.get_headers(),
             params=self.get_params(params),
             json=body)
-        try:
-            response.raise_for_status()
-            response = response.json()
-        except requests.exceptions.HTTPError as e:
-            response = response.json()
-            if 'api_error_code' in response.key():
-                if response['api_error_code'] == 'api_request_limit_exceeded':
-                    time.sleep(3)
-                    self.make_request(url,method,params)
-                elif response['api_error_code'] == 'api_authentication_failed':
-                    LOGGER.error('invalid api key')
-                    sys.exit(1)
-                elif response['api_error_code'] == 'api_authorization_failed':
-                    LOGGER.error('The key does not have required permissions')
-                    sys.exit(1)
-                elif response['api_error_code'] == 'site_not_found':
-                    LOGGER.error('invalid site name')
-                    sys.exit(1)
 
-        return response
+        response_json = response.json()
+
+        if response.status_code == 429:
+            raise Server429Error()
+
+        if response.status_code >= 400:
+            raise Server4xxError(response_json)
+
+        return response_json
