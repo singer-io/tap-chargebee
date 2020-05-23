@@ -27,6 +27,26 @@
     "webhook_status": {
       "type": ["null", "string"]
     },
+    "webhook_failure_reason": {
+      "type": ["null", "string"]
+    },
+    "webhooks": {
+      "type": ["null", "array"],
+      "items": {
+        "type": ["null", "object"],
+        "properties": {
+          "id": {
+            "type": ["null", "string"]
+          },
+          "webhook_status": {
+            "type": ["null", "string"]
+          },
+          "object": {
+            "type": ["null", "string"]
+          }
+        }
+      }
+    },
     "content": {
       "type": ["null", "object"],
       "properties" : {
@@ -345,11 +365,19 @@
               "minimum": 0
             },
             "round_off_amount": {
-              "type": ["null", "integer"],
-              "minimum": 0
+              "type": ["null", "integer"]
             },
             "deleted": {
               "type": ["null", "boolean"]
+            },
+            "exchange_rate": {
+              "type": ["null", "integer"]
+            },
+            "fractional_correction": {
+              "type": ["null", "integer"]
+            },
+            "object": {
+              "type": ["null", "string"]
             },
             "line_items": {
               "type": ["null", "array"],
@@ -361,6 +389,12 @@
                     "maxLength": 40
                   },
                   "subscription_id": {
+                    "type": ["null", "string"]
+                  },
+                  "object": {
+                    "type": ["null", "string"]
+                  },
+                  "customer_id": {
                     "type": ["null", "string"]
                   },
                   "date_from": {
@@ -761,6 +795,9 @@
             "custom_fields": {
               "type": ["null", "string"]
             },
+            "use_default_hierarchy_settings": {
+              "type": ["null", "boolean"]
+            },
             "billing_address": {
               "type": ["null","object"],
               "properties": {
@@ -803,7 +840,10 @@
                 "zip": {
                   "type": ["null", "string"]
                 },
-                "validation_status,": {
+                "validation_status": {
+                  "type": ["null", "string"]
+                },
+                "object": {
                   "type": ["null", "string"]
                 }
               }
@@ -839,6 +879,120 @@
                   "referral_system": {
                     "type": ["null", "string"]
                   }
+                }
+              }
+            },
+            "relationship": {
+              "type": [
+                "null",
+                "object"
+              ],
+              "properties": {
+                "parent_id": {
+                  "type": [
+                    "null",
+                    "string"
+                  ]
+                },
+                "payment_owner_id": {
+                  "type": [
+                    "null",
+                    "string"
+                  ]
+                },
+                "root_id": {
+                  "type": [
+                    "null",
+                    "string"
+                  ]
+                },
+                "invoice_owner_id": {
+                  "type": [
+                    "null",
+                    "string"
+                  ]
+                },
+                "object": {
+                  "type": [
+                    "null",
+                    "string"
+                  ]
+                }
+              }
+            },
+            "parent_account_access": {
+              "type": [
+                "null",
+                "object"
+              ],
+              "properties": {
+                "portal_edit_child_subscriptions": {
+                  "type": [
+                    "null",
+                    "string"
+                  ]
+                },
+                "portal_download_child_invoices": {
+                  "type": [
+                    "null",
+                    "string"
+                  ]
+                },
+                "send_subscription_emails": {
+                  "type": [
+                    "null",
+                    "boolean"
+                  ]
+                },
+                "send_invoice_emails": {
+                  "type": [
+                    "null",
+                    "boolean"
+                  ]
+                },
+                "send_payment_emails": {
+                  "type": [
+                    "null",
+                    "boolean"
+                  ]
+                }
+              }
+            },
+            "child_account_access": {
+              "type": [
+                "null",
+                "object"
+              ],
+              "properties": {
+                "portal_edit_subscriptions": {
+                  "type": [
+                    "null",
+                    "string"
+                  ]
+                },
+                "portal_download_invoices": {
+                  "type": [
+                    "null",
+                    "string"
+                  ]
+                },
+                "send_subscription_emails": {
+                  "type": [
+                    "null",
+                    "boolean"
+                  ]
+                },
+                "send_invoice_emails": {
+                  "type": [
+                    "null",
+                    "boolean"
+                  ]
+                },
+                "send_payment_emails": {
+                  "type": [
+                    "null",
+                    "boolean"
+                  ]
                 }
               }
             },
@@ -889,7 +1043,7 @@
                 "gateway": {
                   "type": ["null", "string"]
                 },
-                "gateway_account_id ": {
+                "gateway_account_id": {
                   "type": ["null", "string"]
                 },
                 "status": {
@@ -914,13 +1068,19 @@
                   "excess_payments": {
                     "type": ["null", "integer"]
                   },
-                  "refundable_credits ": {
+                  "refundable_credits": {
                     "type": ["null", "integer"]
                   },
                   "unbilled_charges": {
                     "type": ["null", "integer"]
                   },
                   "currency_code": {
+                    "type": ["null", "string"]
+                  },
+                  "balance_currency_code": {
+                    "type": [ "null", "string"]
+                  },
+                  "object": {
                     "type": ["null", "string"]
                   }
                 }
@@ -1119,6 +1279,9 @@
             "term_finalized": {
               "type": ["null", "boolean"]
             },
+            "payment_owner": {
+              "type": ["null", "string"]
+            },
             "line_items": {
               "type": ["null", "array"],
               "items": {
@@ -1128,6 +1291,9 @@
                     "type": ["null", "string"]
                   },
                   "subscription_id": {
+                    "type": ["null", "string"]
+                  },
+                  "customer_id": {
                     "type": ["null", "string"]
                   },
                   "date_from": {
@@ -1500,7 +1666,10 @@
                 "zip": {
                   "type": ["null", "string"]
                 },
-                "validation_status,": {
+                "validation_status": {
+                  "type": ["null", "string"]
+                },
+                "object": {
                   "type": ["null", "string"]
                 }
               }
@@ -1552,6 +1721,57 @@
                 },
                 "object": {
                   "type": ["null", "string"]
+                }
+              }
+            },
+            "dunning_attempts": {
+              "type": [
+                "null",
+                "array"
+              ],
+              "items": {
+                "type": [
+                  "null",
+                  "object"
+                ],
+                "properties": {
+                  "attempt": {
+                    "type": [
+                      "null",
+                      "integer"
+                    ]
+                  },
+                  "transaction_id": {
+                    "type": [
+                      "null",
+                      "string"
+                    ]
+                  },
+                  "dunning_type": {
+                    "type": [
+                      "null",
+                      "string"
+                    ]
+                  },
+                  "created_at": {
+                    "type": [
+                      "null",
+                      "string"
+                    ],
+                    "format": "date-time"
+                  },
+                  "txn_status": {
+                    "type": [
+                      "null",
+                      "string"
+                    ]
+                  },
+                  "txn_amount": {
+                    "type": [
+                      "null",
+                      "integer"
+                    ]
+                  }
                 }
               }
             },
@@ -2204,6 +2424,18 @@
             "custom_fields": {
               "type": ["null", "string"]
             },
+            "currency_code": {
+              "type": ["null", "string"]
+            },
+            "object": {
+              "type": ["null", "string"]
+            },
+            "show_description_in_invoices": {
+              "type": ["null", "boolean"]
+            },
+            "show_description_in_quotes": {
+              "type": ["null", "boolean"]
+            },
             "tiers": {
               "type": ["null", "array"],
               "items": {
@@ -2217,6 +2449,9 @@
                   },
                   "price": {
                     "type": ["null", "integer"]
+                  },
+                  "object": {
+                    "type": ["null", "string"]
                   }
                 }
               }
@@ -2304,6 +2539,9 @@
           "properties": {
             "id": {
               "type": ["null", "string"]
+            },
+            "override_relationship": {
+              "type": ["null", "boolean"]
             },
             "customer_id": {
               "type": ["null", "string"]
@@ -2597,7 +2835,10 @@
                 "zip": {
                   "type": ["null", "string"]
                 },
-                "validation_status,": {
+                "validation_status": {
+                  "type": ["null", "string"]
+                },
+                "object": {
                   "type": ["null", "string"]
                 }
               }
@@ -2646,6 +2887,50 @@
                 },
                 "post_purchase_widget_enabled": {
                   "type": ["null", "boolean"]
+                }
+              }
+            },
+            "contract_term": {
+              "type": ["null","object"],
+              "properties": {
+                "id": {
+                  "type": ["null", "string"]
+                },
+                "status": {
+                  "type": ["null", "string"]
+                },
+                "contract_start": {
+                    "type": ["null", "string"],
+                    "format": "date-time"
+                },
+                "contract_end": {
+                    "type": ["null", "string"],
+                    "format": "date-time"
+                },
+                "billing_cycle": {
+                  "type": ["null", "integer"]
+                },
+                "action_at_term_end": {
+                  "type": ["null", "string"]
+                },
+                "total_contract_value": {
+                  "type": ["null", "integer"]
+                },
+                "cancellation_cutoff_period": {
+                  "type": ["null", "integer"]
+                },
+                "created_at": {
+                    "type": ["null", "string"],
+                    "format": "date-time"
+                },
+                "subscription_id": {
+                  "type": ["null", "string"]
+                },
+                "remaining_billing_cycles": {
+                  "type": ["null", "integer"]
+                },
+                "total_amount_raised": {
+                  "type": ["null", "integer"]
                 }
               }
             }
@@ -3430,8 +3715,7 @@
               }
             }
           }
-        }
-        
+        }        
       }
     }
   }

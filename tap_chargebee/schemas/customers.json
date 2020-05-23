@@ -79,6 +79,9 @@
     "cf_company_id": {
       "type": ["null","integer"]
     },
+    "use_default_hierarchy_settings": {
+      "type": ["null","boolean"]
+    },
     "allow_direct_debit": {
       "type": ["null", "boolean"]
     },
@@ -140,46 +143,6 @@
     "custom_fields": {
       "type": ["null", "string"]
     },
-    "vat_number_validated_time": {
-      "type": ["null", "string"],
-      "format": "date-time"
-    },
-    "vat_number_status": {
-      "type": ["null", "string"]
-    },
-    "is_location_valid": {
-      "type": ["null", "boolean"]
-    },
-    "created_from_ip": {
-      "type": ["null", "string"]
-    },
-    "entity_code": {
-      "type": ["null", "string"]
-    },
-    "exempt_number": {
-      "type": ["null", "string"]
-    },
-    "resource_version": {
-      "type": ["null", "integer"]
-    },
-    "fraud_flag": {
-      "type": ["null", "string"]
-    },
-    "backup_payment_source_id": {
-      "type": ["null", "string"]
-    },
-    "registered_for_gst": {
-      "type": ["null", "boolean"]
-    },
-    "customer_type": {
-      "type": ["null", "string"]
-    },
-    "meta_data": {
-      "type": ["null", "string"]
-    },
-    "exemption_details": {
-      "type": ["null", "string"]
-    },
     "billing_address": {
       "type": ["null","object"],
       "properties": {
@@ -222,7 +185,10 @@
         "zip": {
           "type": ["null", "string"]
         },
-        "validation_status,": {
+        "validation_status": {
+          "type": ["null", "string"]
+        },
+        "object": {
           "type": ["null", "string"]
         }
       }
@@ -308,7 +274,7 @@
         "gateway": {
           "type": ["null", "string"]
         },
-        "gateway_account_id ": {
+        "gateway_account_id": {
           "type": ["null", "string"]
         },
         "status": {
@@ -333,7 +299,7 @@
           "excess_payments": {
             "type": ["null", "integer"]
           },
-          "refundable_credits ": {
+          "refundable_credits": {
             "type": ["null", "integer"]
           },
           "unbilled_charges": {
@@ -341,7 +307,127 @@
           },
           "currency_code": {
             "type": ["null", "string"]
+          },
+          "base_currency_code": {
+            "type": ["null", "string"]
+          },
+          "object": {
+            "type": ["null", "string"]
           }
+        }
+      }
+    },
+    "relationship": {
+      "type": [
+        "null",
+        "object"
+      ],
+      "properties": {
+        "parent_id": {
+          "type": [
+            "null",
+            "string"
+          ]
+        },
+        "payment_owner_id": {
+          "type": [
+            "null",
+            "string"
+          ]
+        },
+        "root_id": {
+          "type": [
+            "null",
+            "string"
+          ]
+        },
+        "invoice_owner_id": {
+          "type": [
+            "null",
+            "string"
+          ]
+        },
+        "object": {
+          "type": [
+            "null",
+            "string"
+          ]
+        }
+      }
+    },
+    "parent_account_access": {
+      "type": [
+        "null",
+        "object"
+      ],
+      "properties": {
+        "portal_edit_child_subscriptions": {
+          "type": [
+            "null",
+            "string"
+          ]
+        },
+        "portal_download_child_invoices": {
+          "type": [
+            "null",
+            "string"
+          ]
+        },
+        "send_subscription_emails": {
+          "type": [
+            "null",
+            "boolean"
+          ]
+        },
+        "send_invoice_emails": {
+          "type": [
+            "null",
+            "boolean"
+          ]
+        },
+        "send_payment_emails": {
+          "type": [
+            "null",
+            "boolean"
+          ]
+        }
+      }
+    },
+    "child_account_access": {
+      "type": [
+        "null",
+        "object"
+      ],
+      "properties": {
+        "portal_edit_subscriptions": {
+          "type": [
+            "null",
+            "string"
+          ]
+        },
+        "portal_download_invoices": {
+          "type": [
+            "null",
+            "string"
+          ]
+        },
+        "send_subscription_emails": {
+          "type": [
+            "null",
+            "boolean"
+          ]
+        },
+        "send_invoice_emails": {
+          "type": [
+            "null",
+            "boolean"
+          ]
+        },
+        "send_payment_emails": {
+          "type": [
+            "null",
+            "boolean"
+          ]
         }
       }
     }

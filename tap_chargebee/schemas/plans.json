@@ -79,6 +79,33 @@
     "tax_code": {
       "type": ["null", "string"]
     },
+    "currency_code": {
+      "type": ["null", "string"]
+    },
+    "giftable": {
+      "type": ["null", "boolean"]
+    },
+    "is_shippable": {
+      "type": ["null", "boolean"]
+    },
+    "meta_data": {
+      "type": ["null", "string"]
+    },
+    "object": {
+      "type": ["null", "string"]
+    },
+    "pricing_model": {
+      "type": ["null", "string"]
+    },
+    "resource_version": {
+      "type": ["null", "integer"]
+    },
+    "show_description_in_invoices": {
+      "type": ["null", "boolean"]
+    },
+    "show_description_in_quotes": {
+      "type": ["null", "boolean"]
+    },
     "avalara_sale_type": {
       "type": ["null", "string"]
     },
@@ -97,25 +124,13 @@
     "accounting_category2": {
       "type": ["null", "string"]
     },
-    "is_shippable": {
-      "type": ["null", "boolean"]
-    },
     "shipping_frequency_period": {
       "type": ["null", "integer"]
     },
     "shipping_frequency_period_unit": {
       "type": ["null", "string"]
     },
-    "resource_version": {
-      "type": ["null", "integer"]
-    },
-    "giftable": {
-      "type": ["null", "boolean"]
-    },
     "claim_url": {
-      "type": ["null", "string"]
-    },
-    "meta_data": {
       "type": ["null", "string"]
     },
     "custom_fields": {
@@ -134,6 +149,9 @@
           },
           "price": {
             "type": ["null", "integer"]
+          },
+          "object": {
+            "type": ["null", "string"]
           }
         }
       }
@@ -165,6 +183,26 @@
           },
           "charge_once": {
             "type": ["null", "boolean"]
+          }
+        }
+      }
+    },
+    "attached_addons": {
+      "type": ["null", "array"],
+      "items": {
+        "type": ["null", "object"],
+        "properties": {
+          "id": {
+            "type": ["null", "string"]
+          },
+          "quantity": {
+            "type": ["null", "integer"]
+          },
+          "billing_cycles": {
+            "type": ["null", "integer"]
+          },
+          "type": {
+            "type": ["null", "string"]
           }
         }
       }

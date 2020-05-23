@@ -42,6 +42,13 @@
       "type": ["null", "string"],
       "maxLength": 3
     },
+    "base_currency_code": {
+      "type": ["null", "string"],
+      "maxLength": 3
+    },
+    "object": {
+      "type": ["null", "string"]
+    },
     "total": {
       "type": ["null", "integer"],
       "minimum": 0
@@ -78,8 +85,13 @@
       "minimum": 0
     },
     "round_off_amount": {
-      "type": ["null", "integer"],
-      "minimum": 0
+      "type": ["null", "integer"]
+    },
+    "exchange_rate": {
+      "type": ["null", "integer"]
+    },
+    "fractional_correction": {
+      "type": ["null", "integer"]
     },
     "deleted": {
       "type": ["null", "boolean"]
@@ -94,6 +106,12 @@
             "maxLength": 40
           },
           "subscription_id": {
+            "type": ["null", "string"]
+          },
+          "customer_id": {
+            "type": ["null", "string"]
+          },
+          "object": {
             "type": ["null", "string"]
           },
           "date_from": {
