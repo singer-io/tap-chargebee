@@ -25,7 +25,7 @@ class ChargebeeClient(BaseClient):
         super().__init__(config)
 
         self.api_result_limit = api_result_limit
-        self.include_deleted = include_deleted
+        self.include_deleted = include_deleted if self.config.get('include_deleted') is None else self.config.get('include_deleted')
         self.user_agent = self.config.get('user_agent')
 
     def get_headers(self):
