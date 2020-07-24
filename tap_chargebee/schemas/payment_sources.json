@@ -25,7 +25,7 @@
     },
     "reference_id": {
       "type": ["null", "string"],
-      "maxLength": 50
+      "maxLength": 61
     },
     "status": {
       "type": ["null", "string"]
