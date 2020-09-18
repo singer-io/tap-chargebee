@@ -189,11 +189,19 @@ class BaseChargebeeStream(BaseStream):
                 ctr.increment(amount=len(to_write))
                 
                 for item in to_write:
-                    #if item.get(bookmark_key) is not None:
-                    max_date = max(
-                        max_date,
-                        parse(item.get(bookmark_key))
-                    )
+                    bookmark_key = item.get(bookmark_key, None)
+
+                    if bookmark_key is not None:
+                        bookmark_date = parse(item.get(bookmark_key))
+
+                        LOGGER.info(f"BOOKMARK_KEY value: {bookmark_date}")
+                        
+                        max_date = max(
+                            max_date,
+                            bookmark_date
+                        )
+                    else:
+                        LOGGER.info("BOOKMARK_KEY not found. Using max date.")
 
             self.state = incorporate(
                 self.state, table, 'bookmark_date', max_date)
