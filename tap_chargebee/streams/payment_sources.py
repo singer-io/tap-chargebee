@@ -14,4 +14,4 @@ class PaymentSourcesStream(BaseChargebeeStream):
     API_METHOD = 'GET'
 
     def get_url(self):
-        return 'https://{}.chargebee.com/api/v2/payment_sources'.format(self.config.get('site'))
+        return 'https://{}/api/v2/payment_sources'.format(self.config.get('full_site'))

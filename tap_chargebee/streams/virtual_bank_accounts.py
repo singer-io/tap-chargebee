@@ -14,4 +14,4 @@ class VirtualBankAccountsStream(BaseChargebeeStream):
     API_METHOD = 'GET'
 
     def get_url(self):
-        return 'https://{}.chargebee.com/api/v2/virtual_bank_accounts'.format(self.config.get('site'))
+        return 'https://{}/api/v2/virtual_bank_accounts'.format(self.config.get('full_site'))

@@ -14,4 +14,4 @@ class PromotionalCreditsStream(BaseChargebeeStream):
     API_METHOD = 'GET'
 
     def get_url(self):
-        return 'https://{}.chargebee.com/api/v2/promotional_credits'.format(self.config.get('site'))
+        return 'https://{}/api/v2/promotional_credits'.format(self.config.get('full_site'))
