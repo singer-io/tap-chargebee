@@ -12,6 +12,7 @@ class OrdersStream(BaseChargebeeStream):
     VALID_REPLICATION_KEYS = ['updated_at']
     INCLUSION = 'available'
     API_METHOD = 'GET'
+    SORT_BY = 'updated_at' # https://apidocs.chargebee.com/docs/api/orders#list_orders_sort_by
 
     def get_url(self):
         return 'https://{}.chargebee.com/api/v2/orders'.format(self.config.get('site'))

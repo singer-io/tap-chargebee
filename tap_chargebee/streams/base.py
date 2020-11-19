@@ -145,8 +145,9 @@ class BaseChargebeeStream(BaseStream):
             params = {"updated_at[after]": bookmark_date_posix}
             bookmark_key = 'updated_at'
 
-        # Add sort_by[asc] by REPLICATION_KEY to prevent data overwrite by oldest deleted records
-        params['sort_by[asc]'] = self.REPLICATION_KEY
+        # Add sort_by[asc] to prevent data overwrite by oldest deleted records
+        if self.SORT_BY is not None:
+            params['sort_by[asc]'] = self.SORT_BY
 
         LOGGER.info("Querying {} starting at {}".format(table, bookmark_date))
 

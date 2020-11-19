@@ -12,6 +12,7 @@ class CreditNotesStream(BaseChargebeeStream):
     VALID_REPLICATION_KEYS = ['updated_at']
     INCLUSION = 'available'
     API_METHOD = 'GET'
+    SORT_BY = 'date' # https://apidocs.chargebee.com/docs/api/credit_notes#list_credit_notes_sort_by
 
     def get_url(self):
         return 'https://{}.chargebee.com/api/v2/credit_notes'.format(self.config.get('site'))
