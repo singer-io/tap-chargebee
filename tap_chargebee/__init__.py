@@ -16,6 +16,9 @@ def main():
         required_config_keys=['api_key', 'start_date'])
 
     full_site = args.config.get('full_site', None)
+    
+    product_catalog = args.config.get('product_catalog', '1.0')
+
     site = args.config.get('site', None)
     if full_site is None and site is None:
         raise Exception("Config is missing required key: atleast one key 'site' or 'full_site' is required")
@@ -25,8 +28,10 @@ def main():
 
     client = tap_chargebee.client.ChargebeeClient(args.config)
 
+    available_streams = tap_chargebee.streams.AVAILABLE_STREAMS_2_0 if product_catalog == "2.0" else tap_chargebee.streams.AVAILABLE_STREAMS_1_0
+
     runner = ChargebeeRunner(
-        args, client, tap_chargebee.streams.AVAILABLE_STREAMS
+        args, client, available_streams
         )
 
     if args.discover:

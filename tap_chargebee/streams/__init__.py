@@ -18,7 +18,6 @@ from.items import ItemsStream
 
 AVAILABLE_STREAMS = [
     EventsStream,
-    AddonsStream,
     CouponsStream,
     CreditNotesStream,
     CustomersStream,
@@ -27,10 +26,17 @@ AVAILABLE_STREAMS = [
     OrdersStream,
     PaymentSourcesStream,
     PromotionalCreditsStream,
-    PlansStream,
     SubscriptionsStream,
     TransactionsStream,
     VirtualBankAccountsStream,
+]
+
+AVAILABLE_STREAMS_1_0 = AVAILABLE_STREAMS + [
+    AddonsStream,
+    PlansStream
+]
+
+AVAILABLE_STREAMS_2_0 = AVAILABLE_STREAMS + [
     ItemsStream,
     ItemPricesStream
 ]
