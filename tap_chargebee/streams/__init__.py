@@ -13,6 +13,8 @@ from .credit_notes import CreditNotesStream
 from .gifts import GiftsStream
 from .orders import OrdersStream
 from.promotional_credits import PromotionalCreditsStream
+from.item_prices import ItemPricesStream
+from.items import ItemsStream
 
 AVAILABLE_STREAMS = [
     EventsStream,
@@ -28,5 +30,7 @@ AVAILABLE_STREAMS = [
     PlansStream,
     SubscriptionsStream,
     TransactionsStream,
-    VirtualBankAccountsStream
+    VirtualBankAccountsStream,
+    ItemsStream,
+    ItemPricesStream
 ]

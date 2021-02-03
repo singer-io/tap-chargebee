@@ -73,7 +73,7 @@ class BaseChargebeeStream(BaseStream):
         }]
 
     def appendCustomFields(self, record):
-        listOfCustomFieldObj = ['addon', 'plan', 'subscription', 'customer']
+        listOfCustomFieldObj = ['addon', 'plan', 'subscription', 'customer', 'item']
         custom_fields = {}
         event_custom_fields = {}
         if self.ENTITY == 'event':

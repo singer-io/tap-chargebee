@@ -345,8 +345,7 @@
               "minimum": 0
             },
             "round_off_amount": {
-              "type": ["null", "integer"],
-              "minimum": 0
+              "type": ["null", "integer"]
             },
             "deleted": {
               "type": ["null", "boolean"]

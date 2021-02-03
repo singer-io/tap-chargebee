@@ -154,8 +154,47 @@
     "meta_data": {
       "type": ["null", "string"]
     },
+    "metadata": {
+      "type": ["null", "string"]
+    },
     "custom_fields": {
       "type": ["null", "string"]
+    },
+    "contract_term_billing_cycle_on_renewal": {
+      "type": ["null", "integer"]
+    },
+    "override_relationship": {
+      "type": ["null", "boolean"]
+    },
+    "has_scheduled_advance_invoices": {
+      "type": ["null", "boolean"]
+    },
+    "plan_free_quantity_in_decimal": {
+      "type": ["null", "string"]
+    },
+    "plan_quantity_in_decimal": {
+      "type": ["null", "string"]
+    },
+    "plan_unit_price_in_decimal": {
+      "type": ["null", "string"]
+    },
+    "plan_amount_in_decimal": {
+      "type": ["null", "string"]
+    },
+    "cancel_reason_code": {
+      "type": ["null", "string"]
+    },
+    "free_period": {
+      "type": ["null", "integer"]
+    },
+    "free_period_unit": {
+      "type": ["null", "string"]
+    },
+    "create_pending_invoices": {
+      "type": ["null", "boolean"]
+    },
+    "auto_close_invoices": {
+      "type": ["null", "boolean"]
     },
     "addons": {
       "type": ["null", "array"],
@@ -346,6 +385,127 @@
         },
         "post_purchase_widget_enabled": {
           "type": ["null", "boolean"]
+        }
+      }
+    },
+    "contract_term": {
+      "type": ["null","object"],
+      "properties": {
+        "id": {
+          "type": ["null", "string"]
+        }, 
+        "status": {
+          "type": ["null", "string"]
+        },
+        "contract_start": {
+          "type": ["null", "string"],
+          "format": "date-time"
+        },
+        "contract_end": {
+          "type": ["null", "string"],
+          "format": "date-time"
+        },
+        "billing_cycle": {
+          "type": ["null", "integer"]
+        }, 
+        "action_at_term_end": {
+          "type": ["null", "string"]
+        }, 
+        "total_contract_value": {
+          "type": ["null", "integer"]
+        },
+        "cancellation_cutoff_period": {
+          "type": ["null", "integer"]
+        },
+        "created_at": {
+          "type": ["null", "string"],
+          "format": "date-time"
+        }, 
+        "subscription_id": {
+          "type": ["null", "string"]
+        },
+        "remaining_billing_cycles": {
+          "type": ["null", "integer"]
+        }
+      }
+    },
+    "subscription_items": {
+      "type": ["null", "array"],
+      "items": {
+        "type": ["null", "object"],
+        "properties": {
+          "item_price_id": {
+            "type": ["null", "string"]
+          },
+          "item_type": {
+            "type": ["null", "string"]
+          },
+          "quantity": {
+            "type": ["null", "integer"]
+          },
+          "unit_price": {
+            "type": ["null", "integer"]
+          },
+          "amount": {
+            "type": ["null", "integer"]
+          },
+          "free_quantity": {
+            "type": ["null", "integer"]
+          },
+          "trial_end": {
+            "type": ["null", "string"],
+            "format": "date-time"
+          },
+          "billing_cycles": {
+            "type": ["null", "integer"]
+          },
+          "service_period_days": {
+            "type": ["null", "integer"]
+          },
+          "charge_on_event": {
+            "type": ["null", "string"]
+          },
+          "charge_once": {
+            "type": ["null", "boolean"]
+          },
+          "charge_on_option": {
+            "type": ["null", "string"]
+          }
+        }
+      }
+    },
+    "item_tiers": {
+      "type": ["null", "array"],
+      "items": {
+        "type": ["null", "object"],
+        "properties": {
+          "item_price_id": {
+            "type": ["null", "string"]
+          },
+          "starting_unit": {
+            "type": ["null", "integer"]
+          },
+          "ending_unit": {
+            "type": ["null", "integer"]
+          },
+          "price": {
+            "type": ["null", "integer"]
+          } 
+        }
+      }
+    },
+    "charged_items": {
+      "type": ["null", "array"],
+      "items": {
+        "type": ["null", "object"],
+        "properties": {
+          "item_price_id": {
+            "type": ["null", "string"]
+          },
+          "last_charged_at": {
+            "type": ["null", "string"],
+            "format": "date-time"
+          }
         }
       }
     }
