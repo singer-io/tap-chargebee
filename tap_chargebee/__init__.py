@@ -28,7 +28,12 @@ def main():
 
     client = tap_chargebee.client.ChargebeeClient(args.config)
 
-    available_streams = tap_chargebee.streams.AVAILABLE_STREAMS_2_0 if product_catalog == "2.0" else tap_chargebee.streams.AVAILABLE_STREAMS_1_0
+    available_streams = None
+    if args.discover:
+        available_streams = tap_chargebee.streams.AVAILABLE_STREAMS_ALL
+    else:
+        available_streams = tap_chargebee.streams.AVAILABLE_STREAMS_2_0 if product_catalog == "2.0" else tap_chargebee.streams.AVAILABLE_STREAMS_1_0
+
 
     runner = ChargebeeRunner(
         args, client, available_streams
