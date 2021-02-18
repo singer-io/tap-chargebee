@@ -40,7 +40,8 @@ This tap:
     {
         "start_date": "2010-01-01",
         "api_key": "<Chargebee API Key>",
-        "site": "<Chargebee Site>"
+        "site": "<Chargebee Site>",
+        "product_catalog": "1.0"
     }
     ```
 
@@ -50,6 +51,8 @@ This tap:
    The `api_key` is the API key for your Chargebee site.
 
    The `site` parameter represents the name of your specific Chargebee site (e.g. `https://{site}.chargebee.com/api/v2/subscriptions`)
+
+   The `product_catalog` is which Chargebee product catalog to use. Valid arguments are `1.0` or `2.0`
 
 4. Run the Tap in Discovery Mode
 
