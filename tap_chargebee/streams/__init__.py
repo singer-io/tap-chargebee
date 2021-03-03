@@ -1,5 +1,6 @@
 from .addons import AddonsStream
 from .coupons import CouponsStream
+from .comments import CommentsStream
 from .credit_notes import CreditNotesStream
 from .customers import CustomersStream
 from .events import EventsStream
@@ -17,6 +18,7 @@ from.promotional_credits import PromotionalCreditsStream
 AVAILABLE_STREAMS = [
     EventsStream,
     AddonsStream,
+    CommentsStream,
     CouponsStream,
     CreditNotesStream,
     CustomersStream,
