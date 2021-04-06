@@ -4,6 +4,9 @@ from .credit_notes import CreditNotesStream
 from .customers import CustomersStream
 from .events import EventsStream
 from .invoices import InvoicesStream
+from .item_families import ItemFamiliesStream
+from .item_prices import ItemPricesStream
+from .items import ItemsStream
 from .payment_sources import PaymentSourcesStream
 from .plans import PlansStream
 from .subscriptions import SubscriptionsStream
@@ -12,11 +15,10 @@ from .virtual_bank_accounts import VirtualBankAccountsStream
 from .credit_notes import CreditNotesStream
 from .gifts import GiftsStream
 from .orders import OrdersStream
-from.promotional_credits import PromotionalCreditsStream
+from .promotional_credits import PromotionalCreditsStream
 
-AVAILABLE_STREAMS = [
+COMMON_AVAILABLE_STREAMS = [
     EventsStream,
-    AddonsStream,
     CouponsStream,
     CreditNotesStream,
     CustomersStream,
@@ -25,8 +27,18 @@ AVAILABLE_STREAMS = [
     OrdersStream,
     PaymentSourcesStream,
     PromotionalCreditsStream,
-    PlansStream,
     SubscriptionsStream,
     TransactionsStream,
     VirtualBankAccountsStream
+]
+
+PLAN_MODEL_AVAILABLE_STREAMS = COMMON_AVAILABLE_STREAMS + [
+    AddonsStream,
+    PlansStream
+]
+
+ITEM_MODEL_AVAILABLE_STREAMS = COMMON_AVAILABLE_STREAMS + [
+    ItemsStream,
+    ItemPricesStream,
+    ItemFamiliesStream
 ]

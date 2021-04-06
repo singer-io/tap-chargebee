@@ -122,6 +122,9 @@
     "custom_fields": {
       "type": ["null", "string"]
     },
+    "price_in_decimal": {
+      "type": ["null", "string"] 
+    },
     "tiers": {
       "type": ["null", "array"],
       "items": {
@@ -137,6 +140,15 @@
           "price ": {
             "type": ["null", "integer"],
             "minimum": 0
+          },
+          "starting_unit_in_decimal": {
+            "type": ["null", "string"]
+          },
+          "ending_unit_in_decimal": {
+            "type": ["null", "string"]
+          },
+          "price_in_decimal": {
+            "type": ["null", "string"]
           }
         }
       }
