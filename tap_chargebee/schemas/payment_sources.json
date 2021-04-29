@@ -17,13 +17,13 @@
       "format": "date-time"
     },
     "customer_id": {
-      "type": ["null", "string"],
+      "type": ["null", "string"]
     },
     "type": {
       "type": ["null", "string"]
     },
     "reference_id": {
-      "type": ["null", "string"],
+      "type": ["null", "string"]
     },
     "status": {
       "type": ["null", "string"]
@@ -32,13 +32,13 @@
       "type": ["null", "string"]
     },
     "gateway_account_id": {
-      "type": ["null", "string"],
+      "type": ["null", "string"]
     },
     "ip_address": {
-      "type": ["null", "string"],
+      "type": ["null", "string"]
     },
     "issuing_country": {
-      "type": ["null", "string"],
+      "type": ["null", "string"]
     },
     "deleted": {
       "type": ["null", "boolean"]
@@ -53,16 +53,16 @@
       "type": ["null", "object"],
       "properties": {
         "last4": {
-          "type": ["null", "string"],
+          "type": ["null", "string"]
         },
         "name_on_account": {
-          "type": ["null", "string"],
+          "type": ["null", "string"]
         },
         "bank_name": {
-          "type": ["null", "string"],
+          "type": ["null", "string"]
         },
         "mandate_id": {
-          "type": ["null", "string"],
+          "type": ["null", "string"]
         },
         "account_type": {
           "type": ["null", "string"]
@@ -79,10 +79,10 @@
       "type": ["null", "object"],
       "properties": {
         "email": {
-          "type": ["null", "string"],
+          "type": ["null", "string"]
         },
         "agreement_id": {
-          "type": ["null", "string"],
+          "type": ["null", "string"]
         }
       }
     },
@@ -90,10 +90,10 @@
       "type": ["null", "object"],
       "properties": {
         "email": {
-          "type": ["null", "string"],
+          "type": ["null", "string"]
         },
         "agremeent_id": {
-          "type": ["null", "string"],
+          "type": ["null", "string"]
         }
       }
     }
