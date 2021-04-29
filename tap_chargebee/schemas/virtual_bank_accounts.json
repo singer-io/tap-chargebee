@@ -4,41 +4,30 @@
   "properties": {
     "id": {
       "type": ["null", "string"],
-      "maxLength": 40
     },
     "customer_id": {
       "type": ["null", "string"],
-      "maxLength": 50
     },
     "email": {
       "type": ["null", "string"],
-      "maxLength": 70
     },
     "bank_name": {
       "type": ["null", "string"],
-      "maxLength": 100
     },
     "account_number": {
       "type": ["null", "string"],
-      "minLength": 5,
-      "maxLength": 50
     },
     "routing_number": {
       "type": ["null", "string"],
-      "minLength": 9,
-      "maxLength": 50
     },
     "swift_code": {
       "type": ["null", "string"],
-      "minLength": 8,
-      "maxLength": 11
     },
     "gateway": {
       "type": ["null", "string"]
     },
     "gateway_account_id": {
       "type": ["null", "string"],
-      "maxLength": 50
     },
     "resource_version": {
       "type": ["null", "integer"]
@@ -53,7 +42,6 @@
     },
     "reference_id": {
       "type": ["null", "string"],
-      "maxLength": 150
     },
     "deleted": {
       "type": ["null", "boolean"]

@@ -4,21 +4,15 @@
   "properties": {
     "first_name": {
       "type": ["null", "string"],
-      "maxLength": 50
     },
     "last_name": {
       "type": ["null", "string"],
-      "maxLength": 50
     },
     "iin": {
       "type": ["null", "string"],
-      "minLength": 6,
-      "maxLength": 6
     },
     "last4": {
       "type": ["null", "string"],
-      "minLength": 4,
-      "maxLength": 4
     },
     "brand": {
       "type": ["null", "string"]
@@ -28,43 +22,33 @@
     },
     "expiry_month": {
       "type": ["null", "integer"],
-      "minimum": 1,
-      "maximum": 12
     },
     "expiry_year": {
       "type": ["null", "integer"]
     },
     "billing_addr1": {
       "type": ["null", "string"],
-      "maxLength": 150
     },
     "billing_addr2": {
       "type": ["null", "string"],
-      "maxLength": 150
     },
     "billing_city": {
       "type": ["null", "string"],
-      "maxLength": 50
     },
     "billing_state_code": {
       "type": ["null", "string"],
-      "maxLength": 50
     },
     "billing_state": {
       "type": ["null", "string"],
-      "maxLength": 50
     },
     "billing_country": {
       "type": ["null", "string"],
-      "maxLength": 50
     },
     "billing_zip": {
       "type": ["null", "string"],
-      "maxLength": 20
     },
     "masked_number": {
       "type": ["null", "string"],
-      "maxLength": 19
     }
   }
 }
