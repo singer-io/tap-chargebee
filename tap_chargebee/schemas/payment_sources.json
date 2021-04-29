@@ -18,14 +18,12 @@
     },
     "customer_id": {
       "type": ["null", "string"],
-      "maxLength": 50
     },
     "type": {
       "type": ["null", "string"]
     },
     "reference_id": {
       "type": ["null", "string"],
-      "maxLength": 50
     },
     "status": {
       "type": ["null", "string"]
@@ -35,15 +33,12 @@
     },
     "gateway_account_id": {
       "type": ["null", "string"],
-      "maxLength": 50
     },
     "ip_address": {
       "type": ["null", "string"],
-      "maxLength": 50
     },
     "issuing_country": {
       "type": ["null", "string"],
-      "maxLength": 50
     },
     "deleted": {
       "type": ["null", "boolean"]
@@ -59,21 +54,15 @@
       "properties": {
         "last4": {
           "type": ["null", "string"],
-          "minLength": 4,
-          "maxLength": 4
         },
         "name_on_account": {
           "type": ["null", "string"],
-          "maxLength": 300
         },
         "bank_name": {
           "type": ["null", "string"],
-          "maxLength": 100
         },
         "mandate_id": {
           "type": ["null", "string"],
-          "minLength": 5,
-          "maxLength": 17
         },
         "account_type": {
           "type": ["null", "string"]
@@ -91,11 +80,9 @@
       "properties": {
         "email": {
           "type": ["null", "string"],
-          "maxLength": 70
         },
         "agreement_id": {
           "type": ["null", "string"],
-          "maxLength": 50
         }
       }
     },
@@ -104,11 +91,9 @@
       "properties": {
         "email": {
           "type": ["null", "string"],
-          "maxLength": 70
         },
         "agremeent_id": {
           "type": ["null", "string"],
-          "maxLength": 50
         }
       }
     }
