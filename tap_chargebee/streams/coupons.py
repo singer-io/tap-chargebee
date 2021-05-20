@@ -12,6 +12,7 @@ class CouponsStream(BaseChargebeeStream):
     VALID_REPLICATION_KEYS = ['updated_at']
     INCLUSION = 'available'
     API_METHOD = 'GET'
+    SORT_BY = 'created_at' # https://apidocs.chargebee.com/docs/api/coupons#list_coupons_sort_by
 
 
     def get_url(self):

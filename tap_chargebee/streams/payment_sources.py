@@ -12,6 +12,7 @@ class PaymentSourcesStream(BaseChargebeeStream):
     VALID_REPLICATION_KEYS = ['updated_at']
     INCLUSION = 'available'
     API_METHOD = 'GET'
+    SORT_BY = None
 
     def get_url(self):
         return 'https://{}.chargebee.com/api/v2/payment_sources'.format(self.config.get('site'))
