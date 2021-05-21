@@ -63,6 +63,9 @@
     "metadata": {
       "type": ["null", "string"]
     },
+    "custom_fields": {
+      "type": ["null", "string"]
+    },
     "applicable_items": {
       "type": ["null", "array"],
       "items": {

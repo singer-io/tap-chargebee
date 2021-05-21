@@ -15,6 +15,7 @@ from .orders import OrdersStream
 from.promotional_credits import PromotionalCreditsStream
 from.item_prices import ItemPricesStream
 from.items import ItemsStream
+from.unbilled_charges import UnbilledCharges
 
 AVAILABLE_STREAMS = [
     EventsStream,
@@ -29,6 +30,7 @@ AVAILABLE_STREAMS = [
     SubscriptionsStream,
     TransactionsStream,
     VirtualBankAccountsStream,
+    UnbilledCharges
 ]
 
 AVAILABLE_STREAMS_1_0_ONLY = [

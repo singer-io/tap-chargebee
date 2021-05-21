@@ -141,6 +141,9 @@ class BaseChargebeeStream(BaseStream):
         elif self.ENTITY == 'promotional_credit':
             params = {"created_at[after]": bookmark_date_posix}
             bookmark_key = 'created_at'
+        elif self.ENTITY == 'unbilled_charge':
+            params = {}
+            bookmark_key = None
         else:
             params = {"updated_at[after]": bookmark_date_posix}
             bookmark_key = 'updated_at'
@@ -187,16 +190,18 @@ class BaseChargebeeStream(BaseStream):
                 singer.write_records(table, to_write)
 
                 ctr.increment(amount=len(to_write))
-                
-                for item in to_write:
-                    #if item.get(bookmark_key) is not None:
-                    max_date = max(
-                        max_date,
-                        parse(item.get(bookmark_key))
-                    )
 
-            self.state = incorporate(
-                self.state, table, 'bookmark_date', max_date)
+                if bookmark_key is not None:
+                    for item in to_write:
+                        #if item.get(bookmark_key) is not None:
+                        max_date = max(
+                            max_date,
+                            parse(item.get(bookmark_key))
+                        )
+
+            if bookmark_key is not None:
+                self.state = incorporate(
+                    self.state, table, 'bookmark_date', max_date)
 
             if not response.get('next_offset'):
                 LOGGER.info("Final offset reached. Ending sync.")

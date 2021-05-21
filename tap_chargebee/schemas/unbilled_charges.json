@@ -1,0 +1,158 @@
+{
+    "type": [
+        "null",
+        "object"
+    ],
+    "additionalProperties": false,
+    "properties": {
+        "id": {
+            "type": [
+                "null",
+                "string"
+            ],
+            "maxLength": 50
+        },
+        "customer_id": {
+            "type": [
+                "null",
+                "string"
+            ],
+            "maxLength": 50
+        },
+        "subscription_id": {
+            "type": [
+                "null",
+                "string"
+            ],
+            "maxLength": 50
+        },
+        "date_from": {
+            "type": [
+                "null",
+                "string"
+            ],
+            "format": "date-time"
+        },
+        "date_to": {
+            "type": [
+                "null",
+                "string"
+            ],
+            "format": "date-time"
+        },
+        "unit_amount": {
+            "type": [
+                "null",
+                "integer"
+            ]
+        },
+        "pricing_model": {
+            "type": [
+                "null",
+                "string"
+            ]
+        },
+        "quantity": {
+            "type": [
+                "null",
+                "integer"
+            ]
+        },
+        "amount": {
+            "type": [
+                "null",
+                "integer"
+            ]
+        },
+        "currency_code": {
+            "type": [
+                "null",
+                "string"
+            ]
+        },
+        "discount_amount": {
+            "type": [
+                "null",
+                "integer"
+            ]
+        },
+        "description": {
+            "type": [
+                "null",
+                "string"
+            ]
+        },
+        "entity_type": {
+            "type": [
+                "null",
+                "string"
+            ]
+        },
+        "entity_id": {
+            "type": [
+                "null",
+                "string"
+            ]
+        },
+        "is_voided": {
+            "type": [
+                "null",
+                "boolean"
+            ]
+        },
+        "voided_at": {
+            "type": [
+                "null",
+                "string"
+            ],
+            "format": "date-time"
+        },
+        "deleted": {
+            "type": [
+                "null",
+                "boolean"
+            ]
+        },
+        "tiers": {
+            "type": [
+                "null",
+                "array"
+            ],
+            "items": {
+                "type": [
+                    "null",
+                    "object"
+                ],
+                "properties": {
+                    "starting_unit": {
+                        "type": [
+                            "null",
+                            "integer"
+                        ],
+                        "minimum": 0
+                    },
+                    "ending_unit": {
+                        "type": [
+                            "null",
+                            "integer"
+                        ]
+                    },
+                    "unit_amount ": {
+                        "type": [
+                            "null",
+                            "integer"
+                        ],
+                        "minimum": 0
+                    },
+                    "quantity_used": {
+                        "type": [
+                            "null",
+                            "integer"
+                        ],
+                        "minimum": 0
+                    }
+                }
+            }
+        }
+    }
+}
