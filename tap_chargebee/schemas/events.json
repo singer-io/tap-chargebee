@@ -698,7 +698,7 @@
               "type": ["null", "boolean"]
             },
             "cf_company_id": {
-              "type": ["null","integer"]
+              "type": ["null", "integer", "string"]
             },
             "allow_direct_debit": {
               "type": ["null", "boolean"]
