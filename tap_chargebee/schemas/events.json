@@ -35,16 +35,16 @@
           "additionalProperties": false,
           "properties": {
             "id": {
-              "type": ["null", "string"],
+              "type": ["null", "string"]
             },
             "name": {
-              "type": ["null", "string"],
+              "type": ["null", "string"]
             },
             "invoice_name": {
-              "type": ["null", "string"],
+              "type": ["null", "string"]
             },
             "description": {
-              "type": ["null", "string"],
+              "type": ["null", "string"]
             },
             "pricing_model": {
               "type": ["null", "string"]
@@ -53,19 +53,19 @@
               "type": ["null", "string"]
             },
             "price": {
-              "type": ["null", "integer"],
+              "type": ["null", "integer"]
             },
             "currency_code": {
-              "type": ["null", "string"],
+              "type": ["null", "string"]
             },
             "period": {
-              "type": ["null", "integer"],
+              "type": ["null", "integer"]
             },
             "period_unit": {
               "type": ["null", "string"]
             },
             "unit": {
-              "type": ["null", "string"],
+              "type": ["null", "string"]
             },
             "status": {
               "type": ["null", "string"]
@@ -78,7 +78,7 @@
               "type": ["null", "boolean"]
             },
             "tax_code": {
-              "type": ["null", "string"],
+              "type": ["null", "string"]
             },
             "avalara_sale_type": {
               "type": ["null", "string"]
@@ -90,22 +90,22 @@
               "type": ["null", "integer"]
             },
             "sku": {
-              "type": ["null", "string"],
+              "type": ["null", "string"]
             },
             "accounting_code": {
-              "type": ["null", "string"],
+              "type": ["null", "string"]
             },
             "accouting_category1": {
-              "type": ["null", "string"],
+              "type": ["null", "string"]
             },
             "accouting_category2": {
-              "type": ["null", "string"],
+              "type": ["null", "string"]
             },
             "is_shippable": {
               "type": ["null", "boolean"]
             },
             "shipping_frequency_period": {
-              "type": ["null", "integer"],
+              "type": ["null", "integer"]
             },
             "shipping_frequency_period_unit": {
               "type": ["null", "string"]
@@ -118,13 +118,13 @@
               "format": "date-time"
             },
             "invoice_notes": {
-              "type": ["null", "string"],
+              "type": ["null", "string"]
             },
             "taxable": {
               "type": ["null", "boolean"]
             },
             "tax_profile_id": {
-              "type": ["null", "string"],
+              "type": ["null", "string"]
             },
             "object": {
               "type": ["null", "string"]
@@ -144,13 +144,13 @@
                 "type": ["null","object"],
                 "properties": {
                   "starting_unit": {
-                    "type": ["null", "integer"],
+                    "type": ["null", "integer"]
                   },
                   "ending_unit": {
                     "type": ["null", "integer"]
                   },
                   "price ": {
-                    "type": ["null", "integer"],
+                    "type": ["null", "integer"]
                   }
                 }
               }
@@ -252,16 +252,16 @@
           "additionalProperties": false,
           "properties": {
             "id": {
-              "type": ["null", "string"],
+              "type": ["null", "string"]
             },
             "customer_id": {
-              "type": ["null", "string"],
+              "type": ["null", "string"]
             },
             "subscription_id": {
-              "type": ["null", "string"],
+              "type": ["null", "string"]
             },
             "reference_invoice_id": {
-              "type": ["null", "string"],
+              "type": ["null", "string"]
             },
             "type": {
               "type": ["null", "string"]
@@ -273,7 +273,7 @@
               "type": ["null", "string"]
             },
             "vat_number": {
-              "type": ["null", "string"],
+              "type": ["null", "string"]
             },
             "date": {
               "type": ["null", "string"],
@@ -283,19 +283,19 @@
               "type": ["null", "string"]
             },
             "currency_code": {
-              "type": ["null", "string"],
+              "type": ["null", "string"]
             },
             "total": {
-              "type": ["null", "integer"],
+              "type": ["null", "integer"]
             },
             "amount_allocated": {
-              "type": ["null", "integer"],
+              "type": ["null", "integer"]
             },
             "amount_refunded": {
-              "type": ["null", "integer"],
+              "type": ["null", "integer"]
             },
             "amount_available": {
-              "type": ["null", "integer"],
+              "type": ["null", "integer"]
             },
             "refunded_at": {
               "type": ["null", "string"],
@@ -313,10 +313,10 @@
               "format": "date-time"
             },
             "sub_total": {
-              "type": ["null", "integer"],
+              "type": ["null", "integer"]
             },
             "round_off_amount": {
-              "type": ["null", "integer"],
+              "type": ["null", "integer"]
             },
             "deleted": {
               "type": ["null", "boolean"]
@@ -327,7 +327,7 @@
                 "type": ["null", "object"],
                 "properties": {
                   "id": {
-                    "type": ["null", "string"],
+                    "type": ["null", "string"]
                   },
                   "subscription_id": {
                     "type": ["null", "string"]
@@ -356,19 +356,19 @@
                     "type": ["null", "boolean"]
                   },
                   "tax_amount": {
-                    "type": ["null", "integer"],
+                    "type": ["null", "integer"]
                   },
                   "tax_rate": {
-                    "type": ["null", "number"],
+                    "type": ["null", "number"]
                   },
                   "discount_amount": {
-                    "type": ["null", "integer"],
+                    "type": ["null", "integer"]
                   },
                   "item_level_discount_amount": {
-                    "type": ["null", "integer"],
+                    "type": ["null", "integer"]
                   },
                   "description": {
-                    "type": ["null", "string"],
+                    "type": ["null", "string"]
                   },
                   "entity_type": {
                     "type": ["null", "string"]
@@ -377,7 +377,7 @@
                     "type": ["null", "string"]
                   },
                   "entity_id": {
-                    "type": ["null", "string"],
+                    "type": ["null", "string"]
                   }
                 }
               }
@@ -388,16 +388,16 @@
                 "type": ["null", "object"],
                 "properties": {
                   "amount": {
-                    "type": ["null", "integer"],
+                    "type": ["null", "integer"]
                   },
                   "description": {
-                    "type": ["null", "string"],
+                    "type": ["null", "string"]
                   },
                   "entity_type": {
                     "type": ["null", "string"]
                   },
                   "entity_id": {
-                    "type": ["null", "string"],
+                    "type": ["null", "string"]
                   }
                 }
               }
@@ -408,16 +408,16 @@
                 "type": ["null", "object"],
                 "properties": {
                   "line_item_id": {
-                    "type": ["null", "string"],
+                    "type": ["null", "string"]
                   },
                   "discount_type": {
                     "type": ["null", "string"]
                   },
                   "coupon_id": {
-                    "type": ["null", "string"],
+                    "type": ["null", "string"]
                   },
                   "discount_amount": {
-                    "type": ["null", "integer"],
+                    "type": ["null", "integer"]
                   }
                 }
               }
@@ -428,19 +428,19 @@
                 "type": ["null", "object"],
                 "properties": {
                   "line_item_id": {
-                    "type": ["null", "string"],
+                    "type": ["null", "string"]
                   },
                   "starting_unit": {
-                    "type": ["null", "integer"],
+                    "type": ["null", "integer"]
                   },
                   "ending_unit": {
                     "type": ["null", "integer"]
                   },
                   "quantity_used": {
-                    "type": ["null", "integer"],
+                    "type": ["null", "integer"]
                   },
                   "unit_amount": {
-                    "type": ["null", "integer"],
+                    "type": ["null", "integer"]
                   }
                 }
               }
@@ -451,13 +451,13 @@
                 "type": ["null", "object"],
                 "properties": {
                   "name": {
-                    "type": ["null", "string"],
+                    "type": ["null", "string"]
                   },
                   "amount": {
-                    "type": ["null", "integer"],
+                    "type": ["null", "integer"]
                   },
                   "description": {
-                    "type": ["null", "string"],
+                    "type": ["null", "string"]
                   }
                 }
               }
@@ -468,13 +468,13 @@
                 "type": ["null", "object"],
                 "properties": {
                   "line_item_id": {
-                    "type": ["null", "string"],
+                    "type": ["null", "string"]
                   },
                   "tax_name": {
-                    "type": ["null", "string"],
+                    "type": ["null", "string"]
                   },
                   "tax_rate": {
-                    "type": ["null", "number"],
+                    "type": ["null", "number"]
                   },
                   "is_partial_tax_applied": {
                     "type": ["null", "boolean"]
@@ -483,19 +483,19 @@
                     "type": ["null", "boolean"]
                   },
                   "taxable_amount": {
-                    "type": ["null", "integer"],
+                    "type": ["null", "integer"]
                   },
                   "tax_amount": {
-                    "type": ["null", "integer"],
+                    "type": ["null", "integer"]
                   },
                   "tax_juris_type": {
                     "type": ["null", "string"]
                   },
                   "tax_juris_name": {
-                    "type": ["null", "string"],
+                    "type": ["null", "string"]
                   },
                   "tax_juris_code": {
-                    "type": ["null", "string"],
+                    "type": ["null", "string"]
                   }
                 }
               }
@@ -506,10 +506,10 @@
                 "type": ["null", "object"],
                 "properties": {
                   "txn_id": {
-                    "type": ["null", "string"],
+                    "type": ["null", "string"]
                   },
                   "applied_amount": {
-                    "type": ["null", "integer"],
+                    "type": ["null", "integer"]
                   },
                   "applied_at": {
                     "type": ["null", "string"],
@@ -523,7 +523,7 @@
                     "format": "date-time"
                   },
                   "txn_amount": {
-                    "type": ["null", "integer"],
+                    "type": ["null", "integer"]
                   }
                 }
               }
@@ -534,10 +534,10 @@
                 "type": ["null", "object"],
                 "properties": {
                   "invoice_id": {
-                    "type": ["null", "string"],
+                    "type": ["null", "string"]
                   },
                   "allocated_amount": {
-                    "type": ["null", "integer"],
+                    "type": ["null", "integer"]
                   },
                   "allocated_at": {
                     "type": ["null", "string"],
@@ -1920,13 +1920,13 @@
               "format": "date-time"
             },
             "customer_id": {
-              "type": ["null", "string"],
+              "type": ["null", "string"]
             },
             "type": {
               "type": ["null", "string"]
             },
             "reference_id": {
-              "type": ["null", "string"],
+              "type": ["null", "string"]
             },
             "status": {
               "type": ["null", "string"]
@@ -1935,13 +1935,13 @@
               "type": ["null", "string"]
             },
             "gateway_account_id": {
-              "type": ["null", "string"],
+              "type": ["null", "string"]
             },
             "ip_address": {
-              "type": ["null", "string"],
+              "type": ["null", "string"]
             },
             "issuing_country": {
-              "type": ["null", "string"],
+              "type": ["null", "string"]
             },
             "deleted": {
               "type": ["null", "boolean"]
@@ -1956,16 +1956,16 @@
               "type": ["null", "object"],
               "properties": {
                 "last4": {
-                  "type": ["null", "string"],
+                  "type": ["null", "string"]
                 },
                 "name_on_account": {
-                  "type": ["null", "string"],
+                  "type": ["null", "string"]
                 },
                 "bank_name": {
-                  "type": ["null", "string"],
+                  "type": ["null", "string"]
                 },
                 "mandate_id": {
-                  "type": ["null", "string"],
+                  "type": ["null", "string"]
                 },
                 "account_type": {
                   "type": ["null", "string"]
@@ -1982,10 +1982,10 @@
               "type": ["null", "object"],
               "properties": {
                 "email": {
-                  "type": ["null", "string"],
+                  "type": ["null", "string"]
                 },
                 "agreement_id": {
-                  "type": ["null", "string"],
+                  "type": ["null", "string"]
                 }
               }
             },
@@ -1993,10 +1993,10 @@
               "type": ["null", "object"],
               "properties": {
                 "email": {
-                  "type": ["null", "string"],
+                  "type": ["null", "string"]
                 },
                 "agremeent_id": {
-                  "type": ["null", "string"],
+                  "type": ["null", "string"]
                 }
               }
             }
@@ -2180,10 +2180,10 @@
           "additionalProperties": false,
           "properties": {
             "id": {
-              "type": ["null", "string"],
+              "type": ["null", "string"]
             },
             "customer_id": {
-              "type": ["null", "string"],
+              "type": ["null", "string"]
             },
             "type":{
               "type": ["null", "string"]
@@ -2204,10 +2204,10 @@
               "type": ["null", "string"]
             },
             "closing_balance": {
-              "type": ["null", "integer"],
+              "type": ["null", "integer"]
             },
             "done_by": {
-              "type": ["null", "string"],
+              "type": ["null", "string"]
             },
             "created_at": {
               "type": ["null", "string"],
@@ -2796,31 +2796,31 @@
           "additionalProperties": false,
           "properties": {
             "id": {
-              "type": ["null", "string"],
+              "type": ["null", "string"]
             },
             "customer_id": {
-              "type": ["null", "string"],
+              "type": ["null", "string"]
             },
             "email": {
-              "type": ["null", "string"],
+              "type": ["null", "string"]
             },
             "bank_name": {
-              "type": ["null", "string"],
+              "type": ["null", "string"]
             },
             "account_number": {
-              "type": ["null", "string"],
+              "type": ["null", "string"]
             },
             "routing_number": {
-              "type": ["null", "string"],
+              "type": ["null", "string"]
             },
             "swift_code": {
-              "type": ["null", "string"],
+              "type": ["null", "string"]
             },
             "gateway": {
               "type": ["null", "string"]
             },
             "gateway_account_id": {
-              "type": ["null", "string"],
+              "type": ["null", "string"]
             },
             "resource_version": {
               "type": ["null", "integer"]
@@ -2834,7 +2834,7 @@
               "format": "date-time"
             },
             "reference_id": {
-              "type": ["null", "string"],
+              "type": ["null", "string"]
             },
             "deleted": {
               "type": ["null", "boolean"]
@@ -2850,13 +2850,13 @@
             "type": ["null","object"],
             "properties": {
               "id": {
-                "type": ["null", "string"],
+                "type": ["null", "string"]
               },
               "customer_id": {
-                "type": ["null", "string"],
+                "type": ["null", "string"]
               },
               "subscription_id": {
-                "type": ["null", "string"],
+                "type": ["null", "string"]
               },
               "unit_amount": {
                 "type": ["null", "integer"]
@@ -2901,16 +2901,16 @@
                   "type": ["null","object"],
                   "properties": {
                     "starting_unit": {
-                      "type": ["null", "integer"],
+                      "type": ["null", "integer"]
                     },
                     "ending_unit": {
                       "type": ["null", "integer"]
                     },
                     "quantity_used ": {
-                      "type": ["null", "integer"],
+                      "type": ["null", "integer"]
                     },
                     "unit_amount ": {
-                      "type": ["null", "integer"],
+                      "type": ["null", "integer"]
                     }
                   }
                 }
@@ -2924,19 +2924,19 @@
           "additionalProperties": false,
           "properties":{
             "code": {
-              "type": ["null", "string"],
+              "type": ["null", "string"]
             },
             "status": {
               "type": ["null", "string"]
             },
             "coupon_id": {
-              "type": ["null", "string"],
+              "type": ["null", "string"]
             },
             "coupon_site_id": {
-              "type": ["null", "string"],
+              "type": ["null", "string"]
             },
             "coupon_set_name": {
-              "type": ["null", "string"],
+              "type": ["null", "string"]
             }
           }
         },
@@ -2945,13 +2945,13 @@
           "additionalProperties": false,
           "properties":{
             "id": {
-              "type": ["null", "string"],
+              "type": ["null", "string"]
             },
             "coupon_id": {
-              "type": ["null", "string"],
+              "type": ["null", "string"]
             },
             "name": {
-              "type": ["null", "string"],
+              "type": ["null", "string"]
             },
             "total_count": {
               "type": ["null", "integer"]
@@ -2972,16 +2972,16 @@
           "additionalProperties": false,
           "properties":{
             "id": {
-              "type": ["null", "string"],
+              "type": ["null", "string"]
             },
             "po_number": {
               "type": ["null", "string"]
             },
             "customer_id": {
-              "type": ["null", "string"],
+              "type": ["null", "string"]
             },
             "subscription_id": {
-              "type": ["null", "string"],
+              "type": ["null", "string"]
             },
             "status": {
               "type": ["null", "string"]
@@ -3004,19 +3004,19 @@
               "format": "date-time"
             },
             "sub_total": {
-              "type": ["null", "integer"],
+              "type": ["null", "integer"]
             },
             "total": {
-              "type": ["null", "integer"],
+              "type": ["null", "integer"]
             },
             "credits_applied": {
-              "type": ["null", "integer"],
+              "type": ["null", "integer"]
             },
             "amount_paid": {
-              "type": ["null", "integer"],
+              "type": ["null", "integer"]
             },
             "amount_due": {
-              "type": ["null", "integer"],
+              "type": ["null", "integer"]
             },
             "resource_version": {
               "type": ["null", "integer"]
@@ -3034,7 +3034,7 @@
                 "type": ["null", "object"],
                 "properties": {
                   "id": {
-                    "type": ["null", "string"],
+                    "type": ["null", "string"]
                   },
                   "subscription_id": {
                     "type": ["null", "string"]
@@ -3063,19 +3063,19 @@
                     "type": ["null", "boolean"]
                   },
                   "tax_amount": {
-                    "type": ["null", "integer"],
+                    "type": ["null", "integer"]
                   },
                   "tax_rate": {
-                    "type": ["null", "number"],
+                    "type": ["null", "number"]
                   },
                   "discount_amount": {
-                    "type": ["null", "integer"],
+                    "type": ["null", "integer"]
                   },
                   "item_level_discount_amount": {
-                    "type": ["null", "integer"],
+                    "type": ["null", "integer"]
                   },
                   "description": {
-                    "type": ["null", "string"],
+                    "type": ["null", "string"]
                   },
                   "entity_type": {
                     "type": ["null", "string"]
@@ -3084,10 +3084,10 @@
                     "type": ["null", "string"]
                   },
                   "entity_id": {
-                    "type": ["null", "string"],
+                    "type": ["null", "string"]
                   },
                   "customer_id": {
-                    "type": ["null", "string"],
+                    "type": ["null", "string"]
                   }
                 }
               }
@@ -3098,16 +3098,16 @@
                 "type": ["null", "object"],
                 "properties": {
                   "amount": {
-                    "type": ["null", "integer"],
+                    "type": ["null", "integer"]
                   },
                   "description": {
-                    "type": ["null", "string"],
+                    "type": ["null", "string"]
                   },
                   "entity_type": {
                     "type": ["null", "string"]
                   },
                   "entity_id": {
-                    "type": ["null", "string"],
+                    "type": ["null", "string"]
                   }
                 }
               }
@@ -3118,16 +3118,16 @@
                 "type": ["null", "object"],
                 "properties": {
                   "line_item_id": {
-                    "type": ["null", "string"],
+                    "type": ["null", "string"]
                   },
                   "discount_type": {
                     "type": ["null", "string"]
                   },
                   "coupon_id": {
-                    "type": ["null", "string"],
+                    "type": ["null", "string"]
                   },
                   "discount_amount": {
-                    "type": ["null", "integer"],
+                    "type": ["null", "integer"]
                   }
                 }
               }
@@ -3138,13 +3138,13 @@
                 "type": ["null", "object"],
                 "properties": {
                   "name": {
-                    "type": ["null", "string"],
+                    "type": ["null", "string"]
                   },
                   "amount": {
-                    "type": ["null", "integer"],
+                    "type": ["null", "integer"]
                   },
                   "description": {
-                    "type": ["null", "string"],
+                    "type": ["null", "string"]
                   }
                 }
               }
@@ -3155,13 +3155,13 @@
                 "type": ["null", "object"],
                 "properties": {
                   "line_item_id": {
-                    "type": ["null", "string"],
+                    "type": ["null", "string"]
                   },
                   "tax_name": {
-                    "type": ["null", "string"],
+                    "type": ["null", "string"]
                   },
                   "tax_rate": {
-                    "type": ["null", "number"],
+                    "type": ["null", "number"]
                   },
                   "is_partial_tax_applied": {
                     "type": ["null", "boolean"]
@@ -3170,19 +3170,19 @@
                     "type": ["null", "boolean"]
                   },
                   "taxable_amount": {
-                    "type": ["null", "integer"],
+                    "type": ["null", "integer"]
                   },
                   "tax_amount": {
-                    "type": ["null", "integer"],
+                    "type": ["null", "integer"]
                   },
                   "tax_juris_type": {
                     "type": ["null", "string"]
                   },
                   "tax_juris_name": {
-                    "type": ["null", "string"],
+                    "type": ["null", "string"]
                   },
                   "tax_juris_code": {
-                    "type": ["null", "string"],
+                    "type": ["null", "string"]
                   }
                 }
               }
