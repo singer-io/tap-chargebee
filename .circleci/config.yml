@@ -18,7 +18,7 @@ jobs:
           name: 'JSON Validator'
           command: |
             source /usr/local/share/virtualenvs/tap-tester/bin/activate
-            stitch-validate-json ~/.virtualenvs/tap-chargebee/lib/python3.5/site-packages/tap_chargebee/schemas/*.json
+            stitch-validate-json /usr/local/share/virtualenvs/tap-chargebee/lib/python3.5/site-packages/tap_chargebee/schemas/*.json
 workflows:
   version: 2
   commit:
