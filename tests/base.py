@@ -46,7 +46,6 @@ class ChargebeeBaseTest(unittest.TestCase):
     def get_properties(self, original: bool = True):
         """Configuration properties required for the tap."""
         properties_dict = {
-            # 'start_date': dt.strftime(dt.utcnow()-timedelta(days=14), self.START_DATE_FORMAT),
             'start_date': '2021-06-02T00:00:00Z'
         }
         props = self.properties
