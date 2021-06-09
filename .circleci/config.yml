@@ -13,6 +13,12 @@ jobs:
             source /usr/local/share/virtualenvs/tap-chargebee/bin/activate
             pip install -U 'pip<19.2' 'setuptools<51.0.0'
             pip install .[dev]
+      - run:
+          name: 'Unit Tests'
+          command: |
+            source /usr/local/share/virtualenvs/tap-chargebee/bin/activate
+            pip install nose
+            nosetests tests/unittests/
 workflows:
   version: 2
   commit:
