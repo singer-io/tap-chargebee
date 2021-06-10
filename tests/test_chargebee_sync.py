@@ -33,26 +33,3 @@ class ChargebeeSyncTest(ChargebeeBaseTest):
         record_count_by_stream = self.run_and_verify_sync(conn_id)
 
         self.assertGreater(sum(record_count_by_stream.values()), 0)
-
-    def test_run_with_date_not_having_tz(self):
-        """
-        Testing that sync creates the appropriate catalog with valid metadata and date without timezone.
-        • Verify that all fields and all streams have selected set to True in the metadata
-        """
-        self.start_date = "2021-06-02"
-
-        conn_id = connections.ensure_connection(self,False)
-
-        found_catalogs1 = self.run_and_verify_check_mode(conn_id)
-
-        expected_streams = self.expected_streams()
-
-        # table and field selection
-        found_catalogs = [catalog for catalog in found_catalogs1
-                                      if catalog.get('stream_name') in expected_streams]
-
-        self.perform_and_verify_table_and_field_selection(conn_id,found_catalogs)
-
-        record_count_by_stream = self.run_and_verify_sync(conn_id)
-
-        self.assertGreater(sum(record_count_by_stream.values()), 0)
