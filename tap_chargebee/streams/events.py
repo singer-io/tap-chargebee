@@ -12,6 +12,8 @@ class EventsStream(BaseChargebeeStream):
     VALID_REPLICATION_KEYS = ['occurred_at']
     INCLUSION = 'available'
     API_METHOD = 'GET'
+    SCHEMA = 'common/events'
+    SORT_BY = 'occurred_at'
 
     def get_url(self):
         return 'https://{}.chargebee.com/api/v2/events'.format(self.config.get('site'))

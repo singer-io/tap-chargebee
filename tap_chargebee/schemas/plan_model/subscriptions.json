@@ -157,6 +157,18 @@
     "custom_fields": {
       "type": ["null", "string"]
     },
+    "plan_amount_in_decimal" : {
+      "type": ["null", "string"]
+    },
+    "plan_free_quantity_in_decimal" : {
+      "type": ["null", "string"]
+    },
+    "plan_quantity_in_decimal" : {
+      "type": ["null", "string"]
+    },
+    "plan_unit_price_in_decimal" : {
+      "type": ["null", "string"]
+    },
     "addons": {
       "type": ["null", "array"],
       "items": {
@@ -183,6 +195,15 @@
           },
           "object": {
             "type": ["null", "string"]
+          },
+          "quantity_in_decimal": {
+            "type": ["null", "string"]
+          },
+          "unit_price_in_decimal": {
+            "type": ["null", "string"]
+          },
+          "amount_in_decimal": {
+            "type": ["null", "string"]
           }
         }
       }
@@ -208,6 +229,12 @@
             "type": ["null", "boolean"]
           },
           "object": {
+            "type": ["null", "string"]
+          },
+          "quantity_in_decimal": {
+            "type": ["null", "string"]
+          },
+          "unit_price_in_decimal": {
             "type": ["null", "string"]
           }
         }
