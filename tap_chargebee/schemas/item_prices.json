@@ -101,48 +101,42 @@
       }
     },
     "tax_detail": {
-      "type": ["null", "array"],
-      "items": {
-        "type": ["null","object"],
-        "properties": {
-          "item_type": {
-            "type": ["null", "string"]
-          },
-          "avalara_sale_type": {
-            "type": ["null", "string"]
-          },
-          "avalara_transaction_type": {
-            "type": ["null", "integer"]
-          },
-          "avalara_service_type": {
-            "type": ["null", "integer"]
-          },
-          "avalara_tax_code": {
-            "type": ["null", "string"]
-          },
-          "taxjar_product_code": {
-            "type": ["null", "string"]
-          }
+      "type": ["null","object"],
+      "properties": {
+        "tax_profile_id": {
+          "type": ["null", "string"]
+        },
+        "avalara_sale_type": {
+          "type": ["null", "string"]
+        },
+        "avalara_transaction_type": {
+          "type": ["null", "integer"]
+        },
+        "avalara_service_type": {
+          "type": ["null", "integer"]
+        },
+        "avalara_tax_code": {
+          "type": ["null", "string"]
+        },
+        "taxjar_product_code": {
+          "type": ["null", "string"]
         }
       }
     },
     "accounting_detail": {
-      "type": ["null", "array"],
-      "items": {
-        "type": ["null","object"],
-        "properties": {
-          "sku": {
-            "type": ["null", "string"]
-          },
-          "accounting_code": {
-            "type": ["null", "string"]
-          },
-          "accounting_category1": {
-            "type": ["null", "string"]
-          },
-          "accounting_category2": {
-            "type": ["null", "string"]
-          }
+      "type": ["null","object"],
+      "properties": {
+        "sku": {
+          "type": ["null", "string"]
+        },
+        "accounting_code": {
+          "type": ["null", "string"]
+        },
+        "accounting_category1": {
+          "type": ["null", "string"]
+        },
+        "accounting_category2": {
+          "type": ["null", "string"]
         }
       }
     }
