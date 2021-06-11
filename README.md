@@ -40,7 +40,8 @@ This tap:
     {
         "start_date": "2010-01-01",
         "api_key": "<Chargebee API Key>",
-        "site": "<Chargebee Site>"
+        "site": "<Chargebee Site>",
+        "include_deleted": "True|False"
     }
     ```
 
@@ -50,6 +51,8 @@ This tap:
    The `api_key` is the API key for your Chargebee site.
 
    The `site` parameter represents the name of your specific Chargebee site (e.g. `https://{site}.chargebee.com/api/v2/subscriptions`)
+
+   The `include_deleted` is optional flag to ask do you want deleted records of all stream or not. Default it's true. 
 
 4. Run the Tap in Discovery Mode
 
