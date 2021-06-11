@@ -23,6 +23,25 @@ class BaseChargebeeStream(BaseStream):
             key_properties=self.KEY_PROPERTIES,
             bookmark_properties=self.BOOKMARK_PROPERTIES)
 
+    def get_abs_path(self, path):
+        return os.path.join(os.path.dirname(os.path.realpath(__file__)), path)
+
+    def load_shared_schema_refs(self):
+
+        shared_schemas_path = self.get_abs_path('../schemas')
+
+        shared_file_names = [f for f in os.listdir(shared_schemas_path)
+                            if os.path.isfile(os.path.join(shared_schemas_path, f))]
+
+        shared_schema_refs = {}
+        for shared_file in shared_file_names:
+            if shared_file == "events.json":
+                continue
+            with open(os.path.join(shared_schemas_path, shared_file)) as data_file:
+                shared_schema_refs[shared_file] = json.load(data_file)
+
+        return shared_schema_refs
+
     def generate_catalog(self):
         schema = self.get_schema()
         mdata = singer.metadata.new()
@@ -57,13 +76,7 @@ class BaseChargebeeStream(BaseStream):
                 inclusion
             )
 
-        cards = singer.utils.load_json(
-            os.path.normpath(
-                os.path.join(
-                    self.get_class_path(),
-                    '../schemas/{}.json'.format("cards"))))
-
-        refs = {"cards.json": cards}
+        refs = self.load_shared_schema_refs()
 
         return [{
             'tap_stream_id': self.TABLE,
