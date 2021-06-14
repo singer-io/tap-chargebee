@@ -120,9 +120,9 @@ class ChargebeeStartDateTest(ChargebeeBaseTest):
                 for bookmark_key_value in bookmark_key_sync_2:
                     self.assertGreaterEqual(self.dt_to_ts(bookmark_key_value), start_date_2_epoch)
 
-                # Verify the number of records replicated in sync 1 is greater than the number
+                # Verify the number of records replicated in sync 1 is greater than or equal to the number
                 # of records replicated in sync 2 for stream
-                self.assertGreater(record_count_sync_1, record_count_sync_2)
+                self.assertGreaterEqual(record_count_sync_1, record_count_sync_2)
 
                 # Verify the records replicated in sync 2 were also replicated in sync 1
                 self.assertTrue(primary_keys_sync_2.issubset(primary_keys_sync_1))
