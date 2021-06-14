@@ -11,6 +11,8 @@ class CommentsStream(BaseChargebeeStream):
     VALID_REPLICATION_KEYS = ['created_at']
     INCLUSION = 'available'
     API_METHOD = 'GET'
+    SCHEMA = 'common/customers'
+    SORT_BY = 'created_at'
 
     def get_url(self):
         return 'https://{}.chargebee.com/api/v2/comments'.format(self.config.get('site'))

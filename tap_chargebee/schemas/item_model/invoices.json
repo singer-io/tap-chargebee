@@ -99,6 +99,9 @@
     "round_off_amount": {
       "type": ["null", "integer"]
     },
+    "payment_owner": {
+      "type": ["null", "string"]
+    },
     "deleted": {
       "type": ["null", "boolean"]
     },
@@ -558,9 +561,6 @@
     },
     "subscription_id": {
       "type": ["null", "string"]
-    },
-    "total": {
-      "type": ["null", "integer"]
     }
   }
 }
