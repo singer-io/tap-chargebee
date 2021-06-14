@@ -18,6 +18,8 @@ setup(name='tap-chargebee',
       packages=find_packages(),
       package_data={
           'tap_chargebee': [
-              'schemas/*.json'
+              'schemas/common/*.json',
+              'schemas/item_model/*.json',
+              'schemas/plan_model/*.json'
           ]
       })
