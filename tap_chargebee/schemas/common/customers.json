@@ -140,46 +140,6 @@
     "custom_fields": {
       "type": ["null", "string"]
     },
-    "vat_number_validated_time": {
-      "type": ["null", "string"],
-      "format": "date-time"
-    },
-    "vat_number_status": {
-      "type": ["null", "string"]
-    },
-    "is_location_valid": {
-      "type": ["null", "boolean"]
-    },
-    "created_from_ip": {
-      "type": ["null", "string"]
-    },
-    "entity_code": {
-      "type": ["null", "string"]
-    },
-    "exempt_number": {
-      "type": ["null", "string"]
-    },
-    "resource_version": {
-      "type": ["null", "integer"]
-    },
-    "fraud_flag": {
-      "type": ["null", "string"]
-    },
-    "backup_payment_source_id": {
-      "type": ["null", "string"]
-    },
-    "registered_for_gst": {
-      "type": ["null", "boolean"]
-    },
-    "customer_type": {
-      "type": ["null", "string"]
-    },
-    "meta_data": {
-      "type": ["null", "string"]
-    },
-    "exemption_details": {
-      "type": ["null", "string"]
-    },
     "billing_address": {
       "type": ["null","object"],
       "properties": {
@@ -342,6 +302,23 @@
           "currency_code": {
             "type": ["null", "string"]
           }
+        }
+      }
+    },
+    "relationship": {
+      "type": ["null","object"],
+      "properties": {
+        "parent_id": {
+          "type": ["null", "string"]
+        },
+        "payment_owner_id": {
+          "type": ["null", "string"]
+        },
+        "invoice_owner_id": {
+          "type": ["null", "string"]
+        },
+        "root_id": {
+          "type": ["null", "string"]
         }
       }
     }

@@ -121,6 +121,12 @@
     "custom_fields": {
       "type": ["null", "string"]
     },
+    "free_quantity_in_decimal": {
+      "type": ["null", "string"]
+    },
+    "price_in_decimal": {
+      "type": ["null", "string"]
+    },
     "tiers": {
       "type": ["null", "array"],
       "items": {
@@ -134,6 +140,15 @@
           },
           "price": {
             "type": ["null", "integer"]
+          },
+          "starting_unit_in_decimal": {
+            "type": ["null", "string"]
+          },
+          "ending_unit_in_decimal": {
+            "type": ["null", "string"]
+          },
+          "price_in_decimal": {
+            "type": ["null", "string"]
           }
         }
       }
@@ -144,6 +159,9 @@
         "type": ["null", "object"],
         "properties": {
           "id": {
+            "type": ["null", "string"]
+          },
+          "quantity_in_decimal": {
             "type": ["null", "string"]
           }
         }
@@ -165,6 +183,9 @@
           },
           "charge_once": {
             "type": ["null", "boolean"]
+          },
+          "quantity_in_decimal": {
+            "type": ["null", "string"]
           }
         }
       }
