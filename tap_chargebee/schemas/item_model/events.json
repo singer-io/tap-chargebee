@@ -58,7 +58,7 @@
           "$ref": "item_prices.json"
         },
         "item_family": {
-          "$ref": "item_familys.json"
+          "$ref": "item_families.json"
         },
         "promotional_credit": {
           "$ref": "promotional_credits.json"

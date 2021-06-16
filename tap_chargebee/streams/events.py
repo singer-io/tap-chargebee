@@ -18,7 +18,7 @@ class EventsStream(BaseChargebeeStream):
     def __init__(self, config, state, catalog, client):
         BaseChargebeeStream.__init__(self, config, state, catalog, client)
         if self.config['item_model']:
-            self.SCHEMA = 'item_model/coupons'
+            self.SCHEMA = 'item_model/events'
 
     def get_url(self):
         return 'https://{}.chargebee.com/api/v2/events'.format(self.config.get('site'))
