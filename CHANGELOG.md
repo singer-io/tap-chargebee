@@ -1,4 +1,11 @@
 # Changelog
+## 1.1.0
+  *  Adds support for Item Model, Multi-decimal (for Plan Model), and Account hierarchy (for Plan Model) [#56](https://github.com/singer-io/tap-chargebee/pull/56)
+  * Organized the folder structure: 
+      a. common(common schemas to both plan model and item model) 
+      b. item_model 
+      c. plan_model
+  * Introduces two new streams: ITEM_MODEL_AVAILABLE_STREAMS, PLAN_MODEL_AVAILABLE_STREAMS
 
 ## 1.0.3
   * Fix invalid JSON from #44

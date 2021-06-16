@@ -1,9 +1,9 @@
 from tap_chargebee.streams.base import BaseChargebeeStream
 
 
-class PaymentSourcesStream(BaseChargebeeStream):
-    TABLE = 'payment_sources'
-    ENTITY = 'payment_source'
+class ItemFamiliesStream(BaseChargebeeStream):
+    TABLE = 'item_families'
+    ENTITY = 'item_family'
     REPLICATION_METHOD = 'INCREMENTAL'
     REPLICATION_KEY = 'updated_at'
     KEY_PROPERTIES = ['id']
@@ -12,8 +12,8 @@ class PaymentSourcesStream(BaseChargebeeStream):
     VALID_REPLICATION_KEYS = ['updated_at']
     INCLUSION = 'available'
     API_METHOD = 'GET'
-    SCHEMA = 'common/payment_sources'
+    SCHEMA = 'item_model/item_families'
     SORT_BY = None
 
     def get_url(self):
-        return 'https://{}.chargebee.com/api/v2/payment_sources'.format(self.config.get('site'))
+        return 'https://{}.chargebee.com/api/v2/item_families'.format(self.config.get('site'))
