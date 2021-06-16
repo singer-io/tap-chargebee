@@ -30,8 +30,19 @@ class BaseChargebeeStream(BaseStream):
         return os.path.join(os.path.dirname(os.path.realpath(__file__)), path)
 
     def load_shared_schema_refs(self):
+        shared_schema_refs = {}
+        schema_folders = ["common"]
+        if self.config['item_model']:
+            schema_folders.append("item_model")
+        else:
+            schema_folders.append("plan_model")
+        for schema_folder in schema_folders:
+            shared_schema_refs.update(self.load_shared_schema_ref(schema_folder))
+        return shared_schema_refs
 
-        shared_schemas_path = self.get_abs_path('../schemas')
+    def load_shared_schema_ref(self,folder_name):
+
+        shared_schemas_path = self.get_abs_path('../schemas/'+folder_name)
 
         shared_file_names = [f for f in os.listdir(shared_schemas_path)
                             if os.path.isfile(os.path.join(shared_schemas_path, f))]

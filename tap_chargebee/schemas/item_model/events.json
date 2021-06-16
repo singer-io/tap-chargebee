@@ -30,44 +30,47 @@
     "content": {
       "type": ["null", "object"],
       "properties" : {
-        "addon": {
-          "$ref": "addons.json#/"
-        },
         "coupon": {
-          "$ref": "coupons.json#/"
+          "$ref": "coupons.json"
         },
         "credit_note": {
-          "$ref": "credit_notes.json#/"
+          "$ref": "credit_notes.json"
         },
         "customer": {
-          "$ref": "customers.json#/"
+          "$ref": "customers.json"
         },
         "gift": {
-          "$ref": "gifts.json#/"
+          "$ref": "gifts.json"
         },
         "invoice": {
-          "$ref": "invoices.json#/"
+          "$ref": "invoices.json"
         },
         "order": {
-          "$ref": "orders.json#/"
+          "$ref": "orders.json"
         },
         "payment_source": {
-          "$ref": "payment_sources.json#/"
+          "$ref": "payment_sources.json"
         },
-        "plan": {
-          "$ref": "plans.json#/"
+        "item": {
+          "$ref": "items.json"
+        },
+        "item_price": {
+          "$ref": "item_prices.json"
+        },
+        "item_family": {
+          "$ref": "item_familys.json"
         },
         "promotional_credit": {
-          "$ref": "promotional_credits.json#/"
+          "$ref": "promotional_credits.json"
         },
         "subscription":{
-          "$ref": "subscriptions.json#/"
+          "$ref": "subscriptions.json"
         },
         "transaction": {
-          "$ref": "transactions.json#/"
+          "$ref": "transactions.json"
         },
         "virtual_bank_account":{
-          "$ref": "virtual_bank_accounts.json#/"
+          "$ref": "virtual_bank_accounts.json"
         },
         "unbilled_charges": {
           "type": ["null", "array"],

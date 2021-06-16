@@ -1,0 +1,568 @@
+{
+  "type": ["null", "object"],
+  "additionalProperties": false,
+  "properties": {
+    "id": {
+      "type": ["null", "string"]
+    },
+    "occurred_at": {
+      "type": ["null", "string"],
+      "format": "date-time"
+    },
+    "source": {
+      "type": ["null", "string"]
+    },
+    "user": {
+      "type": ["null", "string"]
+    },
+    "event_type": {
+      "type": ["null", "string"]
+    },
+    "api_version": {
+      "type": ["null", "string"]
+    },
+    "object": {
+      "type": ["null", "string"]
+    },
+    "webhook_status": {
+      "type": ["null", "string"]
+    },
+    "content": {
+      "type": ["null", "object"],
+      "properties" : {
+        "addon": {
+          "$ref": "addons.json"
+        },
+        "coupon": {
+          "$ref": "coupons.json"
+        },
+        "credit_note": {
+          "$ref": "credit_notes.json"
+        },
+        "customer": {
+          "$ref": "customers.json"
+        },
+        "gift": {
+          "$ref": "gifts.json"
+        },
+        "invoice": {
+          "$ref": "invoices.json"
+        },
+        "order": {
+          "$ref": "orders.json"
+        },
+        "payment_source": {
+          "$ref": "payment_sources.json"
+        },
+        "plan": {
+          "$ref": "plans.json"
+        },
+        "promotional_credit": {
+          "$ref": "promotional_credits.json"
+        },
+        "subscription":{
+          "$ref": "subscriptions.json"
+        },
+        "transaction": {
+          "$ref": "transactions.json"
+        },
+        "virtual_bank_account":{
+          "$ref": "virtual_bank_accounts.json"
+        },
+        "unbilled_charges": {
+          "type": ["null", "array"],
+          "items": {
+            "type": ["null","object"],
+            "properties": {
+              "id": {
+                "type": ["null", "string"],
+                "maxLength": 50
+              },
+              "customer_id": {
+                "type": ["null", "string"],
+                "maxLength": 50
+              },
+              "subscription_id": {
+                "type": ["null", "string"],
+                "maxLength": 50
+              },
+              "unit_amount": {
+                "type": ["null", "integer"]
+              },
+              "pricing_model": {
+                "type": ["null", "string"]
+              },
+              "quantity": {
+                "type": ["null", "integer"]
+              },
+              "amount": {
+                "type": ["null", "integer"]
+              },
+              "currency_code": {
+                "type": ["null", "string"]
+              },
+              "discount_amount": {
+                "type": ["null", "integer"]
+              },
+              "description": {
+                "type": ["null", "string"]
+              },
+              "entity_type": {
+                "type": ["null", "string"]
+              },
+              "entity_id": {
+                "type": ["null", "string"]
+              },
+              "is_voided": {
+                "type": ["null", "boolean"]
+              },
+              "voided_at": {
+                "type": ["null", "string"],
+                "format": "date-time"
+              },
+              "deleted": {
+                "type": ["null", "boolean"]
+              },
+              "tiers": {
+                "type": ["null", "array"],
+                "items": {
+                  "type": ["null","object"],
+                  "properties": {
+                    "starting_unit": {
+                      "type": ["null", "integer"],
+                      "minimum": 1
+                    },
+                    "ending_unit": {
+                      "type": ["null", "integer"]
+                    },
+                    "quantity_used ": {
+                      "type": ["null", "integer"],
+                      "minimum": 1
+                    },
+                    "unit_amount ": {
+                      "type": ["null", "integer"],
+                      "minimum": 0
+                    }
+                  }
+                }
+              }
+            }
+
+          }
+        },
+        "coupon_code":{
+          "type":["null", "object"],
+          "additionalProperties": false,
+          "properties":{
+            "code": {
+              "type": ["null", "string"],
+              "maxLength": 50
+            },
+            "status": {
+              "type": ["null", "string"]
+            },
+            "coupon_id": {
+              "type": ["null", "string"],
+              "maxLength": 50
+            },
+            "coupon_site_id": {
+              "type": ["null", "string"],
+              "maxLength": 50
+            },
+            "coupon_set_name": {
+              "type": ["null", "string"],
+              "maxLength": 50
+            }
+          }
+        },
+        "coupon_set":{
+          "type":["null", "object"],
+          "additionalProperties": false,
+          "properties":{
+            "id": {
+              "type": ["null", "string"],
+              "maxLength": 50
+            },
+            "coupon_id": {
+              "type": ["null", "string"],
+              "maxLength": 50
+            },
+            "name": {
+              "type": ["null", "string"],
+              "maxLength": 50
+            },
+            "total_count": {
+              "type": ["null", "integer"]
+            },
+            "redeemed_count": {
+              "type": ["null", "integer"]
+            },
+            "archived_count": {
+              "type": ["null", "integer"]
+            },
+            "meta_data": {
+              "type": ["null", "string"]
+            }
+          }
+        },
+        "quote": {
+          "type":["null", "object"],
+          "additionalProperties": false,
+          "properties":{
+            "id": {
+              "type": ["null", "string"],
+              "maxLength": 50
+            },
+            "po_number": {
+              "type": ["null", "string"]
+            },
+            "customer_id": {
+              "type": ["null", "string"],
+              "maxLength": 50
+            },
+            "subscription_id": {
+              "type": ["null", "string"],
+              "maxLength": 50
+            },
+            "status": {
+              "type": ["null", "string"]
+            },
+            "operation_type": {
+              "type": ["null", "string"]
+            },
+            "vat_number": {
+              "type": ["null", "string"]
+            },
+            "price_type": {
+              "type": ["null", "string"]
+            },
+            "valid_till": {
+              "type": ["null", "string"],
+              "format": "date-time"
+            },
+            "date": {
+              "type": ["null", "string"],
+              "format": "date-time"
+            },
+            "sub_total": {
+              "type": ["null", "integer"],
+              "minimum": 0
+            },
+            "total": {
+              "type": ["null", "integer"],
+              "minimum": 0
+            },
+            "credits_applied": {
+              "type": ["null", "integer"],
+              "minimum": 0
+            },
+            "amount_paid": {
+              "type": ["null", "integer"],
+              "minimum": 0
+            },
+            "amount_due": {
+              "type": ["null", "integer"],
+              "minimum": 0
+            },
+            "resource_version": {
+              "type": ["null", "integer"]
+            },
+            "updated_at": {
+              "type": ["null", "string"],
+              "format": "date-time"
+            },
+            "currency_code": {
+              "type": ["null", "string"]
+            },
+            "line_items": {
+              "type": ["null", "array"],
+              "items": {
+                "type": ["null", "object"],
+                "properties": {
+                  "id": {
+                    "type": ["null", "string"],
+                    "maxLength": 40
+                  },
+                  "subscription_id": {
+                    "type": ["null", "string"]
+                  },
+                  "date_from": {
+                    "type": ["null", "string"],
+                    "format": "date-time"
+                  },
+                  "date_to": {
+                    "type": ["null", "string"],
+                    "format": "date-time"
+                  },
+                  "unit_amount": {
+                    "type": ["null", "integer"]
+                  },
+                  "quantity": {
+                    "type": ["null", "integer"]
+                  },
+                  "amount": {
+                    "type": ["null", "integer"]
+                  },
+                  "pricing_model": {
+                    "type": ["null", "string"]
+                  },
+                  "is_taxed": {
+                    "type": ["null", "boolean"]
+                  },
+                  "tax_amount": {
+                    "type": ["null", "integer"],
+                    "minimum": 0
+                  },
+                  "tax_rate": {
+                    "type": ["null", "number"],
+                    "minimum": 0,
+                    "maximum": 100
+                  },
+                  "discount_amount": {
+                    "type": ["null", "integer"],
+                    "minimum": 0
+                  },
+                  "item_level_discount_amount": {
+                    "type": ["null", "integer"],
+                    "minimum": 0
+                  },
+                  "description": {
+                    "type": ["null", "string"],
+                    "maxLength": 250
+                  },
+                  "entity_type": {
+                    "type": ["null", "string"]
+                  },
+                  "tax_exempt_reason": {
+                    "type": ["null", "string"]
+                  },
+                  "entity_id": {
+                    "type": ["null", "string"],
+                    "maxLength": 100
+                  },
+                  "customer_id": {
+                    "type": ["null", "string"],
+                    "maxLength": 100
+                  }
+                }
+              }
+            },
+            "discounts": {
+              "type": ["null", "array"],
+              "items": {
+                "type": ["null", "object"],
+                "properties": {
+                  "amount": {
+                    "type": ["null", "integer"],
+                    "minimum": 0
+                  },
+                  "description": {
+                    "type": ["null", "string"],
+                    "maxLength": 250
+                  },
+                  "entity_type": {
+                    "type": ["null", "string"]
+                  },
+                  "entity_id": {
+                    "type": ["null", "string"],
+                    "maxLength": 100
+                  }
+                }
+              }
+            },
+            "line_item_discounts": {
+              "type": ["null", "array"],
+              "items": {
+                "type": ["null", "object"],
+                "properties": {
+                  "line_item_id": {
+                    "type": ["null", "string"],
+                    "maxLength": 50
+                  },
+                  "discount_type": {
+                    "type": ["null", "string"]
+                  },
+                  "coupon_id": {
+                    "type": ["null", "string"],
+                    "maxLength": 50
+                  },
+                  "discount_amount": {
+                    "type": ["null", "integer"],
+                    "minimum": 0
+                  }
+                }
+              }
+            },
+            "taxes": {
+              "type": ["null", "array"],
+              "items": {
+                "type": ["null", "object"],
+                "properties": {
+                  "name": {
+                    "type": ["null", "string"],
+                    "maxLength": 100
+                  },
+                  "amount": {
+                    "type": ["null", "integer"],
+                    "minimum": 0
+                  },
+                  "description": {
+                    "type": ["null", "string"],
+                    "maxLength": 250
+                  }
+                }
+              }
+            },
+            "line_item_taxes": {
+              "type": ["null", "array"],
+              "items": {
+                "type": ["null", "object"],
+                "properties": {
+                  "line_item_id": {
+                    "type": ["null", "string"],
+                    "maxLength": 40
+                  },
+                  "tax_name": {
+                    "type": ["null", "string"],
+                    "maxLength": 100
+                  },
+                  "tax_rate": {
+                    "type": ["null", "number"],
+                    "minimum": 0,
+                    "maximum": 100
+                  },
+                  "is_partial_tax_applied": {
+                    "type": ["null", "boolean"]
+                  },
+                  "is_non_compliance_tax": {
+                    "type": ["null", "boolean"]
+                  },
+                  "taxable_amount": {
+                    "type": ["null", "integer"],
+                    "minimum": 0
+                  },
+                  "tax_amount": {
+                    "type": ["null", "integer"],
+                    "minimum": 0
+                  },
+                  "tax_juris_type": {
+                    "type": ["null", "string"]
+                  },
+                  "tax_juris_name": {
+                    "type": ["null", "string"],
+                    "maxLength": 250
+                  },
+                  "tax_juris_code": {
+                    "type": ["null", "string"],
+                    "maxLength": 250
+                  }
+                }
+              }
+            },
+            "shipping_address": {
+              "type": ["null","object"],
+              "properties": {
+                "first_name": {
+                  "type": ["null", "string"]
+                },
+                "last_name": {
+                  "type": ["null", "string"]
+                },
+                "email": {
+                  "type": ["null", "string"]
+                },
+                "company": {
+                  "type": ["null", "string"]
+                },
+                "phone": {
+                  "type": ["null", "string"]
+                },
+                "line1": {
+                  "type": ["null", "string"]
+                },
+                "line2": {
+                  "type": ["null", "string"]
+                },
+                "line3": {
+                  "type": ["null", "string"]
+                },
+                "city": {
+                  "type": ["null", "string"]
+                },
+                "state_code": {
+                  "type": ["null", "string"]
+                },
+                "state": {
+                  "type": ["null", "string"]
+                },
+                "country": {
+                  "type": ["null", "string"]
+                },
+                "zip": {
+                  "type": ["null", "string"]
+                },
+                "validation_status,": {
+                  "type": ["null", "string"]
+                },
+                "object": {
+                  "type": ["null", "string"]
+                }
+              }
+            },
+            "billing_address": {
+              "type": ["null","object"],
+              "properties": {
+                "first_name": {
+                  "type": ["null", "string"]
+                },
+                "last_name": {
+                  "type": ["null", "string"]
+                },
+                "email": {
+                  "type": ["null", "string"]
+                },
+                "company": {
+                  "type": ["null", "string"]
+                },
+                "phone": {
+                  "type": ["null", "string"]
+                },
+                "line1": {
+                  "type": ["null", "string"]
+                },
+                "line2": {
+                  "type": ["null", "string"]
+                },
+                "line3": {
+                  "type": ["null", "string"]
+                },
+                "city": {
+                  "type": ["null", "string"]
+                },
+                "state_code": {
+                  "type": ["null", "string"]
+                },
+                "state": {
+                  "type": ["null", "string"]
+                },
+                "country": {
+                  "type": ["null", "string"]
+                },
+                "zip": {
+                  "type": ["null", "string"]
+                },
+                "validation_status": {
+                  "type": ["null", "string"]
+                },
+                "object": {
+                  "type": ["null", "string"]
+                }
+              }
+            }
+          }
+        }
+        
+      }
+    }
+  }
+}
