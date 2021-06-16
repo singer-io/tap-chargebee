@@ -112,6 +112,9 @@
     "show_description_in_quotes": {
       "type": ["null", "boolean"]
     },
+    "price_in_decimal": {
+      "type": ["null", "string"] 
+    },
     "tiers": {
       "type": ["null", "array"],
       "items": {
@@ -127,6 +130,15 @@
             "type": ["null", "integer"]
           },
           "object": {
+            "type": ["null", "string"]
+          },
+          "starting_unit_in_decimal": {
+            "type": ["null", "string"]
+          },
+          "ending_unit_in_decimal": {
+            "type": ["null", "string"]
+          },
+          "price_in_decimal": {
             "type": ["null", "string"]
           }
         }
