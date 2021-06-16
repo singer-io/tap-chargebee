@@ -72,10 +72,7 @@ class ChargebeeClient(BaseClient):
         except simplejson.scanner.JSONDecodeError:
             # Formatted error message for json decoder error
             response_json = {
-                "message": "An Unknown Error occurred",
-                "api_error_code": "unknown_error",
-                "error_code": "unknown_error",
-                "error_msg": "An Unknown Error occurred",
+                "message": "Did not get response from the server due to an unknown error.",
                 "http_status_code": response.status_code
             }
 

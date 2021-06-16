@@ -56,10 +56,7 @@ class TestJSONDecoderHandling(unittest.TestCase):
             chargebee_client.make_request('/abc', 'GET')
         except _client.Server4xxError as e:
             expected_message = {
-                "message": "An Unknown Error occurred",
-                "api_error_code": "unknown_error",
-                "error_code": "unknown_error",
-                "error_msg": "An Unknown Error occurred",
+                "message": "Did not get response from the server due to an unknown error.",
                 "http_status_code": 400
             }
 
