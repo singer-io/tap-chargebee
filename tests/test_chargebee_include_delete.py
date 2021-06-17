@@ -11,7 +11,7 @@ class ChargebeeIncludeDeletedTest(ChargebeeBaseTest):
 
     @staticmethod
     def name():
-        return "tap_tester_chargebee_pagination_test"
+        return "tap_tester_chargebee_include_deleted_test"
 
     def setUp(self):
         self.include_deleted = None
