@@ -6,7 +6,7 @@ from tap_tester import runner, menagerie, connections
 from base import ChargebeeBaseTest
 
 
-class ChargebeePaginationTest(ChargebeeBaseTest):
+class ChargebeeIncludeDeletedTest(ChargebeeBaseTest):
     """Test tap sync mode and metadata conforms to standards."""
 
     @staticmethod
@@ -47,11 +47,11 @@ class ChargebeePaginationTest(ChargebeeBaseTest):
         # Expected stream is only invoices
         expected_streams = ["invoices"]
 
+        # For include_delete true or not set
         synced_records_with_include_deleted_false = self.run_sync(
             expected_streams)
 
-        # For include_delete true
-
+        # For include_delete false
         self.include_deleted = False
 
         synced_records_with_include_deleted_true = self.run_sync(
