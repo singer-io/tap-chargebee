@@ -58,10 +58,11 @@ class ChargebeePaginationTest(ChargebeeBaseTest):
 
                     #Verify by private keys that data is unique for page
                     self.assertTrue(primary_keys_page_1.isdisjoint(primary_keys_page_2))
-         
+
     def test_run(self):
 
         #Pagination test for Product Catalog version 1
+        self.product_catalog_v1 = True
         self.pagination_test_run()
 
         #Pagintaion test for Product Catalog version 2

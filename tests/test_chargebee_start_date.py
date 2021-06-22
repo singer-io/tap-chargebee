@@ -134,6 +134,7 @@ class ChargebeeStartDateTest(ChargebeeBaseTest):
     def test_run(self):
 
         #Start date test Product Catalog version 1
+        self.product_catalog_v1 = True
         self.start_date_test_run()
 
         #Start date test Product Catalog version 1
