@@ -77,3 +77,5 @@ class TestJSONDecoderHandling(unittest.TestCase):
 
         # No exception should be raised with JSON decoder error
         chargebee_client.make_request('/abc', 'GET')
+
+        self.assertEqual(mocked_jsondecode_successful.call_count, 1)
