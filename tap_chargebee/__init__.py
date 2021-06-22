@@ -40,6 +40,7 @@ def get_available_streams(self, cb_client):
         url=configuration_url,
         method='GET')
     site_configurations = response['configurations']
+    LOGGER.info("Configurations API response {}".format(response))
     product_catalog_version = next(iter(config['product_catalog_version'] for config in site_configurations if
                                         config['domain'] == site_name),
                                    None)
