@@ -43,6 +43,18 @@
             "string"
          ]
       },
+      "plan_quantity_in_decimal" : {
+         "type":[
+            "null",
+            "string"
+         ]
+      },
+      "plan_unit_price_in_decimal" : {
+         "type":[
+            "null", 
+            "string"
+         ]
+      },
       "customer_id":{
          "type":[
             "null",
@@ -331,10 +343,22 @@
                      "integer"
                   ]
                },
+               "quantity_in_decimal":{
+                  "type":[
+                     "null",
+                     "string"
+                  ]
+               },
                "unit_price":{
                   "type":[
                      "null",
                      "integer"
+                  ]
+               },
+               "unit_price_in_decimal":{
+                  "type":[
+                     "null",
+                     "string"
                   ]
                },
                "amount":{
@@ -343,10 +367,22 @@
                      "integer"
                   ]
                },
+               "amount_in_decimal":{
+                  "type":[
+                     "null",
+                     "string"
+                  ]
+               },
                "free_quantity":{
                   "type":[
                      "null",
                      "integer"
+                  ]
+               },
+               "free_quantity_in_decimal":{
+                  "type":[
+                     "null",
+                     "string"
                   ]
                },
                "trial_end":{
@@ -428,6 +464,24 @@
                   "type":[
                      "null",
                      "integer"
+                  ]
+               },
+               "starting_unit_in_decimal":{
+                  "type":[
+                     "null",
+                     "string"
+                  ]
+               },
+               "ending_unit_in_decimal":{
+                  "type":[
+                     "null",
+                     "string"
+                  ]
+               },
+               "price_in_decimal":{
+                  "type":[
+                     "null",
+                     "string"
                   ]
                }
             }

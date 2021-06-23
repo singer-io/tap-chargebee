@@ -285,6 +285,18 @@
                   "null",
                   "string"
                ]
+            },
+            "accounting_category3":{
+               "type":[
+                  "null",
+                  "string"
+               ]
+            },
+            "accounting_category4":{
+               "type":[
+                  "null",
+                  "string"
+               ]
             }
          }
       }
