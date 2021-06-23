@@ -5,7 +5,6 @@ import os
 import pytz
 
 import pytz
-from datetime import datetime, timedelta
 
 from .util import Util
 from dateutil.parser import parse
@@ -136,7 +135,6 @@ class BaseChargebeeStream(BaseStream):
         table = self.TABLE
         api_method = self.API_METHOD
         done = False
-        sync_interval_in_mins = 2
 
         # Attempt to get the bookmark date from the state file (if one exists and is supplied).
         LOGGER.info('Attempting to get the most recent bookmark_date for entity {}.'.format(self.ENTITY))
@@ -151,19 +149,16 @@ class BaseChargebeeStream(BaseStream):
 
         # Convert bookmarked start date to POSIX.
         bookmark_date_posix = int(bookmark_date.timestamp())
-        to_date = datetime.now(pytz.utc) - timedelta(minutes=sync_interval_in_mins)
-        to_date_posix = int(to_date.timestamp())
-        sync_window = str([bookmark_date_posix, to_date_posix])
-        LOGGER.info("Sync Window {} for schema {}".format(sync_window, table))
+        
         # Create params for filtering
         if self.ENTITY == 'event':
-            params = {"occurred_at[between]": sync_window}
+            params = {"occurred_at[after]": bookmark_date_posix}
             bookmark_key = 'occurred_at'
         elif self.ENTITY == 'promotional_credit':
-            params = {"created_at[between]": sync_window}
+            params = {"created_at[after]": bookmark_date_posix}
             bookmark_key = 'created_at'
         else:
-            params = {"updated_at[between]": sync_window}
+            params = {"updated_at[after]": bookmark_date_posix}
             bookmark_key = 'updated_at'
 
         # Add sort_by[asc] to prevent data overwrite by oldest deleted records
@@ -173,7 +168,7 @@ class BaseChargebeeStream(BaseStream):
         LOGGER.info("Querying {} starting at {}".format(table, bookmark_date))
 
         while not done:
-            max_date = to_date
+            max_date = bookmark_date
 
             response = self.client.make_request(
                 url=self.get_url(),
@@ -214,10 +209,10 @@ class BaseChargebeeStream(BaseStream):
                 ctr.increment(amount=len(to_write))
                 
                 for item in to_write:
-                    bookmark_key = item.get(bookmark_key, None)
+                    bookmark_val = item.get(bookmark_key, None)
 
-                    if bookmark_key is not None:
-                        bookmark_date = parse(bookmark_key)
+                    if bookmark_val is not None:
+                        bookmark_date = parse(bookmark_val)
 
                         LOGGER.debug("BOOKMARK_KEY value %s", bookmark_date)
 
@@ -226,7 +221,7 @@ class BaseChargebeeStream(BaseStream):
                             self.ensure_tz_aware_dt(bookmark_date)
                         )
                     else:
-                        LOGGER.info("BOOKMARK_KEY not found. Using max date.")
+                        LOGGER.info("BOOKMARK_KEY value not found. Using max date.")
 
             self.state = incorporate(
                 self.state, table, 'bookmark_date', max_date)
