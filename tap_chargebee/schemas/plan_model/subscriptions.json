@@ -112,6 +112,9 @@
     "exchange_rate": {
       "type": ["null", "number"]
     },
+    "has_scheduled_advance_invoices": {
+      "type": ["null", "boolean"]
+    },
     "has_scheduled_changes": {
       "type": ["null", "boolean"]
     },
@@ -132,6 +135,12 @@
     },
     "gift_id": {
       "type": ["null", "string"]
+    },
+    "contract_term_billing_cycle_on_renewal": {
+      "type": ["null", "integer"]
+    },
+    "override_relationship": {
+      "type": ["null", "boolean"]
     },
     "pause_date": {
       "type": ["null", "string"],
@@ -168,6 +177,28 @@
     },
     "plan_unit_price_in_decimal" : {
       "type": ["null", "string"]
+    },
+    "cancel_schedule_created_at": {
+      "type": ["null", "string"],
+      "format": "date-time"
+    },
+    "offline_payment_method" : {
+      "type": ["null", "string"]
+    },
+    "cancel_reason_code" : {
+      "type": ["null", "string"]
+    },
+    "free_period": {
+      "type": ["null", "integer"]
+    },
+    "free_period_unit" : {
+      "type": ["null", "string"]
+    },
+    "create_pending_invoices": {
+      "type": ["null", "boolean"]
+    },
+    "auto_close_invoices": {
+      "type": ["null", "boolean"]
     },
     "addons": {
       "type": ["null", "array"],
@@ -324,7 +355,7 @@
         "zip": {
           "type": ["null", "string"]
         },
-        "validation_status,": {
+        "validation_status": {
           "type": ["null", "string"]
         }
       }
@@ -373,6 +404,47 @@
         },
         "post_purchase_widget_enabled": {
           "type": ["null", "boolean"]
+        }
+      }
+    },
+    "contract_term": {
+      "type": ["null","object"],
+      "properties": {
+        "id": {
+          "type": ["null", "string"]
+        },
+        "status": {
+          "type": ["null", "string"]
+        },
+        "contract_start": {
+          "type": ["null", "string"],
+          "format": "date-time"
+        },
+        "contract_end": {
+          "type": ["null", "string"],
+          "format": "date-time"
+        },
+        "billing_cycle": {
+          "type": ["null", "integer"]
+        },
+        "action_at_term_end": {
+          "type": ["null", "string"]
+        },
+        "total_contract_value": {
+          "type": ["null", "integer"]
+        },
+        "cancellation_cutoff_period": {
+          "type": ["null", "integer"]
+        },
+        "created_at": {
+          "type": ["null", "string"],
+          "format": "date-time"
+        },
+        "subscription_id": {
+          "type": ["null", "string"]
+        },
+        "remaining_billing_cycles": {
+          "type": ["null", "integer"]
         }
       }
     }

@@ -58,6 +58,12 @@
             "integer"
          ]
       },
+      "price_in_decimal":{
+         "type":[
+            "null",
+            "string"
+         ]
+      },
       "period":{
          "type":[
             "null",

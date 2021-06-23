@@ -14,6 +14,9 @@
       "type": ["null", "string"],
       "maxLength": 70
     },
+    "scheme": {
+      "type": ["null", "string"]
+    },
     "bank_name": {
       "type": ["null", "string"],
       "maxLength": 100

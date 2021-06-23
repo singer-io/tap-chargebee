@@ -57,6 +57,9 @@
       "type": ["null", "string"],
       "maxLength": 50
     },
+    "taxjar_product_code": {
+      "type": ["null", "string"]
+    },
     "avalara_sale_type": {
       "type": ["null", "string"]
     },
@@ -82,6 +85,12 @@
       "type": ["null", "string"],
       "maxLength": 100
     },
+    "accouting_category3": {
+      "type": ["null", "string"]
+    },
+    "accouting_category4": {
+      "type": ["null", "string"]
+    },
     "is_shippable": {
       "type": ["null", "boolean"]
     },
@@ -98,6 +107,9 @@
     "updated_at": {
       "type": ["null", "string"],
       "format": "date-time"
+    },
+    "included_in_mrr": {
+      "type": ["null", "boolean"]
     },
     "invoice_notes": {
       "type": ["null", "string"],
@@ -118,6 +130,12 @@
     },
     "meta_data": {
       "type": ["null", "string"]
+    },
+    "show_description_in_invoices": {
+      "type": ["null", "boolean"]
+    },
+    "show_description_in_quotes": {
+      "type": ["null", "boolean"]
     },
     "custom_fields": {
       "type": ["null", "string"]

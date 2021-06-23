@@ -161,6 +161,9 @@
           "cn_reason_code": {
             "type": ["null", "string"]
           },
+          "cn_create_reason_code": {
+            "type": ["null", "string"]
+          },
           "cn_date": {
             "type": ["null", "string"],
             "format": "date-time"
