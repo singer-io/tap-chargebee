@@ -1,4 +1,8 @@
 # Changelog
+
+## 1.1.1
+  * Add an error message when we get an unexpected response from the Configurations API [#62](https://github.com/singer-io/tap-chargebee/pull/62)
+
 ## 1.1.0
   *  Adds support for Item Model, Multi-decimal (for Plan Model), and Account hierarchy (for Plan Model) [#56](https://github.com/singer-io/tap-chargebee/pull/56)
   * Organized the folder structure: 
