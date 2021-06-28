@@ -18,7 +18,7 @@ class ChargebeeStartDateTest(ChargebeeBaseTest):
         """Instantiate start date according to the desired data set and run the test"""
 
         self.start_date_1 = self.get_properties().get('start_date')
-        self.start_date_2 = self.timedelta_formatted(self.start_date_1, days=6)
+        self.start_date_2 = '2021-03-03T00:00:00Z'
 
         start_date_1_epoch = self.dt_to_ts(self.start_date_1)
         start_date_2_epoch = self.dt_to_ts(self.start_date_2)
