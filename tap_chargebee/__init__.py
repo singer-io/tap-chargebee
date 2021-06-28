@@ -33,19 +33,26 @@ if __name__ == '__main__':
 
 
 def get_available_streams(self, cb_client):
-    configuration_url = 'https://{}.chargebee.com/api/v2/configurations'.format(self.config.get('site'))
+    site_name = self.config.get('site')
+    LOGGER.info("Site Name {}".format(site_name))
+    configuration_url = 'https://{}.chargebee.com/api/v2/configurations'.format(site_name)
     response = cb_client.make_request(
         url=configuration_url,
         method='GET')
     site_configurations = response['configurations']
-    product_catalog_version = [config['product_catalog_version'] for config in site_configurations if
-                               config['domain'] == self.config.get('site')][0]
+    LOGGER.info("Configurations API response {}".format(response))
+    product_catalog_version = next(iter(config['product_catalog_version'] for config in site_configurations if
+                                        config['domain'] == site_name),
+                                   None)
     if product_catalog_version == 'v2':
         available_streams = tap_chargebee.streams.ITEM_MODEL_AVAILABLE_STREAMS
         self.config['item_model'] = True
         LOGGER.info('Item Model')
-    else:
+    elif product_catalog_version == 'v1':
         available_streams = tap_chargebee.streams.PLAN_MODEL_AVAILABLE_STREAMS
         self.config['item_model'] = False
         LOGGER.info('Plan Model')
+    else:
+        LOGGER.error("Incorrect Product Catalog version {}".format(product_catalog_version))
+        raise RuntimeError("Incorrect Product Catalog version")
     return available_streams
