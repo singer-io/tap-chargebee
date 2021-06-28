@@ -2,7 +2,6 @@ import singer
 import time
 import json
 import os
-import pytz
 
 import pytz
 
@@ -118,19 +117,6 @@ class BaseChargebeeStream(BaseStream):
         entity = self.ENTITY
         return [self.transform_record(item.get(entity)) for item in data]
 
-    def ensure_tz_aware_dt(self, dt):
-        """
-        Check whether a datetime is timezone aware. 
-        Localize the timezone to UTC if not timezone aware.
-        """
-
-        if dt.tzinfo is None or dt.tzinfo.utcoffset(dt) is None:
-            # Localize timezone to UTC
-            utc=pytz.UTC
-            dt = utc.localize(dt)
-
-        return dt
-
     def sync_data(self):
         table = self.TABLE
         api_method = self.API_METHOD
@@ -144,6 +130,11 @@ class BaseChargebeeStream(BaseStream):
         if bookmark_date is None:
             LOGGER.info('Could not locate bookmark_date from STATE file. Falling back to start_date from config.json instead.')
             bookmark_date = get_config_start_date(self.config)
+            try:
+                # Check start date format
+                singer.utils.strptime(self.config.get("start_date"))
+            except ValueError:
+                raise ValueError("start_date must be in '%Y-%m-%dT%H:%M:%SZ' format")
         else:
             bookmark_date = parse(bookmark_date)
 
@@ -209,19 +200,11 @@ class BaseChargebeeStream(BaseStream):
                 ctr.increment(amount=len(to_write))
                 
                 for item in to_write:
-                    bookmark_val = item.get(bookmark_key, None)
-
-                    if bookmark_val is not None:
-                        bookmark_date = parse(bookmark_val)
-
-                        LOGGER.debug("BOOKMARK_KEY value %s", bookmark_date)
-
-                        max_date = max(
-                            self.ensure_tz_aware_dt(max_date),
-                            self.ensure_tz_aware_dt(bookmark_date)
-                        )
-                    else:
-                        LOGGER.info("BOOKMARK_KEY value not found. Using max date.")
+                    #if item.get(bookmark_key) is not None:
+                    max_date = max(
+                        max_date,
+                        parse(item.get(bookmark_key))
+                    )
 
             self.state = incorporate(
                 self.state, table, 'bookmark_date', max_date)
