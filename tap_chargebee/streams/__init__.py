@@ -27,7 +27,7 @@ COMMON_AVAILABLE_STREAMS = [
     InvoicesStream,
     OrdersStream,
     PaymentSourcesStream,
-    QuotesStream
+    QuotesStream,
     PromotionalCreditsStream,
     SubscriptionsStream,
     TransactionsStream,
