@@ -138,6 +138,12 @@
             "custom_fields": {
               "type": ["null", "string"]
             },
+            "show_description_in_invoices": {
+              "type": ["null", "boolean"]
+            },
+            "show_description_in_quotes": {
+              "type": ["null", "boolean"]
+            },
             "tiers": {
               "type": ["null", "array"],
               "items": {
@@ -149,8 +155,11 @@
                   "ending_unit": {
                     "type": ["null", "integer"]
                   },
-                  "price ": {
+                  "price": {
                     "type": ["null", "integer"]
+                  },
+                  "object": {
+                    "type": ["null", "string"]
                   }
                 }
               }
