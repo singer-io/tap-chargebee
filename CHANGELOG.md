@@ -1,5 +1,8 @@
 # Changelog
 
+## 1.1.2
+  * Fix domain name comparison bug [#67](https://github.com/singer-io/tap-chargebee/pull/67)
+
 ## 1.1.1
   * Add an error message when we get an unexpected response from the Configurations API [#62](https://github.com/singer-io/tap-chargebee/pull/62)
 
