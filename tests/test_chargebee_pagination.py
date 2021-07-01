@@ -13,7 +13,7 @@ class ChargebeePaginationTest(ChargebeeBaseTest):
     def name():
         return "tap_tester_chargebee_pagination_test"
 
-    def test_run(self):
+    def pagination_test_run(self):
         """
         Testing that sync creates the appropriate catalog with valid metadata.
         • Verify that all fields and all streams have selected set to True in the metadata
@@ -58,3 +58,13 @@ class ChargebeePaginationTest(ChargebeeBaseTest):
 
                     #Verify by private keys that data is unique for page
                     self.assertTrue(primary_keys_page_1.isdisjoint(primary_keys_page_2))
+
+    def test_run(self):
+
+        #Pagination test for Product Catalog version 1
+        self.product_catalog_v1 = True
+        self.pagination_test_run()
+
+        #Pagintaion test for Product Catalog version 2
+        self.product_catalog_v1 = False
+        self.pagination_test_run()

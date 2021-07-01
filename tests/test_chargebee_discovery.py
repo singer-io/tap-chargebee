@@ -10,7 +10,7 @@ class ChargebeeDiscoveryTest(ChargebeeBaseTest):
     def name(self):
         return "tap_tester_chargebee_discovery_test"
 
-    def test_run(self):
+    def discovery_test_run(self):
         """
         Testing that discovery creates the appropriate catalog with valid metadata.
         • Verify number of actual streams discovered match expected
@@ -115,3 +115,13 @@ class ChargebeeDiscoveryTest(ChargebeeBaseTest):
                          and item.get("breadcrumb", ["properties", None])[1]
                          not in actual_automatic_fields}),
                     msg="Not all non key properties are set to available in metadata")
+
+    def test_run(self):
+
+        #Discovery test for Product Catalog version 1
+        self.product_catalog_v1 = True
+        self.discovery_test_run()
+
+        #Discovery test for Product Catalog version 1
+        self.product_catalog_v1 = False
+        self.discovery_test_run()
