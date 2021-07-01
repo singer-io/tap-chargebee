@@ -3,6 +3,7 @@ import time
 import requests
 import singer
 import json
+import simplejson
 
 from singer import utils
 from tap_framework.client import BaseClient
@@ -66,7 +67,14 @@ class ChargebeeClient(BaseClient):
             params=self.get_params(params),
             json=body)
 
-        response_json = response.json()
+        try:
+            response_json = response.json()
+        except simplejson.scanner.JSONDecodeError:
+            # Formatted error message for json decoder error
+            response_json = {
+                "message": "Did not get response from the server due to an unknown error.",
+                "http_status_code": response.status_code
+            }
 
         if response.status_code == 429:
             raise Server429Error()
