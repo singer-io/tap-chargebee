@@ -22,4 +22,5 @@ setup(name='tap-chargebee',
               'schemas/item_model/*.json',
               'schemas/plan_model/*.json'
           ]
-      })
+      },
+      include_package_data=True)

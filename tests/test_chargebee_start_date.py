@@ -14,11 +14,14 @@ class ChargebeeStartDateTest(ChargebeeBaseTest):
     def name():
         return "tap_tester_chargebee_start_date_test"
 
-    def test_run(self):
+    def start_date_test_run(self):
         """Instantiate start date according to the desired data set and run the test"""
 
         self.start_date_1 = self.get_properties().get('start_date')
-        self.start_date_2 = '2021-03-03T00:00:00Z'
+        if self.product_catalog_v1:
+            self.start_date_2 = '2021-03-03T00:00:00Z'
+        else:
+            self.start_date_2 = '2021-06-22T00:00:00Z'
 
         start_date_1_epoch = self.dt_to_ts(self.start_date_1)
         start_date_2_epoch = self.dt_to_ts(self.start_date_2)
@@ -126,3 +129,13 @@ class ChargebeeStartDateTest(ChargebeeBaseTest):
 
                 # Verify the records replicated in sync 2 were also replicated in sync 1
                 self.assertTrue(primary_keys_sync_2.issubset(primary_keys_sync_1))
+
+    def test_run(self):
+
+        #Start date test Product Catalog version 1
+        self.product_catalog_v1 = True
+        self.start_date_test_run()
+
+        #Start date test Product Catalog version 1
+        self.product_catalog_v1 = False
+        self.start_date_test_run()
