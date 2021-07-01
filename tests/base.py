@@ -26,11 +26,18 @@ class ChargebeeBaseTest(unittest.TestCase):
         "%Y-%m-%dT%H:%M:%S.000000Z"
     }
     start_date = ""
-    properties = {
+    product_catalog_v1 = True
+    properties_v1 = {
 	    "site": "TAP_CHARGEBEE_SITE"
     }
-    credentials = {
+    properties_v2 = {
+	    "site": "TAP_CHARGEBEE_SITE_V2"
+    }
+    credentials_v1 = {
         "api_key": "TAP_CHARGEBEE_API_KEY",
+    }
+    credentials_v2 = {
+        "api_key": "TAP_CHARGEBEE_API_KEY_V2",
     }
 
 
@@ -48,7 +55,9 @@ class ChargebeeBaseTest(unittest.TestCase):
         properties_dict = {
             'start_date': '2019-06-24T00:00:00Z'
         }
-        props = self.properties
+        props = self.properties_v2
+        if self.product_catalog_v1:
+            props = self.properties_v1
         for prop in props:
             properties_dict[prop] = os.getenv(props[prop])
 
@@ -61,24 +70,21 @@ class ChargebeeBaseTest(unittest.TestCase):
     def get_credentials(self):
         """Authentication information for the test account."""
         credentials_dict = {}
-        creds = self.credentials
+        creds = self.credentials_v2
+        if self.product_catalog_v1:
+            creds = self.credentials_v1
         for cred in creds:
             credentials_dict[cred] = os.getenv(creds[cred])
 
         return credentials_dict
 
-    def expected_metadata(self):
-        """The expected primary key of the streams"""
-        return{
+    def common_metadata(self):
+        """Metadata of common streams"""
+        return {
             "events": {
                 self.PRIMARY_KEYS: {"id"},
                 self.REPLICATION_METHOD: self.INCREMENTAL,
                 self.REPLICATION_KEYS: {"occurred_at"}
-            },
-            "addons": {
-                self.PRIMARY_KEYS: {"id"},
-                self.REPLICATION_METHOD: self.INCREMENTAL,
-                self.REPLICATION_KEYS: {"updated_at"}
             },
             "coupons": {
                 self.PRIMARY_KEYS: {"id"},
@@ -120,11 +126,6 @@ class ChargebeeBaseTest(unittest.TestCase):
                 self.REPLICATION_METHOD: self.INCREMENTAL,
                 self.REPLICATION_KEYS: {"created_at"}
             },
-            "plans": {
-                self.PRIMARY_KEYS: {"id"},
-                self.REPLICATION_METHOD: self.INCREMENTAL,
-                self.REPLICATION_KEYS: {"updated_at"}
-            },
             "subscriptions": {
                 self.PRIMARY_KEYS: {"id"},
                 self.REPLICATION_METHOD: self.INCREMENTAL,
@@ -141,6 +142,48 @@ class ChargebeeBaseTest(unittest.TestCase):
                 self.REPLICATION_KEYS: {"updated_at"}
             }
         }
+
+    def plan_model_metadata(self):
+        return {
+            "addons": {
+                self.PRIMARY_KEYS: {"id"},
+                self.REPLICATION_METHOD: self.INCREMENTAL,
+                self.REPLICATION_KEYS: {"updated_at"}
+            },
+            "plans": {
+                self.PRIMARY_KEYS: {"id"},
+                self.REPLICATION_METHOD: self.INCREMENTAL,
+                self.REPLICATION_KEYS: {"updated_at"}
+            }
+        }
+
+    def item_model_metadata(self):
+        return {
+            "items": {
+                self.PRIMARY_KEYS: {"id"},
+                self.REPLICATION_METHOD: self.INCREMENTAL,
+                self.REPLICATION_KEYS: {"updated_at"}
+            },
+            "item_families": {
+                self.PRIMARY_KEYS: {"id"},
+                self.REPLICATION_METHOD: self.INCREMENTAL,
+                self.REPLICATION_KEYS: {"updated_at"}
+            },
+            "item_prices": {
+                self.PRIMARY_KEYS: {"id"},
+                self.REPLICATION_METHOD: self.INCREMENTAL,
+                self.REPLICATION_KEYS: {"updated_at"}
+            }
+        }
+
+    def expected_metadata(self):
+        """The expected primary key of the streams"""
+        common_streams = self.common_metadata()
+        if self.product_catalog_v1:
+            plan_model_stream = self.plan_model_metadata()
+            return {**common_streams, **plan_model_stream}
+        item_model_stream = self.item_model_metadata()
+        return {**common_streams, **item_model_stream}
 
     def expected_streams(self):
         """A set of expected stream names"""
@@ -173,8 +216,12 @@ class ChargebeeBaseTest(unittest.TestCase):
 
     def setUp(self):
         missing_envs = []
-        props = self.properties
-        creds = self.credentials
+        props_v1 = self.properties_v1
+        props_v2 = self.properties_v2
+        props = {**props_v1, **props_v2}
+        creds_v1 = self.credentials_v1
+        creds_v2 = self.credentials_v2
+        creds = {**creds_v1, **creds_v2}
 
         for prop in props:
             if os.getenv(props[prop]) == None:

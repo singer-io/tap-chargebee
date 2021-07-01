@@ -13,7 +13,7 @@ class ChargebeeSyncTest(ChargebeeBaseTest):
     def name():
         return "tap_tester_chargebee_sync_test"
 
-    def test_run(self):
+    def sync_test_run(self):
         """
         Testing that sync creates the appropriate catalog with valid metadata.
         • Verify that all fields and all streams have selected set to True in the metadata
@@ -33,3 +33,13 @@ class ChargebeeSyncTest(ChargebeeBaseTest):
         record_count_by_stream = self.run_and_verify_sync(conn_id)
 
         self.assertGreater(sum(record_count_by_stream.values()), 0)
+
+    def test_run(self):
+
+        #Sync test for Product Catalog version 1
+        self.product_catalog_v1 = True
+        self.sync_test_run()
+
+        #Sync test for Product Catalog version 2
+        self.product_catalog_v1 = False
+        self.sync_test_run()
