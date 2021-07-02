@@ -46,16 +46,19 @@ class ChargebeeIncludeDeletedTest(ChargebeeBaseTest):
         """
         # Expected stream is only invoices
         expected_streams = ["invoices"]
+        self.product_catalog_v1 = True
 
         # For include_delete true or not set
-        synced_records_with_include_deleted_false = self.run_sync(
+        synced_records_with_include_deleted_true = self.run_sync(
             expected_streams)
 
         # For include_delete false
         self.include_deleted = False
-
-        synced_records_with_include_deleted_true = self.run_sync(
+        synced_records_with_include_deleted_false = self.run_sync(
             expected_streams)
 
-        self.assertGreater(sum(synced_records_with_include_deleted_false.values()), sum(
-            synced_records_with_include_deleted_true.values()))
+
+        self.assertGreater(
+            sum(synced_records_with_include_deleted_true.values()),
+            sum(synced_records_with_include_deleted_false.values())
+        )
