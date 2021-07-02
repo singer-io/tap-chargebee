@@ -30,18 +30,21 @@ class BaseChargebeeStream(BaseStream):
         return os.path.join(os.path.dirname(os.path.realpath(__file__)), path)
 
     def load_shared_schema_refs(self):
+        """Select folder to create a reference dict."""
         shared_schema_refs = {}
         schema_folders = ["common"]
         if self.config['item_model']:
+            # choosed streams of product catalog v2
             schema_folders.append("item_model")
         else:
+            # choosed streams of product catalog v1
             schema_folders.append("plan_model")
         for schema_folder in schema_folders:
             shared_schema_refs.update(self.load_shared_schema_ref(schema_folder))
         return shared_schema_refs
 
     def load_shared_schema_ref(self,folder_name):
-
+        """Create a reference dict of all streams."""
         shared_schemas_path = self.get_abs_path('../schemas/'+folder_name)
 
         shared_file_names = [f for f in os.listdir(shared_schemas_path)
@@ -49,6 +52,7 @@ class BaseChargebeeStream(BaseStream):
 
         shared_schema_refs = {}
         for shared_file in shared_file_names:
+            # Excluded event stream as it isn't used as a reference in any other stream
             if shared_file == "events.json":
                 continue
             with open(os.path.join(shared_schemas_path, shared_file)) as data_file:
