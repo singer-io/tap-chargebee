@@ -52,7 +52,7 @@ This tap:
 
    The `site` parameter represents the name of your specific Chargebee site (e.g. `https://{site}.chargebee.com/api/v2/subscriptions`)
 
-   The `include_deleted` is optional flag to ask do you want deleted records of all stream or not. Default it's true. 
+   The 'include_deleted' is an optional flag to ask if you want deleted records of all streams or not. Default: true 
 
 4. Run the Tap in Discovery Mode
 
