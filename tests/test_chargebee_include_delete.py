@@ -22,7 +22,7 @@ class ChargebeeIncludeDeletedTest(ChargebeeBaseTest):
 
         # include_deleted is an optional property for configuration
         if self.include_deleted is False:
-            properties["include_deleted"] = self.include_deleted
+            properties["include_deleted"] = 'false'
 
         return properties
 
