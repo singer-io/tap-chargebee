@@ -34,10 +34,10 @@ class BaseChargebeeStream(BaseStream):
         shared_schema_refs = {}
         schema_folders = ["common"]
         if self.config['item_model']:
-            # choosed streams of product catalog v2
+            # Chosen streams of product catalog v2
             schema_folders.append("item_model")
         else:
-            # choosed streams of product catalog v1
+            # Chosen streams of product catalog v1
             schema_folders.append("plan_model")
         for schema_folder in schema_folders:
             shared_schema_refs.update(self.load_shared_schema_ref(schema_folder))
@@ -52,7 +52,7 @@ class BaseChargebeeStream(BaseStream):
 
         shared_schema_refs = {}
         for shared_file in shared_file_names:
-            # Excluded event stream as it isn't used as a reference in any other stream
+            # Excluded event stream as it is not used as a reference in any other stream
             if shared_file == "events.json":
                 continue
             with open(os.path.join(shared_schemas_path, shared_file)) as data_file:
