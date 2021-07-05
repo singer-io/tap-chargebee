@@ -46,7 +46,9 @@ class ChargebeeIncludeDeletedTest(ChargebeeBaseTest):
         """
         # Expected stream is only invoices
         expected_streams = ["invoices"]
-        self.product_catalog_v1 = True
+
+        # default value
+        self.include_deleted = True
 
         # For include_delete true or not set
         synced_records_with_include_deleted_true = self.run_sync(
@@ -55,6 +57,7 @@ class ChargebeeIncludeDeletedTest(ChargebeeBaseTest):
         # For include_delete false
 
         self.include_deleted = False
+
         synced_records_with_include_deleted_false = self.run_sync(
             expected_streams)
 
