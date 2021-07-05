@@ -52,11 +52,23 @@ class ChargebeeIncludeDeletedTest(ChargebeeBaseTest):
         synced_records_with_include_deleted_true = self.run_sync(
             expected_streams)
 
+        record_status_with_include_deleted_true = [record["deleted"] for record in synced_records_with_include_deleted_true]
+
+        # verify that deleted record is available
+        self.assertEqual(True, True in record_status_with_include_deleted_true)
+
         # For include_delete false
+
         self.include_deleted = False
         synced_records_with_include_deleted_false = self.run_sync(
             expected_streams)
 
+        record_status_with_include_deleted_false = [record["deleted"] for record in synced_records_with_include_deleted_false]
+
+        # verify that deleted record is not available
+        self.assertEqual(True, True not in record_status_with_include_deleted_false)
+
+        # Compare with deleted records count with without deleted records count. With deleted records count must be higher.
         self.assertGreater(
             sum(synced_records_with_include_deleted_true.values()),
             sum(synced_records_with_include_deleted_false.values())
