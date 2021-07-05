@@ -38,13 +38,13 @@ This tap:
 
    ```json
     {
-        "start_date": "2010-01-01",
+        "start_date": "2010-01-01T00:00:00Z",
         "api_key": "<Chargebee API Key>",
         "site": "<Chargebee Site>"
     }
     ```
 
-   The `start_date` specifies the date at which the tap will begin pulling data
+   The `start_date` specifies the date in ISO(YYYY-mm-ddTHH:MM:SSZ) format at which the tap will begin pulling data
    (for those resources that support this).
 
    The `api_key` is the API key for your Chargebee site.

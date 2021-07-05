@@ -134,7 +134,7 @@ class BaseChargebeeStream(BaseStream):
                 # Check start date format
                 singer.utils.strptime(self.config.get("start_date"))
             except ValueError:
-                raise ValueError("start_date must be in '%Y-%m-%dT%H:%M:%SZ' format")
+                raise ValueError("start_date must be in 'YYYY-mm-ddTHH:MM:SSZ' format")
         else:
             bookmark_date = parse(bookmark_date)
 
