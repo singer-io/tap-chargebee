@@ -1,7 +1,8 @@
 """Test tap sync mode and metadata."""
 import re
-
-from tap_tester import runner, menagerie, connections
+import tap_tester.menagerie as menagerie
+import tap_tester.runner as runner
+import tap_tester.connections as connections
 
 from base import ChargebeeBaseTest
 
@@ -38,7 +39,13 @@ class ChargebeeIncludeDeletedTest(ChargebeeBaseTest):
         self.perform_and_verify_table_and_field_selection(
             conn_id, test_catalogs)
 
-        return self.run_and_verify_sync(conn_id)
+        # Run a sync job using orchestrator
+        sync_job_name = runner.run_sync_mode(self, conn_id)
+
+        # Verify tap and target exit codes
+        exit_status = menagerie.get_exit_status(conn_id, sync_job_name)
+        menagerie.verify_sync_exit_status(self, exit_status, sync_job_name)
+        return runner.get_upserts_from_target_output()
 
     def run_include_deleted_test(self):
         """
@@ -51,11 +58,6 @@ class ChargebeeIncludeDeletedTest(ChargebeeBaseTest):
         # For include_delete true or not set
         synced_records_with_include_deleted_true = self.run_sync(
             expected_streams)
-
-        record_status_with_include_deleted_true = [record["deleted"] for record in synced_records_with_include_deleted_true]
-
-        # verify that deleted record is available
-        self.assertEqual(True, True in record_status_with_include_deleted_true)
 
         # For include_delete false
 
@@ -70,8 +72,8 @@ class ChargebeeIncludeDeletedTest(ChargebeeBaseTest):
 
         # Compare with deleted records count with without deleted records count. With deleted records count must be higher.
         self.assertGreater(
-            sum(synced_records_with_include_deleted_true.values()),
-            sum(synced_records_with_include_deleted_false.values())
+            len(synced_records_with_include_deleted_true),
+            len(synced_records_with_include_deleted_false)
         )
 
     def test_run(self):
