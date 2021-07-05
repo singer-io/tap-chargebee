@@ -40,7 +40,7 @@ class ChargebeeIncludeDeletedTest(ChargebeeBaseTest):
 
         return self.run_and_verify_sync(conn_id)
 
-    def test_run(self):
+    def run_include_deleted_test(self):
         """
         Testing that 2 sync have difference in data for stream invoices
         """
@@ -59,3 +59,13 @@ class ChargebeeIncludeDeletedTest(ChargebeeBaseTest):
 
         self.assertGreater(sum(synced_records_with_include_deleted_false.values()), sum(
             synced_records_with_include_deleted_true.values()))
+
+    def test_run(self):
+    
+        #Sync test for Product Catalog version 1
+        self.product_catalog_v1 = True
+        self.run_include_deleted_test()
+
+        #Sync test for Product Catalog version 2
+        self.product_catalog_v1 = False
+        self.run_include_deleted_test()
