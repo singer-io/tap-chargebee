@@ -22,6 +22,6 @@ class TestStartDateErrorHandling(unittest.TestCase):
         try:
             base.sync_data()
         except ValueError as e:
-            expected_message = "start_date must be in '%Y-%m-%dT%H:%M:%SZ' format"
+            expected_message = "start_date must be in 'YYYY-mm-ddTHH:MM:SSZ' format"
             # Verifying the message should be API response
             self.assertEquals(str(e), str(expected_message))
