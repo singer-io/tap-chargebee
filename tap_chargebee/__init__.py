@@ -22,6 +22,12 @@ def main():
         args, client, get_available_streams(args, client)
     )
 
+    try:
+        # Verify start date format
+        singer.utils.strptime(args.config.get("start_date"))
+    except ValueError:
+        raise ValueError("start_date must be in 'YYYY-mm-ddTHH:MM:SSZ' format") from None
+
     if args.discover:
         runner.do_discover()
     else:

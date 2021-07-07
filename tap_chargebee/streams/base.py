@@ -130,11 +130,6 @@ class BaseChargebeeStream(BaseStream):
         if bookmark_date is None:
             LOGGER.info('Could not locate bookmark_date from STATE file. Falling back to start_date from config.json instead.')
             bookmark_date = get_config_start_date(self.config)
-            try:
-                # Check start date format
-                singer.utils.strptime(self.config.get("start_date"))
-            except ValueError:
-                raise ValueError("start_date must be in 'YYYY-mm-ddTHH:MM:SSZ' format")
         else:
             bookmark_date = parse(bookmark_date)
 
