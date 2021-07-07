@@ -58,6 +58,12 @@
             "integer"
          ]
       },
+      "price_in_decimal":{
+         "type":[
+            "null",
+            "string"
+         ]
+      },
       "period":{
          "type":[
             "null",
@@ -275,6 +281,18 @@
                ]
             },
             "accounting_category2":{
+               "type":[
+                  "null",
+                  "string"
+               ]
+            },
+            "accounting_category3":{
+               "type":[
+                  "null",
+                  "string"
+               ]
+            },
+            "accounting_category4":{
                "type":[
                   "null",
                   "string"

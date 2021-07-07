@@ -11,6 +11,9 @@
     "email": {
       "type": ["null", "string"]
     },
+    "scheme": {
+      "type": ["null", "string"]
+    },
     "bank_name": {
       "type": ["null", "string"]
     },

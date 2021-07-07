@@ -26,6 +26,10 @@
     "duration_type": {
       "type": ["null", "string"]
     },
+    "valid_till": {
+      "type": ["null", "string"],
+      "format": "date-time"
+    },
     "duration_month": {
       "type": ["null", "integer"]
     },
@@ -61,6 +65,15 @@
     "updated_at": {
       "type": ["null", "string"],
       "format": "date-time"
+    },
+    "included_in_mrr": {
+      "type": ["null", "boolean"]
+    },
+    "period": {
+      "type": ["null", "integer"]
+    },
+    "period_unit": {
+      "type": ["null", "string"]
     },
     "object": {
       "type": ["null", "string"]
