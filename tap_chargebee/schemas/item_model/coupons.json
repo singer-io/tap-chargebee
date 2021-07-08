@@ -53,6 +53,13 @@
             "string"
          ]
       },
+      "valid_till":{
+         "type":[
+            "null",
+            "string"
+         ],
+         "format":"date-time"
+      },
       "duration_month":{
          "type":[
             "null",
@@ -110,6 +117,18 @@
          ],
          "format":"date-time"
       },
+      "period": {
+         "type": [
+            "null",
+            "integer"
+         ]
+       },
+       "period_unit": {
+         "type": [
+            "null",
+            "string"
+         ]
+       },
       "object":{
          "type":[
             "null",
