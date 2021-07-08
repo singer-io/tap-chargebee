@@ -51,6 +51,9 @@
 		"tracking_id": {
 			"type": ["null", "string"]
 		},
+		"tracking_url": {
+			"type": ["null", "string"]
+		},
 		"batch_id": {
 			"type": ["null", "string"]
 		},
@@ -116,6 +119,15 @@
 			"type": ["null", "string"],
 			"format": "date-time"
 		},
+		"resent_status": {
+			"type": ["null", "string"]
+		},
+		"is_resent": {
+			"type": ["null", "boolean"]
+		},
+		"original_order_id": {
+			"type": ["null", "string"]
+		},
 		"discount": {
 			"type": ["null", "integer"]
 		},
@@ -138,6 +150,9 @@
 			"type": ["null", "string"]
 		},
 		"gift_id": {
+			"type": ["null", "string"]
+		},
+		"resend_reason": {
 			"type": ["null", "string"]
 		},
 		"order_line_items": {
@@ -339,6 +354,12 @@
 	          },
 	          "tax_juris_code": {
 	            "type": ["null", "string"]
+			  },
+			  "tax_amount_in_local_currency": {
+				"type": ["null", "integer"]
+			  },
+			  "local_currency_code": {
+				"type": ["null", "string"]
 	          }
 	        }
 	      }
@@ -388,6 +409,23 @@
 	    			}
 	    		}
 	    	}
+		},
+		"resent_orders": {
+			"type": ["null", "array"],
+			"items": {
+			  "type": ["null", "object"],
+			  "properties": {
+				"order_id": {
+				  "type": ["null", "string"]
+				},
+				"reason": {
+				  "type": ["null", "string"]
+				},
+				"amount": {
+				  "type": ["null", "integer"]
+				}
+			  }
+			}
 	    }
 	}
 }

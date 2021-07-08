@@ -12,13 +12,8 @@ class PromotionalCreditsStream(BaseChargebeeStream):
     VALID_REPLICATION_KEYS = ['created_at']
     INCLUSION = 'available'
     API_METHOD = 'GET'
-    SCHEMA = 'plan_model/promotional_credits'
+    SCHEMA = 'common/promotional_credits'
     SORT_BY = None
-
-    def __init__(self, config, state, catalog, client):
-        BaseChargebeeStream.__init__(self, config, state, catalog, client)
-        if self.config['item_model']:
-            self.SCHEMA = 'item_model/promotional_credits'
 
     def get_url(self):
         return 'https://{}.chargebee.com/api/v2/promotional_credits'.format(self.config.get('site'))
