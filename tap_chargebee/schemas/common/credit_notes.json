@@ -66,11 +66,29 @@
     "sub_total": {
       "type": ["null", "integer"]
     },
+    "sub_total_in_local_currency": {
+      "type": ["null", "integer"]
+    },
+    "total_in_local_currency": {
+      "type": ["null", "integer"]
+    },
+    "local_currency_code": {
+      "type": ["null", "string"]
+    },
     "round_off_amount": {
+      "type": ["null", "integer"]
+    },
+    "fractional_correction": {
       "type": ["null", "integer"]
     },
     "deleted": {
       "type": ["null", "boolean"]
+    },
+    "create_reason_code": {
+      "type": ["null", "string"]
+    },
+    "vat_number_prefix": {
+      "type": ["null", "string"]
     },
     "line_items": {
       "type": ["null", "array"],
@@ -112,6 +130,15 @@
           "tax_rate": {
             "type": ["null", "number"]
           },
+          "unit_amount_in_decimal": {
+            "type": ["null", "string"]
+          },
+          "quantity_in_decimal": {
+            "type": ["null", "string"]
+          },
+          "amount_in_decimal": {
+            "type": ["null", "string"]
+          },
           "discount_amount": {
             "type": ["null", "integer"]
           },
@@ -121,6 +148,9 @@
           "description": {
             "type": ["null", "string"]
           },
+          "entity_description": {
+            "type": ["null", "string"]
+          },
           "entity_type": {
             "type": ["null", "string"]
           },
@@ -128,6 +158,9 @@
             "type": ["null", "string"]
           },
           "entity_id": {
+            "type": ["null", "string"]
+          },
+          "customer_id": {
             "type": ["null", "string"]
           }
         }
@@ -192,6 +225,18 @@
           },
           "unit_amount": {
             "type": ["null", "integer"]
+          },
+          "starting_unit_in_decimal": {
+            "type": ["null", "string"]
+          },
+          "ending_unit_in_decimal": {
+            "type": ["null", "string"]
+          },
+          "quantity_used_in_decimal": {
+            "type": ["null", "string"]
+          },
+          "unit_amount_in_decimal": {
+            "type": ["null", "string"]
           }
         }
       }
@@ -247,6 +292,12 @@
           },
           "tax_juris_code": {
             "type": ["null", "string"]
+          },
+          "tax_amount_in_local_currency": {
+            "type": ["null", "integer"]
+          },
+          "local_currency_code": {
+            "type": ["null", "string"]
           }
         }
       }
@@ -275,6 +326,9 @@
           },
           "txn_amount": {
             "type": ["null", "integer"]
+          },
+          "refund_reason_code": {
+            "type": ["null", "string"]
           }
         }
       }

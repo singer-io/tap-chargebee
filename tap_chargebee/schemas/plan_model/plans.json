@@ -17,6 +17,9 @@
     "price": {
       "type": ["null", "integer"]
     },
+    "currency_code": {
+      "type": ["null", "string"]
+    },
     "period": {
       "type": ["null", "integer"]
     },
@@ -30,6 +33,9 @@
       "type": ["null", "string"]
     },
     "charge_model": {
+      "type": ["null", "string"]
+    },
+    "pricing_model": {
       "type": ["null", "string"]
     },
     "free_quantity": {
@@ -79,6 +85,9 @@
     "tax_code": {
       "type": ["null", "string"]
     },
+    "taxjar_product_code": {
+      "type": ["null", "string"]
+    },
     "avalara_sale_type": {
       "type": ["null", "string"]
     },
@@ -91,10 +100,19 @@
     "account_code": {
       "type": ["null", "string"]
     },
+    "accounting_code": {
+      "type": ["null", "string"]
+    },
     "accounting_category1": {
       "type": ["null", "string"]
     },
     "accounting_category2": {
+      "type": ["null", "string"]
+    },
+    "accounting_category3": {
+      "type": ["null", "string"]
+    },
+    "accounting_category4": {
       "type": ["null", "string"]
     },
     "is_shippable": {
@@ -117,6 +135,12 @@
     },
     "meta_data": {
       "type": ["null", "string"]
+    },
+    "show_description_in_invoices": {
+      "type": ["null", "boolean"]
+    },
+    "show_description_in_quotes": {
+      "type": ["null", "boolean"]
     },
     "custom_fields": {
       "type": ["null", "string"]
@@ -159,6 +183,29 @@
         "type": ["null", "object"],
         "properties": {
           "id": {
+            "type": ["null", "string"]
+          },
+          "quantity_in_decimal": {
+            "type": ["null", "string"]
+          }
+        }
+      }
+    },
+    "attached_addons": {
+      "type": ["null", "array"],
+      "items": {
+        "type": ["null", "object"],
+        "properties": {
+          "id": {
+            "type": ["null", "string"]
+          },
+          "quantity": {
+            "type": ["null", "integer"]
+          },
+          "billing_cycles": {
+            "type": ["null", "integer"]
+          },
+          "type": {
             "type": ["null", "string"]
           },
           "quantity_in_decimal": {
