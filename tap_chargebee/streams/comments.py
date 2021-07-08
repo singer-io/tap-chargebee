@@ -11,7 +11,7 @@ class CommentsStream(BaseChargebeeStream):
     VALID_REPLICATION_KEYS = ['created_at']
     INCLUSION = 'available'
     API_METHOD = 'GET'
-    SCHEMA = 'common/customers'
+    SCHEMA = 'common/comments'
     SORT_BY = 'created_at'
 
     def get_url(self):
