@@ -203,6 +203,9 @@
     "auto_close_invoices": {
       "type": ["null", "boolean"]
     },
+    "channel" : {
+      "type": ["null", "string"]
+    },
     "addons": {
       "type": ["null", "array"],
       "items": {

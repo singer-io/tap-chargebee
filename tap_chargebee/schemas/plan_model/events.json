@@ -320,6 +320,9 @@
             "contract_term_termination_fee": {
               "type": ["null", "integer"]
             },
+            "object": {
+              "type": ["null", "string"]
+            },
             "line_items": {
               "type": ["null", "array"],
               "items": {
@@ -391,6 +394,9 @@
                     "type": ["null", "string"]
                   },
                   "customer_id": {
+                    "type": ["null", "string"]
+                  },
+                  "object": {
                     "type": ["null", "string"]
                   }
                 }
