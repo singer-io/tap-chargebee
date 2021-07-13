@@ -43,6 +43,9 @@
       "type": ["null", "string"],
       "format": "date-time"
     },
+    "trial_end_action": {
+      "type": ["null", "string"]
+    },
     "current_term_start": {
       "type": ["null", "string"],
       "format": "date-time"

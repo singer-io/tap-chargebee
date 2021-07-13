@@ -80,6 +80,12 @@
          ],
          "format":"date-time"
       },
+      "trial_end_action":{
+         "type":[
+            "null",
+            "string"
+         ]
+      },
       "current_term_start":{
          "type":[
             "null",
@@ -204,6 +210,18 @@
             "string"
          ]
       },
+      "plan_free_quantity_in_decimal":{
+         "type":[
+            "null",
+            "string"
+         ]
+      },
+      "plan_amount_in_decimal":{
+         "type":[
+            "null",
+            "string"
+         ]
+      },
       "auto_collection":{
          "type":[
             "null",
@@ -312,6 +330,12 @@
          "type": [
             "null",
             "boolean"
+         ]
+      },
+      "custom_fields": {
+         "type": [
+            "null",
+            "string"
          ]
       },
       "subscription_items":{

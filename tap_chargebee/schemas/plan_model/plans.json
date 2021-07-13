@@ -32,6 +32,9 @@
     "trial_period_unit": {
       "type": ["null", "string"]
     },
+    "trial_end_action": {
+      "type": ["null", "string"]
+    },
     "charge_model": {
       "type": ["null", "string"]
     },

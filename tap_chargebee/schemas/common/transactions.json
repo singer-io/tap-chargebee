@@ -52,6 +52,12 @@
     "fraud_flag": {
       "type": ["null", "string"]
     },
+    "initiator_type": {
+      "type": ["null", "string"]
+    },
+    "three_d_secure": {
+      "type": ["null", "boolean"]
+    },
     "error_code": {
       "type": ["null", "string"]
     },
@@ -115,6 +121,9 @@
     "amount_capturable": {
       "type": ["null", "string"]
     },
+    "merchant_reference_id": {
+      "type": ["null", "string"]
+    },
     "linked_invoices": {
       "type": ["null", "array"],
       "items": {
@@ -132,7 +141,7 @@
           },
           "invoice_date": {
             "type": ["null", "string"],
-            "format": "date-times"
+            "format": "date-time"
           },
           "invoice_total": {
             "type": ["null", "integer"]

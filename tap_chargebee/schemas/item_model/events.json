@@ -86,6 +86,14 @@
               "subscription_id": {
                 "type": ["null", "string"]
               },
+              "date_from": {
+                "type": ["null", "string"],
+                "format": "date-time"
+              },
+              "date_to": {
+                "type": ["null", "string"],
+                "format": "date-time"
+              },
               "unit_amount": {
                 "type": ["null", "integer"]
               },
@@ -120,6 +128,15 @@
                 "type": ["null", "string"],
                 "format": "date-time"
               },
+              "unit_amount_in_decimal": {
+                "type": ["null", "string"]
+              },
+              "quantity_in_decimal": {
+                "type": ["null", "string"]
+              },
+              "amount_in_decimal": {
+                "type": ["null", "string"]
+              },
               "deleted": {
                 "type": ["null", "boolean"]
               },
@@ -134,11 +151,23 @@
                     "ending_unit": {
                       "type": ["null", "integer"]
                     },
-                    "quantity_used ": {
+                    "quantity_used": {
                       "type": ["null", "integer"]
                     },
                     "unit_amount ": {
                       "type": ["null", "integer"]
+                    },
+                    "starting_unit_in_decimal": {
+                      "type": ["null", "string"]
+                    },
+                    "ending_unit_in_decimal": {
+                      "type": ["null", "string"]
+                    },
+                    "quantity_used_in_decimal": {
+                      "type": ["null", "string"]
+                    },
+                    "unit_amount_in_decimal": {
+                      "type": ["null", "string"]
                     }
                   }
                 }
@@ -161,6 +190,9 @@
               "type": ["null", "string"]
             },
             "coupon_site_id": {
+              "type": ["null", "string"]
+            },
+            "coupon_set_id": {
               "type": ["null", "string"]
             },
             "coupon_set_name": {
@@ -202,6 +234,9 @@
             "id": {
               "type": ["null", "string"]
             },
+            "name": {
+              "type": ["null", "string"]
+            },
             "po_number": {
               "type": ["null", "string"]
             },
@@ -209,6 +244,9 @@
               "type": ["null", "string"]
             },
             "subscription_id": {
+              "type": ["null", "string"]
+            },
+            "invoice_id": {
               "type": ["null", "string"]
             },
             "status": {
@@ -231,6 +269,12 @@
               "type": ["null", "string"],
               "format": "date-time"
             },
+            "total_payable": {
+              "type": ["null", "integer"]
+            },
+            "charge_on_acceptance": {
+              "type": ["null", "integer"]
+            },
             "sub_total": {
               "type": ["null", "integer"]
             },
@@ -246,6 +290,9 @@
             "amount_due": {
               "type": ["null", "integer"]
             },
+            "version": {
+              "type": ["null", "integer"]
+            },
             "resource_version": {
               "type": ["null", "integer"]
             },
@@ -253,8 +300,28 @@
               "type": ["null", "string"],
               "format": "date-time"
             },
+            "vat_number_prefix": {
+              "type": ["null", "string"]
+            },
             "currency_code": {
               "type": ["null", "string"]
+            },
+            "notes": {
+              "type":["null", "array"],
+              "items":{
+                "type":["null","string"] 
+             }
+            },
+            "contract_term_start": {
+              "type": ["null", "string"],
+              "format": "date-time"
+            },
+            "contract_term_end": {
+              "type": ["null", "string"],
+              "format": "date-time"
+            },
+            "contract_term_termination_fee": {
+              "type": ["null", "integer"]
             },
             "line_items": {
               "type": ["null", "array"],
@@ -296,6 +363,15 @@
                   "tax_rate": {
                     "type": ["null", "number"]
                   },
+                  "unit_amount_in_decimal": {
+                    "type": ["null", "string"]
+                  },
+                  "quantity_in_decimal": {
+                    "type": ["null", "string"]
+                  },
+                  "amount_in_decimal": {
+                    "type": ["null", "string"]
+                  },
                   "discount_amount": {
                     "type": ["null", "integer"]
                   },
@@ -303,6 +379,9 @@
                     "type": ["null", "integer"]
                   },
                   "description": {
+                    "type": ["null", "string"]
+                  },
+                  "entity_description": {
                     "type": ["null", "string"]
                   },
                   "entity_type": {
@@ -410,6 +489,47 @@
                     "type": ["null", "string"]
                   },
                   "tax_juris_code": {
+                    "type": ["null", "string"]
+                  },
+                  "tax_amount_in_local_currency": {
+                    "type": ["null", "integer"]
+                  },
+                  "local_currency_code": {
+                    "type": ["null", "string"]
+                  }
+                }
+              }
+            },
+            "line_item_tiers": {
+              "type": ["null", "array"],
+              "items": {
+                "type": ["null", "object"],
+                "properties": {
+                  "line_item_id": {
+                    "type": ["null", "string"]
+                  },
+                  "starting_unit": {
+                    "type": ["null", "integer"]
+                  },
+                  "ending_unit": {
+                    "type": ["null", "integer"]
+                  },
+                  "quantity_used": {
+                    "type": ["null", "integer"]
+                  },
+                  "unit_amount": {
+                    "type": ["null", "integer"]
+                  },
+                  "starting_unit_in_decimal": {
+                    "type": ["null", "string"]
+                  },
+                  "ending_unit_in_decimal": {
+                    "type": ["null", "string"]
+                  },
+                  "quantity_used_in_decimal": {
+                    "type": ["null", "string"]
+                  },
+                  "unit_amount_in_decimal": {
                     "type": ["null", "string"]
                   }
                 }
