@@ -38,6 +38,9 @@
     "created_at": {
     	"type": ["null", "string"],
     	"format": "date-time"
+    },
+    "object": {
+    	"type": ["null", "string"]
     }
    }
 }

@@ -332,6 +332,12 @@
             "boolean"
          ]
       },
+      "channel": {
+         "type": [
+            "null",
+            "string"
+         ]
+      },
       "custom_fields": {
          "type": [
             "null",
@@ -534,6 +540,12 @@
                      "string"
                   ],
                   "format":"date-time"
+               },
+               "object":{
+                  "type":[
+                     "null",
+                     "string"
+                  ]
                }
             }
          }

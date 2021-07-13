@@ -158,7 +158,7 @@
             "type": ["null", "integer"]
           },
           "tax_rate": {
-            "type": ["null", "integer"]
+            "type": ["null", "integer", "number"]
           },
           "amount": {
             "type": ["null", "integer"]
@@ -247,6 +247,9 @@
           },
           "discount_amount": {
             "type": ["null", "integer"]
+          },
+          "object": {
+            "type": ["null", "string"]
           }
         }
       }
@@ -280,7 +283,7 @@
             "type": ["null", "string"]
           },
           "tax_rate": {
-            "type": ["null", "integer"]
+            "type": ["null", "integer", "number"]
           },
           "is_partial_tax_applied": {
             "type": ["null", "boolean"]

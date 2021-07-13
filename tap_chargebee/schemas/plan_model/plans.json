@@ -154,6 +154,9 @@
     "price_in_decimal": {
       "type": ["null", "string"]
     },
+    "object": {
+      "type": ["null", "string"]
+    },
     "tiers": {
       "type": ["null", "array"],
       "items": {

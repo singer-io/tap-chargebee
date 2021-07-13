@@ -49,6 +49,9 @@
     },
     "masked_number": {
       "type": ["null", "string"]
+    },
+    "object": {
+      "type": ["null", "string"]
     }
   }
 }
