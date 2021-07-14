@@ -196,7 +196,8 @@
       "archivable":{
          "type":[
             "null",
-            "boolean"
+            "boolean",
+            "string"
          ]
       },
       "object":{
