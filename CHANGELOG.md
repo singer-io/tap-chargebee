@@ -1,5 +1,8 @@
 # Changelog
 
+## 1.2.1
+  * Add a `MANIFEST.in` file to include schema files in the `tap-chargebee` package [#72](https://github.com/singer-io/tap-chargebee/pull/72)
+
 ## 1.2.0
 
   * Remove all minimum/maximum and minLength/maxLength [#45][#45]
