@@ -1,5 +1,8 @@
 # Changelog
 
+## 1.2.2
+  * Update the schema glob so that we include all schemas in the package distribution [#73](https://github.com/singer-io/tap-chargebee/pull/73)
+
 ## 1.2.1
   * Add a `MANIFEST.in` file to include schema files in the `tap-chargebee` package [#72](https://github.com/singer-io/tap-chargebee/pull/72)
 
