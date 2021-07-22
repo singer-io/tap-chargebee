@@ -168,7 +168,7 @@ class BaseChargebeeStream(BaseStream):
         if self.ENTITY == 'event':
             params = {"occurred_at[after]": bookmark_date_posix}
             bookmark_key = 'occurred_at'
-        elif self.ENTITY == 'promotional_credit':
+        elif self.ENTITY in ['promotional_credit','comment']:
             params = {"created_at[after]": bookmark_date_posix}
             bookmark_key = 'created_at'
         else:

@@ -11,6 +11,7 @@ This tap:
   - [Addons](https://apidocs.chargebee.com/docs/api/addons)
   - [Coupons](https://apidocs.chargebee.com/docs/api/coupons)
   - [Credit Notes](https://apidocs.chargebee.com/docs/api/credit_notes)
+  - [Comments](https://apidocs.chargebee.com/docs/api/comments)  
   - [Customers](https://apidocs.chargebee.com/docs/api/customers)
   - [Events](https://apidocs.chargebee.com/docs/api/events)
   - [Gifts](https://apidocs.chargebee.com/docs/api/gifts)
