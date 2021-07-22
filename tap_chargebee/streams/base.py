@@ -168,7 +168,7 @@ class BaseChargebeeStream(BaseStream):
         if self.ENTITY == 'event':
             params = {"occurred_at[after]": bookmark_date_posix}
             bookmark_key = 'occurred_at'
-        elif self.ENTITY == 'promotional_credit':
+        elif self.ENTITY in ['promotional_credit','comment']:
             params = {"created_at[after]": bookmark_date_posix}
             bookmark_key = 'created_at'
         else:
@@ -198,23 +198,24 @@ class BaseChargebeeStream(BaseStream):
             
             to_write = self.get_stream_data(records)
             
-            if self.ENTITY == 'event':
-                for event in to_write:
-                    if event["event_type"] == 'plan_deleted':
-                        Util.plans.append(event['content']['plan'])
-                    elif event['event_type'] == 'addon_deleted':
-                        Util.addons.append(event['content']['addon'])
-                    elif event['event_type'] == 'coupon_deleted':
-                        Util.coupons.append(event['content']['coupon'])
-            if self.ENTITY == 'plan':
-                for plan in Util.plans:
-                    to_write.append(plan)
-            if self.ENTITY == 'addon':
-                for addon in Util.addons:
-                    to_write.append(addon)
-            if self.ENTITY == 'coupon':
-                for coupon in Util.coupons:
-                    to_write.append(coupon) 
+            if self.config.get('include_deleted') not in ['false','False', False]:
+                if self.ENTITY == 'event':
+                    for event in to_write:
+                        if event["event_type"] == 'plan_deleted':
+                            Util.plans.append(event['content']['plan'])
+                        elif event['event_type'] == 'addon_deleted':
+                            Util.addons.append(event['content']['addon'])
+                        elif event['event_type'] == 'coupon_deleted':
+                            Util.coupons.append(event['content']['coupon'])
+                if self.ENTITY == 'plan':
+                    for plan in Util.plans:
+                        to_write.append(plan)
+                if self.ENTITY == 'addon':
+                    for addon in Util.addons:
+                        to_write.append(addon)
+                if self.ENTITY == 'coupon':
+                    for coupon in Util.coupons:
+                        to_write.append(coupon) 
 
             
             with singer.metrics.record_counter(endpoint=table) as ctr:

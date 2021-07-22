@@ -29,6 +29,9 @@ class ChargebeeClient(BaseClient):
         self.include_deleted = include_deleted
         self.user_agent = self.config.get('user_agent')
 
+        if self.config.get('include_deleted') in ['false','False', False]:
+            self.include_deleted = False
+
     def get_headers(self):
         headers = {}
 
