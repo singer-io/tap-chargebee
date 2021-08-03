@@ -43,6 +43,18 @@
             "string"
          ]
       },
+      "plan_quantity_in_decimal" : {
+         "type":[
+            "null",
+            "string"
+         ]
+      },
+      "plan_unit_price_in_decimal" : {
+         "type":[
+            "null", 
+            "string"
+         ]
+      },
       "customer_id":{
          "type":[
             "null",
@@ -67,6 +79,12 @@
             "string"
          ],
          "format":"date-time"
+      },
+      "trial_end_action":{
+         "type":[
+            "null",
+            "string"
+         ]
       },
       "current_term_start":{
          "type":[
@@ -109,6 +127,18 @@
             "string"
          ],
          "format":"date-time"
+      },
+      "contract_term_billing_cycle_on_renewal": {
+         "type": [
+            "null",
+            "integer"
+         ]
+      },
+      "override_relationship": {
+         "type": [
+            "null",
+            "boolean"
+         ]
       },
       "pause_date":{
          "type":[
@@ -162,6 +192,12 @@
          ],
          "format":"date-time"
       },
+      "has_scheduled_advance_invoices": {
+         "type": [
+            "null",
+            "boolean"
+         ]
+      },
       "has_scheduled_changes":{
          "type":[
             "null",
@@ -169,6 +205,18 @@
          ]
       },
       "payment_source_id":{
+         "type":[
+            "null",
+            "string"
+         ]
+      },
+      "plan_free_quantity_in_decimal":{
+         "type":[
+            "null",
+            "string"
+         ]
+      },
+      "plan_amount_in_decimal":{
          "type":[
             "null",
             "string"
@@ -247,6 +295,55 @@
             "boolean"
          ]
       },
+      "cancel_schedule_created_at": {
+         "type": [
+            "null",
+            "string"
+         ],
+         "format": "date-time"
+      },
+      "cancel_reason_code" : {
+         "type": [
+            "null",
+            "string"
+         ]
+      },
+      "free_period": {
+         "type": [
+            "null",
+            "integer"
+         ]
+      },
+      "free_period_unit" : {
+         "type": [
+            "null",
+            "string"
+         ]
+      },
+      "create_pending_invoices": {
+         "type": [
+            "null",
+            "boolean"
+         ]
+      },
+      "auto_close_invoices": {
+         "type": [
+            "null",
+            "boolean"
+         ]
+      },
+      "channel": {
+         "type": [
+            "null",
+            "string"
+         ]
+      },
+      "custom_fields": {
+         "type": [
+            "null",
+            "string"
+         ]
+      },
       "subscription_items":{
          "type":[
             "null",
@@ -276,10 +373,22 @@
                      "integer"
                   ]
                },
+               "quantity_in_decimal":{
+                  "type":[
+                     "null",
+                     "string"
+                  ]
+               },
                "unit_price":{
                   "type":[
                      "null",
                      "integer"
+                  ]
+               },
+               "unit_price_in_decimal":{
+                  "type":[
+                     "null",
+                     "string"
                   ]
                },
                "amount":{
@@ -288,10 +397,22 @@
                      "integer"
                   ]
                },
+               "amount_in_decimal":{
+                  "type":[
+                     "null",
+                     "string"
+                  ]
+               },
                "free_quantity":{
                   "type":[
                      "null",
                      "integer"
+                  ]
+               },
+               "free_quantity_in_decimal":{
+                  "type":[
+                     "null",
+                     "string"
                   ]
                },
                "trial_end":{
@@ -374,6 +495,24 @@
                      "null",
                      "integer"
                   ]
+               },
+               "starting_unit_in_decimal":{
+                  "type":[
+                     "null",
+                     "string"
+                  ]
+               },
+               "ending_unit_in_decimal":{
+                  "type":[
+                     "null",
+                     "string"
+                  ]
+               },
+               "price_in_decimal":{
+                  "type":[
+                     "null",
+                     "string"
+                  ]
                }
             }
          }
@@ -401,6 +540,12 @@
                      "string"
                   ],
                   "format":"date-time"
+               },
+               "object":{
+                  "type":[
+                     "null",
+                     "string"
+                  ]
                }
             }
          }
@@ -636,6 +781,83 @@
                "type":[
                   "null",
                   "boolean"
+               ]
+            }
+         }
+      },
+      "contract_term": {
+        "type": [
+            "null",
+            "object"
+         ],
+        "properties": {
+            "id": {
+               "type": [
+                  "null",
+                  "string"
+               ]
+            },
+            "status": {
+               "type": [
+                  "null",
+                  "string"
+               ]
+            },
+            "contract_start": {
+               "type": [
+                  "null",
+                  "string"
+               ],
+               "format": "date-time"
+            },
+            "contract_end": {
+               "type": [
+                  "null",
+                  "string"
+               ],
+               "format": "date-time"
+            },
+            "billing_cycle": {
+               "type": [
+                  "null",
+                  "integer"
+               ]
+            },
+            "action_at_term_end": {
+               "type": [
+                  "null",
+                  "string"
+               ]
+            },
+            "total_contract_value": {
+               "type": [
+                  "null",
+                  "integer"
+               ]
+            },
+            "cancellation_cutoff_period": {
+               "type": [
+                  "null",
+                  "integer"
+               ]
+            },
+            "created_at": {
+               "type": [
+                  "null",
+                  "string"
+               ],
+               "format": "date-time"
+            },
+            "subscription_id": {
+               "type": [
+                  "null",
+                  "string"
+               ]
+            },
+            "remaining_billing_cycles": {
+               "type": [
+                  "null",
+                  "integer"
                ]
             }
          }

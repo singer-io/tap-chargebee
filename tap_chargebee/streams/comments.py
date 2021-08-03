@@ -1,9 +1,8 @@
 from tap_chargebee.streams.base import BaseChargebeeStream
 
-
-class PromotionalCreditsStream(BaseChargebeeStream):
-    TABLE = 'promotional_credits'
-    ENTITY = 'promotional_credit'
+class CommentsStream(BaseChargebeeStream):
+    TABLE = 'comments'
+    ENTITY = 'comment'
     REPLICATION_METHOD = 'INCREMENTAL'
     REPLICATION_KEY = 'created_at'
     KEY_PROPERTIES = ['id']
@@ -12,8 +11,8 @@ class PromotionalCreditsStream(BaseChargebeeStream):
     VALID_REPLICATION_KEYS = ['created_at']
     INCLUSION = 'available'
     API_METHOD = 'GET'
-    SCHEMA = 'common/promotional_credits'
-    SORT_BY = None
+    SCHEMA = 'common/comments'
+    SORT_BY = 'created_at'
 
     def get_url(self):
-        return 'https://{}.chargebee.com/api/v2/promotional_credits'.format(self.config.get('site'))
+        return 'https://{}.chargebee.com/api/v2/comments'.format(self.config.get('site'))

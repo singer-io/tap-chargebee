@@ -58,6 +58,12 @@
             "integer"
          ]
       },
+      "price_in_decimal":{
+         "type":[
+            "null",
+            "string"
+         ]
+      },
       "period":{
          "type":[
             "null",
@@ -88,6 +94,12 @@
             "string"
          ]
       },
+      "trial_end_action":{
+         "type":[
+            "null",
+            "string"
+         ]
+      },
       "shipping_period":{
          "type":[
             "null",
@@ -112,6 +124,12 @@
             "integer"
          ]
       },
+      "free_quantity_in_decimal":{
+         "type":[
+            "null",
+            "string"
+         ]
+      },
       "resource_version":{
          "type":[
             "null",
@@ -126,6 +144,13 @@
          "format":"date-time"
       },
       "created_at":{
+         "type":[
+            "null",
+            "string"
+         ],
+         "format":"date-time"
+      },
+      "archived_at":{
          "type":[
             "null",
             "string"
@@ -166,6 +191,13 @@
          "type":[
             "null",
             "boolean"
+         ]
+      },
+      "archivable":{
+         "type":[
+            "null",
+            "boolean",
+            "string"
          ]
       },
       "object":{
@@ -275,6 +307,18 @@
                ]
             },
             "accounting_category2":{
+               "type":[
+                  "null",
+                  "string"
+               ]
+            },
+            "accounting_category3":{
+               "type":[
+                  "null",
+                  "string"
+               ]
+            },
+            "accounting_category4":{
                "type":[
                   "null",
                   "string"

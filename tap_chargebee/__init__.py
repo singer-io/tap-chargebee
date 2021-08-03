@@ -22,6 +22,12 @@ def main():
         args, client, get_available_streams(args, client)
     )
 
+    try:
+        # Verify start date format
+        singer.utils.strptime(args.config.get("start_date"))
+    except ValueError:
+        raise ValueError("start_date must be in 'YYYY-mm-ddTHH:MM:SSZ' format") from None
+
     if args.discover:
         runner.do_discover()
     else:
@@ -42,7 +48,7 @@ def get_available_streams(self, cb_client):
     site_configurations = response['configurations']
     LOGGER.info("Configurations API response {}".format(response))
     product_catalog_version = next(iter(config['product_catalog_version'] for config in site_configurations if
-                                        config['domain'] == site_name),
+                                        config['domain'].lower() == site_name.lower()),
                                    None)
     if product_catalog_version == 'v2':
         available_streams = tap_chargebee.streams.ITEM_MODEL_AVAILABLE_STREAMS

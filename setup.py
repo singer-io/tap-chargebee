@@ -3,7 +3,7 @@
 from setuptools import setup, find_packages
 
 setup(name='tap-chargebee',
-      version='1.1.0',
+      version='1.3.0',
       description='Singer.io tap for extracting data from the Chargebee API',
       author='dwallace@envoy.com',
       classifiers=['Programming Language :: Python :: 3 :: Only'],
@@ -22,4 +22,5 @@ setup(name='tap-chargebee',
               'schemas/item_model/*.json',
               'schemas/plan_model/*.json'
           ]
-      })
+      },
+      include_package_data=True)
