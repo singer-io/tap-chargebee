@@ -119,9 +119,23 @@
             "string"
          ]
       },
+      "archived_at":{
+         "type":[
+            "null",
+            "string"
+         ],
+         "format":"date-time"
+      },
       "metadata":{
          "type":[
             "null",
+            "string"
+         ]
+      },
+      "archivable":{
+         "type":[
+            "null",
+            "boolean",
             "string"
          ]
       },

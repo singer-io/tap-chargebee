@@ -15,6 +15,9 @@
 		"auto_claim": {
 			"type": ["null", "boolean"]
 		},
+		"no_expiry": {
+			"type": ["null", "boolean"]
+		},
 		"claim_expiry_date": {
 			"type": ["null", "string"],
 			"format": "date-time"

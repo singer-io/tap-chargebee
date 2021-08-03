@@ -80,6 +80,15 @@
     "sub_total": {
       "type": ["null", "integer"]
     },
+    "sub_total_in_local_currency": {
+      "type": ["null", "integer"]
+    },
+    "total_in_local_currency": {
+      "type": ["null", "integer"]
+    },
+    "local_currency_code": {
+      "type": ["null", "string"]
+    },
     "tax": {
       "type": ["null", "integer"]
     },
@@ -102,8 +111,14 @@
     "payment_owner": {
       "type": ["null", "string"]
     },
+    "void_reason_code": {
+      "type": ["null", "string"]
+    },
     "deleted": {
       "type": ["null", "boolean"]
+    },
+    "vat_number_prefix": {
+      "type": ["null", "string"]
     },
     "is_gifted": {
       "type": ["null", "boolean"]
@@ -143,7 +158,7 @@
             "type": ["null", "integer"]
           },
           "tax_rate": {
-            "type": ["null", "integer"]
+            "type": ["null", "integer", "number"]
           },
           "amount": {
             "type": ["null", "integer"]
@@ -157,6 +172,9 @@
           "description": {
             "type": ["null", "string"]
           },
+          "entity_description": {
+            "type": ["null", "string"]
+          },
           "entity_type": {
             "type": ["null", "string"]
           },
@@ -166,10 +184,22 @@
           "entity_id": {
             "type": ["null", "string"]
           },
+          "customer_id": {
+            "type": ["null", "string"]
+          },
           "pricing_model": {
             "type": ["null", "string"]
           },
           "object": {
+            "type": ["null", "string"]
+          },
+          "amount_in_decimal": {
+            "type": ["null", "string"]
+          },
+          "quantity_in_decimal": {
+            "type": ["null", "string"]
+          },
+          "unit_amount_in_decimal": {
             "type": ["null", "string"]
           }
         }
@@ -212,8 +242,14 @@
           "coupon_id": {
             "type": ["null", "string"]
           },
+          "entity_id": {
+            "type": ["null", "string"]
+          },
           "discount_amount": {
             "type": ["null", "integer"]
+          },
+          "object": {
+            "type": ["null", "string"]
           }
         }
       }
@@ -247,7 +283,7 @@
             "type": ["null", "string"]
           },
           "tax_rate": {
-            "type": ["null", "integer"]
+            "type": ["null", "integer", "number"]
           },
           "is_partial_tax_applied": {
             "type": ["null", "boolean"]
@@ -268,6 +304,12 @@
             "type": ["null", "string"]
           },
           "tax_juris_code": {
+            "type": ["null", "string"]
+          },
+          "tax_amount_in_local_currency": {
+            "type": ["null", "integer"]
+          },
+          "local_currency_code": {
             "type": ["null", "string"]
           }
         }
@@ -292,6 +334,18 @@
           },
           "unit_amount": {
             "type": ["null", "integer"]
+          },
+          "starting_unit_in_decimal": {
+            "type": ["null", "string"]
+          },
+          "ending_unit_in_decimal": {
+            "type": ["null", "string"]
+          },
+          "quantity_used_in_decimal": {
+            "type": ["null", "string"]
+          },
+          "unit_amount_in_decimal": {
+            "type": ["null", "string"]
           }
         }
       }
@@ -324,6 +378,33 @@
         }
       }
     },
+    "dunning_attempts": {
+      "type": ["null", "array"],
+      "items": {
+        "type": ["null", "object"],
+        "properties": {
+          "attempt": {
+            "type": ["null", "integer"]
+          },
+          "transaction_id": {
+            "type": ["null", "string"]
+          },
+          "dunning_type": {
+            "type": ["null", "string"]
+          },
+          "created_at": {
+            "type": ["null", "string"],
+            "format": "date-time"
+          },
+          "txn_status": {
+            "type": ["null", "string"]
+          },
+          "txn_amount": {
+            "type": ["null", "integer"]
+          }
+        }
+      }
+    },
     "applied_credits": {
       "type": ["null", "array"],
       "items": {
@@ -340,6 +421,9 @@
             "format": "date-time"
           },
           "cn_reason_code": {
+            "type": ["null", "string"]
+          },
+          "cn_create_reason_code": {
             "type": ["null", "string"]
           },
           "cn_date": {
@@ -361,6 +445,9 @@
             "type": ["null", "string"]
           },
           "cn_reason_code": {
+            "type": ["null", "string"]
+          },
+          "cn_create_reason_code": {
             "type": ["null", "string"]
           },
           "cn_date": {
@@ -385,6 +472,9 @@
             "type": ["null", "string"]
           },
           "cn_reason_code": {
+            "type": ["null", "string"]
+          },
+          "cn_create_reason_code": {
             "type": ["null", "string"]
           },
           "cn_date": {
@@ -492,7 +582,10 @@
         "zip": {
           "type": ["null", "string"]
         },
-        "validation_status,": {
+        "validation_status": {
+          "type": ["null", "string"]
+        },
+        "object": {
           "type": ["null", "string"]
         }
       }
