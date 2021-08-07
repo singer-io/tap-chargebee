@@ -100,6 +100,9 @@
     "is_shippable": {
       "type": ["null", "boolean"]
     },
+    "currency_code": {
+      "type": ["null", "string"]
+    },
     "shipping_frequency_period": {
       "type": ["null", "integer"]
     },
