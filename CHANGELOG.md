@@ -1,5 +1,8 @@
 # Changelog
 
+## 1.3.1
+  * Added support for Chargebee Quotes [#75](https://github.com/singer-io/tap-chargebee/pull/75)
+
 ## 1.3.0
   * Added comments stream [#52](https://github.com/singer-io/tap-chargebee/pull/52)
   * Added include_deleted configuration [#58](https://github.com/singer-io/tap-chargebee/pull/58)
