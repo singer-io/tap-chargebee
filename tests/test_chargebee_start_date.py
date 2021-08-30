@@ -82,9 +82,9 @@ class ChargebeeStartDateTest(ChargebeeBaseTest):
         for stream in expected_streams:
 
             # WE ARE NOT ABLE TO GENERATE TEST DATA SO SKIPPING THREE STREAMS(orders, gifts, virtual_bank_accounts)
-            if stream in ['orders', 'gifts', 'virtual_bank_accounts']:
+            if stream in ['orders', 'gifts', 'virtual_bank_accounts', 'quotes']:
                 continue
-            
+
             with self.subTest(stream=stream):
 
                 # expected values
