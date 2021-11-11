@@ -7,10 +7,13 @@ import simplejson
 
 from singer import utils
 from tap_framework.client import BaseClient
+from requests.exceptions import Timeout
 
 
 LOGGER = singer.get_logger()
 
+# timeout request after 300 seconds
+REQUEST_TIMEOUT = 300
 
 class Server4xxError(Exception):
     pass
@@ -51,7 +54,7 @@ class ChargebeeClient(BaseClient):
         return params
 
     @backoff.on_exception(backoff.expo,
-                          (Server4xxError, Server429Error),
+                          (Server4xxError, Server429Error, Timeout),
                           max_tries=5,
                           factor=3)
     @utils.ratelimit(100, 60)
@@ -62,13 +65,21 @@ class ChargebeeClient(BaseClient):
 
         LOGGER.info("Making {} request to {}".format(method, url))
 
+        # Set request timeout to config param `request_timeout` value.
+        config_request_timeout = self.config.get('request_timeout')
+        if config_request_timeout and float(config_request_timeout):
+            request_timeout = float(config_request_timeout)
+        else:
+            request_timeout = REQUEST_TIMEOUT # If value is 0,"0","" or not passed then set default to 300 seconds.
+
         response = requests.request(
             method,
             url,
             auth=(self.config.get("api_key"), ''),
             headers=self.get_headers(),
             params=self.get_params(params),
-            json=body)
+            json=body,
+            timeout=request_timeout)
 
         try:
             response_json = response.json()
