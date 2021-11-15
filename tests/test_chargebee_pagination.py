@@ -19,18 +19,18 @@ class ChargebeePaginationTest(ChargebeeBaseTest):
         # Generate events for product catalog v1
         url = 'https://{}.chargebee.com/api/v2/customers/cbdemo_dave'.format(os.getenv("TAP_CHARGEBEE_SITE"))
         payload = 'first_name=Dave'
-        # Update customer two times which will generate two events
+        # Update customer 20 times which will generate 20 events
         product_v1_api_key = os.getenv("TAP_CHARGEBEE_API_KEY")
-        requests.post(url=url, data=payload, auth=(product_v1_api_key,''))
-        requests.post(url=url, data=payload, auth=(product_v1_api_key,''))
+        for index in range(20):
+            requests.post(url=url, data=payload, auth=(product_v1_api_key,''))
 
         # Generate events for product catalog v2
         url = 'https://{}.chargebee.com/api/v2/customers/cbdemo_carol'.format(os.getenv("TAP_CHARGEBEE_SITE_V2"))
         payload = 'first_name=Carol'
-        # Update customer two times which will generate two events
+        # Update customer 20 times which will generate 20 events
         product_v2_api_key = os.getenv("TAP_CHARGEBEE_API_KEY_V2")
-        requests.post(url=url, data=payload, auth=(product_v2_api_key,''))
-        requests.post(url=url, data=payload, auth=(product_v2_api_key,''))
+        for index in range(20):
+            requests.post(url=url, data=payload, auth=(product_v2_api_key,''))
 
 
     def pagination_test_run(self):
