@@ -7,7 +7,7 @@ import simplejson
 
 from singer import utils
 from tap_framework.client import BaseClient
-from requests.exceptions import Timeout
+from requests.exceptions import Timeout, ConnectionError
 
 
 LOGGER = singer.get_logger()
@@ -54,7 +54,7 @@ class ChargebeeClient(BaseClient):
         return params
 
     @backoff.on_exception(backoff.expo,
-                          (Server4xxError, Server429Error, Timeout),
+                          (Server4xxError, Server429Error, Timeout, ConnectionError),
                           max_tries=5,
                           factor=3)
     @utils.ratelimit(100, 60)

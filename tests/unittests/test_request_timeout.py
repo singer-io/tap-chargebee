@@ -137,3 +137,22 @@ class TestRequestTimeoutBackoff(unittest.TestCase):
             pass
         # Verify that requests.request is called 5 times
         self.assertEqual(mocked_request.call_count, 5)
+
+
+@mock.patch("time.sleep")
+class TestConnectionErrorBackoff(unittest.TestCase):
+
+    @mock.patch("requests.request", side_effect = requests.exceptions.ConnectionError)
+    def test_request_timeout_backoff(self, mocked_request, mocked_sleep):
+        """
+            Verify make_request function is backoff for 5 times on ConnectionError exceeption
+        """
+        config = {"start_date": "2017-01-01T00:00:00Z"}
+        chargebee_client = _client.ChargebeeClient(config)
+
+        try:
+            chargebee_client.make_request('/abc', 'GET')
+        except requests.exceptions.ConnectionError:
+            pass
+        # Verify that requests.request is called 5 times
+        self.assertEqual(mocked_request.call_count, 5)
