@@ -42,6 +42,9 @@
       "type": ["null", "string"],
       "maxLength": 3
     },
+    "exchange_rate": {
+      "type": ["null", "number"]
+    },
     "total": {
       "type": ["null", "integer"],
       "minimum": 0

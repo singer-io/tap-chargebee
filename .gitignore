@@ -11,3 +11,4 @@ singer-check-tap-data
 dist/
 __pycache__/
 .idea
+.secrets
