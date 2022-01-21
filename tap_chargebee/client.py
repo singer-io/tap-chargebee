@@ -4,6 +4,7 @@ import requests
 import singer
 import json
 
+from simplejson.scanner import JSONDecodeError
 from singer import utils
 from tap_framework.client import BaseClient
 
@@ -47,7 +48,7 @@ class ChargebeeClient(BaseClient):
         return params
 
     @backoff.on_exception(backoff.expo,
-                          (Server4xxError, Server429Error),
+                          (Server4xxError, Server429Error, JSONDecodeError),
                           max_tries=5,
                           factor=3)
     @utils.ratelimit(100, 60)
