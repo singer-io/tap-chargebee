@@ -344,6 +344,20 @@
           }
         }
       }
+    },
+    "relationship": {
+      "type": ["null","object"],
+      "properties": {
+        "parent_id": {
+          "type": ["null", "string"]
+        },
+        "payment_owner_id": {
+          "type": ["null", "string"]
+        },
+        "invoice_owner_id ": {
+          "type": ["null", "string"]
+        }
+      }
     }
   }
 }
