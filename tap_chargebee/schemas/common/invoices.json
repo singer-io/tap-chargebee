@@ -165,7 +165,7 @@
             "type": ["null", "integer"]
           },
           "tax_rate": {
-            "type": ["null", "integer", "number"]
+            "type": ["null", "number"]
           },
           "amount": {
             "type": ["null", "integer"]
