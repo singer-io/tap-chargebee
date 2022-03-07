@@ -12,10 +12,11 @@ from .virtual_bank_accounts import VirtualBankAccountsStream
 from .credit_notes import CreditNotesStream
 from .gifts import GiftsStream
 from .orders import OrdersStream
-from.promotional_credits import PromotionalCreditsStream
-from.item_prices import ItemPricesStream
-from.items import ItemsStream
-from.unbilled_charges import UnbilledCharges
+from .promotional_credits import PromotionalCreditsStream
+from .item_prices import ItemPricesStream
+from .items import ItemsStream
+from .unbilled_charges import UnbilledChargesStream
+from .invoiced_unbilled_charges import InvoicedUnbilledChargesStream
 
 AVAILABLE_STREAMS = [
     EventsStream,
@@ -30,7 +31,8 @@ AVAILABLE_STREAMS = [
     SubscriptionsStream,
     TransactionsStream,
     VirtualBankAccountsStream,
-    UnbilledCharges
+    UnbilledChargesStream,
+    InvoicedUnbilledChargesStream
 ]
 
 AVAILABLE_STREAMS_1_0_ONLY = [

@@ -1,8 +1,7 @@
 from tap_chargebee.streams.base import BaseChargebeeStream
 
-
-class UnbilledChargesStream(BaseChargebeeStream):
-    TABLE = 'unbilled_charges'
+class InvoicedUnbilledChargesStream(BaseChargebeeStream):
+    TABLE = 'invoiced_unbilled_charges'
     ENTITY = 'unbilled_charge'
     REPLICATION_METHOD = 'INCREMENTAL'
     REPLICATION_KEY = 'updated_at'
@@ -14,4 +13,4 @@ class UnbilledChargesStream(BaseChargebeeStream):
     API_METHOD = 'GET'
 
     def get_url(self):
-        return 'https://{}/api/v2/unbilled_charges'.format(self.config.get('full_site'))
+        return 'https://{}/api/v2/unbilled_charges/invoiced'.format(self.config.get('full_site'))
