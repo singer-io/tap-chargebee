@@ -238,8 +238,7 @@
             "maxLength": 100
           },
           "amount": {
-            "type": ["null", "integer"],
-            "minimum": 0
+            "type": ["null", "integer"]
           },
           "description": {
             "type": ["null", "string"],
