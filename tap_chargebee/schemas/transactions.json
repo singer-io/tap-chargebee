@@ -52,6 +52,12 @@
     "fraud_flag": {
       "type": ["null", "string"]
     },
+    "initiator_type": {
+      "type": ["null", "string"]
+    },
+    "three_d_secure": {
+      "type": ["null", "boolean"]
+    },
     "error_code": {
       "type": ["null", "string"]
     },
