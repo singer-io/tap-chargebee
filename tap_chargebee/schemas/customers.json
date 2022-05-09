@@ -354,7 +354,10 @@
         "payment_owner_id": {
           "type": ["null", "string"]
         },
-        "invoice_owner_id ": {
+        "invoice_owner_id": {
+          "type": ["null", "string"]
+        },
+        "root_id": {
           "type": ["null", "string"]
         }
       }
