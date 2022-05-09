@@ -70,6 +70,8 @@ class ChargebeeClient(BaseClient):
         response_json = response.json()
 
         if response.status_code == 429:
+            sleep_time = response.headers.get("Retry-After", 60)
+            time.sleep(int(sleep_time))
             raise Server429Error()
 
         if response.status_code >= 400:
