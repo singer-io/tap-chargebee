@@ -49,7 +49,7 @@ class ChargebeeClient(BaseClient):
 
     @backoff.on_exception(backoff.expo,
                           (Server4xxError, Server429Error, JSONDecodeError),
-                          max_tries=5,
+                          max_tries=7,
                           factor=3)
     @utils.ratelimit(100, 60)
     def make_request(self, url, method, params=None, body=None):
