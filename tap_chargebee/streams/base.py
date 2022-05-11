@@ -190,11 +190,11 @@ class BaseChargebeeStream(BaseStream):
 
                 if bookmark_key is not None:
                     for item in to_write:
-                        #if item.get(bookmark_key) is not None:
-                        max_date = max(
-                            max_date,
-                            parse(item.get(bookmark_key))
-                        )
+                        if item.get(bookmark_key) is not None:
+                            max_date = max(
+                                max_date,
+                                parse(item.get(bookmark_key))
+                            )
 
             if bookmark_key is not None:
                 self.state = incorporate(
