@@ -336,6 +336,12 @@ class ChargebeeBaseTest(unittest.TestCase):
                 # Verify only automatic fields are selected
                 expected_automatic_fields = self.expected_automatic_fields().get(cat['stream_name'])
                 selected_fields = self.get_selected_fields_from_metadata(catalog_entry['metadata'])
+
+                # Excluding the event_type field from the selected field as we are removing
+                # it during 'select_all_streams_and_fields' so that assertion won't break
+                if cat['tap_stream_id'] == 'events' and 'event_type' in selected_fields:
+                    selected_fields.remove('event_type')
+
                 self.assertEqual(expected_automatic_fields, selected_fields)
 
     @staticmethod
@@ -361,8 +367,12 @@ class ChargebeeBaseTest(unittest.TestCase):
             non_selected_properties = []
             if not select_all_fields:
                 # get a list of all properties so that none are selected
-                non_selected_properties = schema.get('annotated-schema', {}).get(
-                    'properties', {}).keys()
+                non_selected_properties = set(schema.get('annotated-schema', {}).get('properties', {}).keys())
+
+            # We are selecting only automatic fields but tap requires event_type field.
+            # Hence removing the field so that tap won't break
+            if catalog['tap_stream_id'] == 'events' and 'event_type' in non_selected_properties:
+                non_selected_properties.remove('event_type')
 
             connections.select_catalog_and_fields_via_metadata(
                 conn_id, catalog, schema, [], non_selected_properties)
