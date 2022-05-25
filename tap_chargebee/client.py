@@ -104,7 +104,8 @@ def get_exception_for_status_code(status_code):
             exception = Server4xxError
         elif status_code > 500:
             exception = Server5xxError
-        exception = ChargebeeError
+        else:
+            exception = ChargebeeError
     return exception
 
 def raise_for_error(response):
