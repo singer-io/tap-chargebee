@@ -27,7 +27,7 @@ class Server5xxError(ChargebeeError):
 class ChargebeeBadRequestError(Server4xxError):
     pass
 
-class ChargebeeUnauthorizedError(Server4xxError):
+class ChargebeeAuthenticationError(Server4xxError):
     pass
 
 class ChargebeeForbiddenError(Server4xxError):
@@ -58,8 +58,8 @@ STATUS_CODE_EXCEPTION_MAPPING = {
         "message": "The request URI does not match the APIs in the system.",
     },
     401: {
-        "raise_exception": ChargebeeUnauthorizedError,
-        "message": "The user is not authorized to use the API.",
+        "raise_exception": ChargebeeAuthenticationError,
+        "message": "The user is not authenticated to use the API.",
     },
     403: {
         "raise_exception": ChargebeeForbiddenError,

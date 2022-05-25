@@ -44,7 +44,7 @@ class TestErrorHandling(unittest.TestCase):
 
         expected_message = "HTTP-error-code: 401, Error: Sorry, authentication failed. Invalid api key"
 
-        with self.assertRaises(client.ChargebeeUnauthorizedError) as e:
+        with self.assertRaises(client.ChargebeeAuthenticationError) as e:
             self.chargebee_client.make_request("/abc", "GET")
         
         self.assertEqual(str(e.exception), expected_message)
@@ -168,18 +168,18 @@ class TestErrorHandling(unittest.TestCase):
         
         self.assertEqual(str(e.exception), str(expected_message))
         self.assertEqual(mocked_400_successful.call_count, 5)
-    
+
     def test_401_error_custom_message(self, mocked_401_successful, mocked_sleep):
         """
         Exception with custom message should be raised if 401 status code returned from API and 'message' not present in response
         """
         mocked_401_successful.return_value = get_mock_http_response(401, "Unauthorized Error")
-        
-        expected_message = "HTTP-error-code: 401, Error: The user is not authorized to use the API."
-        
-        with self.assertRaises(client.ChargebeeUnauthorizedError) as e:
+
+        expected_message = "HTTP-error-code: 401, Error: The user is not authenticated to use the API."
+
+        with self.assertRaises(client.ChargebeeAuthenticationError) as e:
             self.chargebee_client.make_request("/abc", "GET")
-        
+
         self.assertEqual(str(e.exception), str(expected_message))
         self.assertEqual(mocked_401_successful.call_count, 5)
 
@@ -308,3 +308,17 @@ class TestErrorHandling(unittest.TestCase):
         
         self.assertEqual(str(e.exception), str(expected_message))
         self.assertEqual(mocked_4xx_successful.call_count, 5)
+
+    def test_unknown_error_custom_message(self, mocked_unknown_successful, mocked_sleep):
+        """
+        Exception with custom message should be raised if other than 4xx/5xx status code returned from API and 'message' not present in response
+        """
+        mocked_unknown_successful.return_value = get_mock_http_response(350, "Unknown Error")
+
+        expected_message = "HTTP-error-code: 350, Error: Unknown Error"
+
+        with self.assertRaises(client.ChargebeeError) as e:
+            self.chargebee_client.make_request("/abc", "GET")
+
+        self.assertEqual(str(e.exception), str(expected_message))
+        self.assertEqual(mocked_unknown_successful.call_count, 1)

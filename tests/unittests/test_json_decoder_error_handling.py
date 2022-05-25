@@ -44,7 +44,7 @@ class TestJSONDecoderHandling(unittest.TestCase):
     @mock.patch("time.sleep")
     def test_json_decode_failed_4XX(self, mocked_sleep, mocked_jsondecode_failure):
         """
-        Exception with Unknown error message should be raised if invalid JSON response returned with 4XX error
+        Exception with proper custom error message should be raised if invalid JSON response returned with 4XX error
         """
         json_decode_error_str = '<>"success": true, "data" : []}'
         mocked_jsondecode_failure.return_value = get_mock_http_response(
