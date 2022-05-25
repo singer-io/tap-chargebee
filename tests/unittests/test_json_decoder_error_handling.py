@@ -35,7 +35,7 @@ class TestJSONDecoderHandling(unittest.TestCase):
         chargebee_client = _client.ChargebeeClient(config)
 
         expected_message = "HTTP-error-code: 401, Error: Sorry, authentication failed. Invalid api key"
-        with self.assertRaises(_client.ChargebeeUnauthorizedError) as e:
+        with self.assertRaises(_client.ChargebeeAuthenticationError) as e:
             chargebee_client.make_request("/abc", "GET")
  
             # Verifying the message should be API response
