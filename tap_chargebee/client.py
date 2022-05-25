@@ -102,7 +102,9 @@ def get_exception_for_status_code(status_code):
     if not exception:
         if status_code > 400 and status_code < 500:
             exception = Server4xxError
-        exception = Server5xxError
+        elif status_code > 500:
+            exception = Server5xxError
+        exception = ChargebeeError
     return exception
 
 def raise_for_error(response):
@@ -177,7 +179,6 @@ class ChargebeeClient(BaseClient):
             json=body)
 
         if response.status_code != 200:
-            LOGGER.error("{}: {}".format(response.status_code, response.text))
             raise_for_error(response)
 
         response_json = response.json()
