@@ -1,4 +1,4 @@
-from tap_chargebee import LOGGER, client
+from tap_chargebee import client
 import unittest
 import requests
 from unittest import mock
@@ -168,7 +168,6 @@ class TestErrorHandling(unittest.TestCase):
         
         self.assertEqual(str(e.exception), str(expected_message))
         self.assertEqual(mocked_400_successful.call_count, 5)
-
     
     def test_401_error_custom_message(self, mocked_401_successful, mocked_sleep):
         """
@@ -183,7 +182,6 @@ class TestErrorHandling(unittest.TestCase):
         
         self.assertEqual(str(e.exception), str(expected_message))
         self.assertEqual(mocked_401_successful.call_count, 5)
-
 
     def test_403_error_custom_message(self, mocked_403_successful, mocked_sleep):
         """
@@ -213,7 +211,6 @@ class TestErrorHandling(unittest.TestCase):
         self.assertEqual(str(e.exception), str(expected_message))
         self.assertEqual(mocked_404_successful.call_count, 5)
         
-
     def test_405_error_custom_message(self, mocked_405_successful, mocked_sleep):
         """
         Exception with custom message should be raised if 405 status code returned from API and 'message' not present in response
@@ -283,3 +280,31 @@ class TestErrorHandling(unittest.TestCase):
         
         self.assertEqual(str(e.exception), str(expected_message))
         self.assertEqual(mocked_503_successful.call_count, 5)
+    
+    def test_5XX_error_custom_message(self, mocked_5xx_successful, mocked_sleep):
+        """
+        Exception with custom message should be raised if 5XX status code returned from API and 'message' not present in response
+        """
+        mocked_5xx_successful.return_value = get_mock_http_response(502, "Server5xx Error")
+     
+        expected_message = "HTTP-error-code: 502, Error: Unknown Error"
+        
+        with self.assertRaises(client.Server5xxError) as e:
+            self.chargebee_client.make_request("/abc", "GET")
+        
+        self.assertEqual(str(e.exception), str(expected_message))
+        self.assertEqual(mocked_5xx_successful.call_count, 5)
+    
+    def test_4XX_error_custom_message(self, mocked_4xx_successful, mocked_sleep):
+        """
+        Exception with custom message should be raised if 4XX status code returned from API and 'message' not present in response
+        """
+        mocked_4xx_successful.return_value = get_mock_http_response(450, "Server4xx Error")
+     
+        expected_message = "HTTP-error-code: 450, Error: Unknown Error"
+        
+        with self.assertRaises(client.Server4xxError) as e:
+            self.chargebee_client.make_request("/abc", "GET")
+        
+        self.assertEqual(str(e.exception), str(expected_message))
+        self.assertEqual(mocked_4xx_successful.call_count, 5)
