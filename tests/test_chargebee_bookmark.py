@@ -1,20 +1,23 @@
 from copy import deepcopy
+from datetime import timedelta, datetime
 from tap_tester import connections, runner, menagerie
 from base import ChargebeeBaseTest
+import dateutil.parser
 
 class ChargebeeBookmarkTest(ChargebeeBaseTest):
 
     def name(self):
         return "chargebee_bookmark_test"
 
-    def get_new_bookmark_date(self, stream):
-        if stream in ["plans", "events", "quotes"]:
-            return "2022-03-01T00:00:00Z"
-        if stream in ["comments", "coupons", "credit_notes", "customers", "invoices"]:
-            return "2021-07-05T00:00:00Z"
-        if stream in ["item_families", "item_prices"]:
-            return "2021-06-22T00:00:00Z"
-        return "2021-07-01T00:00:00Z"
+    # subtract 12 hours from the bookmark in the state file
+    def get_simulated_states(self, state):
+        new_state = deepcopy(state)
+        for stream_name, bookmark in new_state.get("bookmarks").items():
+            bookmark_date = bookmark["bookmark_date"]
+            new_bookmark_date = dateutil.parser.parse(bookmark_date) - timedelta(hours=12)
+            bookmark["bookmark_date"] = datetime.strftime(new_bookmark_date, self.BOOKMARK_FORMAT)
+
+        return new_state
 
     def bookmark_test_run(self):
         """
@@ -49,9 +52,7 @@ class ChargebeeBookmarkTest(ChargebeeBaseTest):
 
         ####################### Update State Between Syncs #########################
 
-        new_states = deepcopy(first_sync_bookmarks)
-        for stream_name, bookmark in new_states.get("bookmarks").items():
-            new_states["bookmarks"][stream_name]["bookmark_date"] = self.get_new_bookmark_date(stream_name)
+        new_states = self.get_simulated_states(first_sync_bookmarks)
         menagerie.set_state(conn_id, new_states)
 
         ################################# Second Sync #########################################
@@ -62,7 +63,7 @@ class ChargebeeBookmarkTest(ChargebeeBaseTest):
 
         ########################### Test by Stream ###########################################
 
-        for stream in expected_streams:            
+        for stream in expected_streams:
             with self.subTest(stream=stream):
 
                 # collect information for assertions from syncs 1 & 2 base on expected values
@@ -87,10 +88,10 @@ class ChargebeeBookmarkTest(ChargebeeBaseTest):
                     first_bookmark_value = first_bookmark_key_value.get(replication_key)
                     second_bookmark_value = second_bookmark_key_value.get(replication_key)
 
-                    first_bookmark_value_ts = self.dt_to_ts(first_bookmark_value)
-                    second_bookmark_value_ts = self.dt_to_ts(second_bookmark_value)
+                    first_bookmark_value_ts = self.dt_to_ts(first_bookmark_value, self.BOOKMARK_FORMAT)
+                    second_bookmark_value_ts = self.dt_to_ts(second_bookmark_value, self.BOOKMARK_FORMAT)
 
-                    simulated_bookmark_value = self.dt_to_ts(new_states['bookmarks'][stream][replication_key])
+                    simulated_bookmark_value = self.dt_to_ts(new_states['bookmarks'][stream][replication_key], self.BOOKMARK_FORMAT)
 
                     # Verify the first sync sets a bookmark of the expected form
                     self.assertIsNotNone(first_bookmark_key_value)
@@ -104,16 +105,16 @@ class ChargebeeBookmarkTest(ChargebeeBaseTest):
 
                     for record in first_sync_messages:
                         # Verify the first sync bookmark value is the max replication key value for a given stream
-                        replication_key_value = self.dt_to_ts(record.get(record_replication_key))
+                        replication_key_value = self.dt_to_ts(record.get(record_replication_key), self.RECORD_REPLICATION_KEY_FORMAT)
                         self.assertLessEqual(replication_key_value, first_bookmark_value_ts,
                             msg="First sync bookmark was set incorrectly, a record with a greater replication-key value was synced."
                         )
 
                     for record in second_sync_messages:
                         # Verify the second sync replication key value is Greater or Equal to the first sync bookmark
-                        replication_key_value = self.dt_to_ts(record.get(record_replication_key))
+                        replication_key_value = self.dt_to_ts(record.get(record_replication_key), self.RECORD_REPLICATION_KEY_FORMAT)
                         self.assertGreaterEqual(replication_key_value, simulated_bookmark_value,
-                            msg="Second sync records do not repect the previous bookmark.")
+                            msg="Second sync records do not respect the previous bookmark.")
 
                         # Verify the second sync bookmark value is the max replication key value for a given stream
                         self.assertLessEqual(replication_key_value, second_bookmark_value_ts,

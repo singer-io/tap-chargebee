@@ -196,11 +196,10 @@ class BaseChargebeeStream(BaseStream):
 
             records = response.get('list')
             
-            to_write = self.get_stream_data(records)
-            
             if self.config.get('include_deleted') not in ['false','False', False]:
                 if self.ENTITY == 'event':
-                    for event in to_write:
+                    for record in records:
+                        event = record.get(self.ENTITY)
                         if event["event_type"] == 'plan_deleted':
                             Util.plans.append(event['content']['plan'])
                         elif event['event_type'] == 'addon_deleted':
@@ -217,7 +216,8 @@ class BaseChargebeeStream(BaseStream):
                     for coupon in Util.coupons:
                         to_write.append(coupon) 
 
-            
+            to_write = self.get_stream_data(records)
+
             with singer.metrics.record_counter(endpoint=table) as ctr:
                 singer.write_records(table, to_write)
 
