@@ -13,8 +13,13 @@ class ChargebeeAutomaticFieldsTest(ChargebeeBaseTest):
         - Verify that all replicated records have unique primary key values.
         """
 
+        untestable_streams = {'quotes'} # For V2, we have 0 records for 'quotes' stream
         # Skipping streams virtual_bank_accounts, gifts and orders as we are not able to generate data
         expected_streams = self.expected_streams() - {'virtual_bank_accounts', 'gifts', 'orders'}
+
+        # skip quotes for product catalog V2
+        if not self.product_catalog_v1:
+            expected_streams = expected_streams - untestable_streams
 
         conn_id = connections.ensure_connection(self)
 

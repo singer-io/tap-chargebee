@@ -3,156 +3,225 @@ from base import ChargebeeBaseTest
 
 class ChargebeeAllFieldsTest(ChargebeeBaseTest):
 
-    fields_to_remove = {
-        'payment_sources': { # require 'token_id' for POST call
-            'ip_address',
-            'issuing_country',
-            'bank_account',
-            'amazon_payment',
-            'paypal'
-        },
-        'plans': {
-            'accounting_category4',
-            'custom_fields', # added field in POST call but not reflected
-            'shipping_frequency_period_unit', # added field in POST call but not reflected
-            'event_based_addons', # added field in POST call but not reflected
-            'tax_profile_id',
-            'archived_at', # added field in POST call but not reflected
-            'applicable_addons', # added field in POST call but not reflected
-            'free_quantity_in_decimal',
-            'shipping_frequency_period', # added field in POST call but not reflected
-            'avalara_transaction_type', # configure Avatax for Communications
-            'price_in_decimal',
-            'account_code', # added field in POST call but not reflected
-            'avalara_sale_type', # configure Avatax for Communications
-            'tax_code',
-            'attached_addons', # added field in POST call but not reflected
-            'avalara_service_type', # configure Avatax for Communications
-            'accounting_category3',
-            'tiers', # added field in POST call but not reflected
-            'taxjar_product_code', # configure Avatax for Communications
-            'claim_url', # added field in POST call but not reflected
-            'trial_end_action'
-        },
-        'addons': {
-            'custom_fields', # added field in POST call but not reflected
-            'tax_profile_id',
-            'avalara_transaction_type', # configure Avatax for Communications
-            'price_in_decimal', # Multi decimal feature is disabled
-            'avalara_sale_type', # configure Avatax for Communications
-            'tax_code',
-            'accouting_category4', # added field in POST call but not reflected
-            'avalara_service_type', # configure Avatax for Communications
-            'taxjar_product_code', # TaxJar should be enabled
-            'included_in_mrr', # enable Monthly Recurring Revenue
-            'accouting_category3',
-        },
-        'transactions': {
-            'reference_transaction_id',
-            'reversal_transaction_id',
+    # fields that are common between V1 and V2
+    fields_to_remove_common = {
+        'promotional_credits': {'amount_in_decimal'},
+        'invoices': {
+            'void_reason_code',
+            'expected_payment_date',
             'voided_at',
-            'reversal_txn_id',
-            'reference_number',
-            'fraud_flag',
-            'reference_authorization_id',
-            'validated_at',
-            'fraud_reason',
-            'settled_at',
-            'initiator_type',
-            'authorization_reason',
-            'three_d_secure',
-            'merchant_reference_id',
-            'linked_payments',
-            'amount_capturable'
+            'payment_owner',
+            'line_item_tiers',
+            'vat_number_prefix',
+            'total_in_local_currency',
+            'sub_total_in_local_currency',
+            'local_currency_code',
+            'next_retry_at'
         },
         'subscriptions': {
-            'custom_fields', # added field in POST call but not reflected
-            'referral_info', # added field in POST call but not reflected
-            'contract_term_billing_cycle_on_renewal', # Enable Contract terms feature
-            'auto_close_invoices', # added field in POST call but not reflected
-            'trial_end_action', # Enable Trial End Action feature
-            'free_period', # added field in POST call but not reflected
-            'event_based_addons', # added field in POST call but not reflected
-            'gift_id', # added field in POST call but not reflected
-            'has_scheduled_advance_invoices', # added field in POST call but not reflected
-            'plan_quantity_in_decimal', # added field in POST call but not reflected
-            'plan_unit_price_in_decimal', # added field in POST call but not reflected
-            'create_pending_invoices', # added field in POST call but not reflected
-            'plan_free_quantity_in_decimal', # added field in POST call but not reflected
-            'offline_payment_method', # Enable offline_payment_method feature
-            'pause_date', # added field in POST call but not reflected
-            'override_relationship', # added field in POST call but not reflected
-            'contract_term', # added field in POST call but not reflected
-            'resume_date', # added field in POST call but not reflected
-            'charged_event_based_addons', # added field in POST call but not reflected
-            'plan_amount_in_decimal', # added field in POST call but not reflected
-            'free_period_unit', # added field in POST call but not reflected
-        },
-        'promotional_credits': {
-            'amount_in_decimal' # added field in POST call but not reflected
-        },
-        'credit_notes': {
-            'voided_at', # added field in POST call but not reflected
-            'line_item_tiers', # added field in POST call but not reflected
-            'total_in_local_currency', # added field in POST call but not reflected
-            'local_currency_code', # added field in POST call but not reflected
-            'vat_number' # added field in POST call but not reflected
-        },
-        'invoices': {
-            'voided_at', # added field in POST call but not reflected
-            'line_item_tiers', # added field in POST call but not reflected
-            'total_in_local_currency', # added field in POST call but not reflected
-            'line_item_taxes', # added field in POST call but not reflected
-            'local_currency_code', # added field in POST call but not reflected
-            'void_reason_code', # added field in POST call but not reflected
-            'next_retry_at', # added field in POST call but not reflected
-            'payment_owner', # added field in POST call but not reflected
-            'vat_number_prefix', # added field in POST call but not reflected
-            'taxes', # added field in POST call but not reflected
-            'sub_total_in_local_currency', # added field in POST call but not reflected
-            'expected_payment_date' # added field in POST call but not reflected
-        },
-        'quotes': {
-            'line_item_tiers', # added field in POST call but not reflected
-            'contract_term_start', # added field in POST call but not reflected
-            'subscription_id', # added field in POST call but not reflected
-            'invoice_id', # added field in POST call but not reflected
-            'contract_term_termination_fee', # added field in POST call but not reflected
-            'contract_term_end', # added field in POST call but not reflected
-            'vat_number_prefix', # added field in POST call but not reflected
-            'discounts' # added field in POST call but not reflected
-        },
-        'coupons': {
-            'included_in_mrr', # Enable Monthly Recurring Revenue setting
-        },
-        'events': {
-            'user' # no POST call available
+            'create_pending_invoices',
+            'free_period',
+            'contract_term',
+            'plan_free_quantity_in_decimal',
+            'resume_date',
+            'override_relationship',
+            'auto_close_invoices',
+            'contract_term_billing_cycle_on_renewal',
+            'plan_amount_in_decimal',
+            'plan_quantity_in_decimal',
+            'has_scheduled_advance_invoices',
+            'free_period_unit',
+            'referral_info',
+            'pause_date',
+            'plan_unit_price_in_decimal',
+            'trial_end_action'
         },
         'customers': {
-            'billing_date_mode', # added field in POST call but not reflected
-            'auto_close_invoices', # Metered Billing must be enabled
-            'exemption_details', # Configure Avatax for Communications
-            'client_profile_id', # Configure Avatax for Communications
-            'parent_account_access', # added field in POST call but not reflected
-            'registered_for_gst', # added field in POST call but not reflected
-            'customer_type', # Configure Avatax for Communications
-            'billing_day_of_week_mode', # added field in POST call but not reflected
+            'vat_number_validated_time',
+            'referral_urls',
+            'offline_payment_method',
+            'entity_code',
+            'billing_day_of_week_mode',
+            'billing_date',
+            'use_default_hierarchy_settings',
+            'registered_for_gst',
+            'exemption_details',
+            'fraud_flag',
+            'exempt_number',
+            'vat_number_status',
+            'billing_day_of_week',
+            'parent_account_access',
+            'child_account_access',
+            'client_profile_id',
+            'is_location_valid',
+            'relationship',
+            'billing_date_mode',
+            'customer_type',
             'mrr',
-            'billing_day_of_week', # added field in POST call but not reflected
+            'auto_close_invoices',
             'vat_number_prefix',
-            'use_default_hierarchy_settings', # added field in POST call but not reflected
-            'referral_urls', # added field in POST call but not reflected
-            'offline_payment_method', # must be enables
-            'vat_number_validated_time', # added field in POST call but not reflected
-            'fraud_flag', # added field in POST call but not reflected
-            'relationship', # added field in POST call but not reflected
-            'entity_code', # Configure Avatax for Sales
-            'business_customer_without_vat_number', # Validate Vat
-            'is_location_valid', # added field in POST call but not reflected
-            'child_account_access', # added field in POST call but not reflected
-            'exempt_number', # Configure Avatax for Sales
-            'vat_number_status', # added field in POST call but not reflected
-            'billing_date' # added field in POST call but not reflected
+            'business_customer_without_vat_number'
+        },
+        'credit_notes': {
+            'line_item_tiers',
+            'vat_number_prefix',
+            'total_in_local_currency',
+            'sub_total_in_local_currency',
+            'local_currency_code'
+        },
+        'payment_sources': {
+            'issuing_country',
+            'paypal',
+            'ip_address',
+            'bank_account',
+            'amazon_payment'
+        },
+        'transactions': {
+            'fraud_flag',
+            'authorization_reason',
+            'voided_at',
+            'reversal_txn_id',
+            'initiator_type',
+            'linked_payments',
+            'three_d_secure',
+            'merchant_reference_id',
+            'settled_at',
+            'reference_authorization_id',
+            'reversal_transaction_id',
+            'validated_at',
+            'fraud_reason',
+            'amount_capturable',
+            'reference_transaction_id'
+        },
+    }
+    # fields for V2
+    fields_to_remove_V2 = {
+        'item_prices': {
+            'free_quantity_in_decimal',
+            'archivable',
+            'tax_detail',
+            'billing_cycles',
+            'trial_end_action',
+            'price_in_decimal',
+            'accounting_detail',
+            'shipping_period_unit',
+            'shipping_period',
+            'archived_at'
+        },
+        'invoices': {
+            'line_item_discounts',
+            'line_item_taxes',
+            'taxes',
+            'discounts',
+            'dunning_status',
+            'vat_number'
+        },
+        'credit_notes': {
+            'voided_at',
+            'vat_number',
+            'discounts'
+        },
+        'items': {
+            'archivable',
+            'gift_claim_redirect_url',
+            'applicable_items',
+            'redirect_url',
+            'usage_calculation',
+            'included_in_mrr'
+        },
+        'coupons': {
+            'invoice_notes',
+            'meta_data',
+            'archived_at'
+        },
+        'customers': {
+            'backup_payment_source_id',
+            'meta_data',
+            'cf_company_id',
+            'custom_fields',
+            'created_from_ip',
+            'consolidated_invoicing',
+            'billing_day_of_week',
+            'vat_number'
+        },
+        'subscriptions': {
+            'cancel_reason',
+            'start_date',
+            'meta_data',
+            'remaining_billing_cycles',
+            'payment_source_id',
+            'custom_fields',
+            'item_tiers',
+            'invoice_notes',
+            'created_from_ip',
+            'cancel_reason_code',
+            'coupon',
+            'coupons'
+        },
+        'transactions': {
+            'error_text',
+            'reference_number',
+            'error_code',
+            'refunded_txn_id'
+        },
+        'promotional_credits': {
+            'reference'
+        },
+        'events': {
+            'user'
+        }
+    }
+    # fields for V1
+    fields_to_remove_V1 = {
+        'coupons': {
+            'included_in_mrr'
+        },
+        'addons': {
+            'avalara_service_type',
+            'accouting_category1',
+            'accouting_category3',
+            'taxjar_product_code',
+            'accouting_category4',
+            'avalara_transaction_type',
+            'tiers',
+            'accouting_category2',
+            'tax_code',
+            'price_in_decimal',
+            'included_in_mrr',
+            'tax_profile_id',
+            'avalara_sale_type'
+        },
+        'quotes': {
+            'contract_term_start',
+            'line_item_tiers',
+            'vat_number_prefix',
+            'invoice_id',
+            'contract_term_termination_fee',
+            'contract_term_end'
+        },
+        'plans': {
+            'avalara_service_type',
+            'account_code',
+            'event_based_addons',
+            'free_quantity_in_decimal',
+            'taxjar_product_code',
+            'applicable_addons',
+            'accounting_category4',
+            'avalara_transaction_type',
+            'claim_url',
+            'tiers',
+            'tax_profile_id',
+            'tax_code',
+            'accounting_category3',
+            'price_in_decimal',
+            'archived_at',
+            'attached_addons',
+            'avalara_sale_type',
+            'trial_end_action'
+        },
+        'subscriptions': {
+            'offline_payment_method',
+            'gift_id'
         }
     }
 
@@ -166,8 +235,14 @@ class ChargebeeAllFieldsTest(ChargebeeBaseTest):
         • verify all fields for each stream are replicated
         """
 
+        version = 'V1' if self.product_catalog_v1 else 'V2'
+        untestable_streams = {'quotes'} # For V2, we have 0 records for 'quotes' stream
         # Skipping streams virtual_bank_accounts, gifts and orders as we are not able to generate data
         expected_streams = self.expected_streams() - {'virtual_bank_accounts', 'gifts', 'orders'}
+
+        # skip quotes for product catalog V2
+        if not self.product_catalog_v1:
+            expected_streams = expected_streams - untestable_streams
 
         expected_automatic_fields = self.expected_automatic_fields()
         conn_id = connections.ensure_connection(self)
@@ -220,8 +295,11 @@ class ChargebeeAllFieldsTest(ChargebeeBaseTest):
                 self.assertGreater(len(expected_all_keys), len(expected_automatic_keys))
                 self.assertTrue(expected_automatic_keys.issubset(expected_all_keys), msg=f'{expected_automatic_keys-expected_all_keys} is not in "expected_all_keys"')
 
+                # get fields to remove for the version
+                stream_fields_as_per_version = self.fields_to_remove_V1.get(stream, set()) if self.product_catalog_v1 \
+                    else self.fields_to_remove_V2.get(stream, set())
                 # remove some fields as data cannot be generated / retrieved
-                fields = self.fields_to_remove.get(stream) or []
+                fields = self.fields_to_remove_common.get(stream, set()) | stream_fields_as_per_version
                 for field in fields:
                     expected_all_keys.remove(field)
 

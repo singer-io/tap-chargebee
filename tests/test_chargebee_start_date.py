@@ -23,8 +23,8 @@ class ChargebeeStartDateTest(ChargebeeBaseTest):
         else:
             self.start_date_2 = '2021-06-22T00:00:00Z'
 
-        start_date_1_epoch = self.dt_to_ts(self.start_date_1)
-        start_date_2_epoch = self.dt_to_ts(self.start_date_2)
+        start_date_1_epoch = self.dt_to_ts(self.start_date_1, self.START_DATE_FORMAT)
+        start_date_2_epoch = self.dt_to_ts(self.start_date_2, self.START_DATE_FORMAT)
 
         self.start_date = self.start_date_1
 
@@ -117,11 +117,11 @@ class ChargebeeStartDateTest(ChargebeeBaseTest):
 
                 # Verify bookmark key values are greater than or equal to start date of sync 1
                 for bookmark_key_value in bookmark_key_sync_1:
-                    self.assertGreaterEqual(self.dt_to_ts(bookmark_key_value), start_date_1_epoch)
+                    self.assertGreaterEqual(self.dt_to_ts(bookmark_key_value, self.RECORD_REPLICATION_KEY_FORMAT), start_date_1_epoch)
 
                 # Verify bookmark key values are greater than or equal to start date of sync 2
                 for bookmark_key_value in bookmark_key_sync_2:
-                    self.assertGreaterEqual(self.dt_to_ts(bookmark_key_value), start_date_2_epoch)
+                    self.assertGreaterEqual(self.dt_to_ts(bookmark_key_value, self.RECORD_REPLICATION_KEY_FORMAT), start_date_2_epoch)
 
                 # Verify the number of records replicated in sync 1 is greater than or equal to the number
                 # of records replicated in sync 2 for stream
