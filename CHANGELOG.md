@@ -1,5 +1,8 @@
 # Changelog
 
+## 1 3.2
+  * Reverted Bookmark logic [#86](https://github.com/singer-io/tap-chargebee/pull/86)
+
 ## 1.3.1
   * Added support for Chargebee Quotes [#75](https://github.com/singer-io/tap-chargebee/pull/75)
 
