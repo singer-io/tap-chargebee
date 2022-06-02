@@ -300,7 +300,7 @@ class ChargebeeAllFieldsTest(ChargebeeBaseTest):
                 if self.product_catalog_v1:
                     stream_fields_as_per_version = self.fields_to_remove_V1.get(stream, set())
                 else:
-                    self.fields_to_remove_V2.get(stream, set())
+                    stream_fields_as_per_version = self.fields_to_remove_V2.get(stream, set())
                 # remove some fields as data cannot be generated / retrieved
                 fields_to_remove = self.fields_to_remove_common.get(stream, set()) | stream_fields_as_per_version
                 expected_all_keys = expected_all_keys - fields_to_remove
