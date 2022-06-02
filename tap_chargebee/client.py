@@ -18,9 +18,6 @@ class ChargebeeError(Exception):
 class Server4xxError(ChargebeeError):
     pass
 
-class Server429Error(ChargebeeError):
-    pass
-
 class Server5xxError(ChargebeeError):
     pass
 
@@ -42,7 +39,7 @@ class ChargebeeMethodNotAllowedError(Server4xxError):
 class ChargebeeNotProcessedError(Server4xxError):
     pass
 
-class ChargebeeRateLimitError(Server429Error):
+class ChargebeeRateLimitError(Server4xxError):
     pass
 
 class ChargebeeInternalServiceError(Server5xxError):
@@ -160,7 +157,7 @@ class ChargebeeClient(BaseClient):
         return params
 
     @backoff.on_exception(backoff.expo,
-                         (Server4xxError, Server429Error, Server5xxError),
+                         (Server4xxError, Server5xxError),
                           max_tries=5,
                           factor=3)
     @utils.ratelimit(100, 60)
