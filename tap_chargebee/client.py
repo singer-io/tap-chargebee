@@ -182,6 +182,4 @@ class ChargebeeClient(BaseClient):
         if response.status_code != 200:
             raise_for_error(response)
 
-        response_json = response.json()
-
-        return response_json
+        return response.json()
