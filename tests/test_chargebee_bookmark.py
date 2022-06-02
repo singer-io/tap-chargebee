@@ -9,8 +9,10 @@ class ChargebeeBookmarkTest(ChargebeeBaseTest):
     def name(self):
         return "chargebee_bookmark_test"
 
-    # subtract 12 hours from the bookmark in the state file
     def get_simulated_states(self, state):
+        """
+            Subtract 12 hours from all bookmarks in the state file
+        """
         new_state = deepcopy(state)
         for stream_name, bookmark in new_state.get("bookmarks").items():
             bookmark_date = bookmark["bookmark_date"]

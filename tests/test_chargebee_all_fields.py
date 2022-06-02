@@ -3,7 +3,9 @@ from base import ChargebeeBaseTest
 
 class ChargebeeAllFieldsTest(ChargebeeBaseTest):
 
-    # fields that are common between V1 and V2
+    # NOTE: Some fields require to configure Avatax, Metered Billing, Trial End Action feature, Contract terms feature
+    #       Monthly Recurring Revenue setting, offline_payment_method feature. So, excluding those fields
+    # fields to remove that are common for V1 and V2
     fields_to_remove_common = {
         'promotional_credits': {'amount_in_decimal'},
         'invoices': {
@@ -94,7 +96,7 @@ class ChargebeeAllFieldsTest(ChargebeeBaseTest):
             'reference_transaction_id'
         },
     }
-    # fields for V2
+    # fields to remove for V2
     fields_to_remove_V2 = {
         'item_prices': {
             'free_quantity_in_decimal',
@@ -171,7 +173,7 @@ class ChargebeeAllFieldsTest(ChargebeeBaseTest):
             'user'
         }
     }
-    # fields for V1
+    # fields to remove for V1
     fields_to_remove_V1 = {
         'coupons': {
             'included_in_mrr'
@@ -235,14 +237,13 @@ class ChargebeeAllFieldsTest(ChargebeeBaseTest):
         • verify all fields for each stream are replicated
         """
 
-        version = 'V1' if self.product_catalog_v1 else 'V2'
-        untestable_streams = {'quotes'} # For V2, we have 0 records for 'quotes' stream
+        untestable_streams_of_v2 = {'quotes'} # For V2, we have 0 records for 'quotes' stream
         # Skipping streams virtual_bank_accounts, gifts and orders as we are not able to generate data
         expected_streams = self.expected_streams() - {'virtual_bank_accounts', 'gifts', 'orders'}
 
         # skip quotes for product catalog V2
         if not self.product_catalog_v1:
-            expected_streams = expected_streams - untestable_streams
+            expected_streams = expected_streams - untestable_streams_of_v2
 
         expected_automatic_fields = self.expected_automatic_fields()
         conn_id = connections.ensure_connection(self)
@@ -296,12 +297,13 @@ class ChargebeeAllFieldsTest(ChargebeeBaseTest):
                 self.assertTrue(expected_automatic_keys.issubset(expected_all_keys), msg=f'{expected_automatic_keys-expected_all_keys} is not in "expected_all_keys"')
 
                 # get fields to remove for the version
-                stream_fields_as_per_version = self.fields_to_remove_V1.get(stream, set()) if self.product_catalog_v1 \
-                    else self.fields_to_remove_V2.get(stream, set())
+                if self.product_catalog_v1:
+                    stream_fields_as_per_version = self.fields_to_remove_V1.get(stream, set())
+                else:
+                    self.fields_to_remove_V2.get(stream, set())
                 # remove some fields as data cannot be generated / retrieved
-                fields = self.fields_to_remove_common.get(stream, set()) | stream_fields_as_per_version
-                for field in fields:
-                    expected_all_keys.remove(field)
+                fields_to_remove = self.fields_to_remove_common.get(stream, set()) | stream_fields_as_per_version
+                expected_all_keys = expected_all_keys - fields_to_remove
 
                 self.assertSetEqual(expected_all_keys, actual_all_keys)
 

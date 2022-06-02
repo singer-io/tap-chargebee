@@ -364,7 +364,8 @@ class ChargebeeBaseTest(unittest.TestCase):
             non_selected_properties = []
             if not select_all_fields:
                 # get a list of all properties so that none are selected
-                non_selected_properties = set(schema.get('annotated-schema', {}).get('properties', {}).keys())
+                non_selected_properties = schema.get('annotated-schema', {}).get(
+                    'properties', {}).keys()
 
             connections.select_catalog_and_fields_via_metadata(
                 conn_id, catalog, schema, [], non_selected_properties)
@@ -382,6 +383,7 @@ class ChargebeeBaseTest(unittest.TestCase):
     def is_incremental(self, stream):
         return self.expected_metadata()[stream][self.REPLICATION_METHOD] == self.INCREMENTAL
 
+    # convert datetime with a format to timestamp
     def dt_to_ts(self, dtime, format):
         date_stripped = int(time.mktime(dt.strptime(dtime, format).timetuple()))
         return date_stripped
