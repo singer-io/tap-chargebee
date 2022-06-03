@@ -3,12 +3,10 @@ from base import ChargebeeBaseTest
 
 class ChargebeeAllFieldsTest(ChargebeeBaseTest):
 
-    # NOTE: Some fields require to configure Avatax, Metered Billing, Trial End Action feature, Contract terms feature
-    #       Monthly Recurring Revenue setting, offline_payment_method feature. So, excluding those fields
     # fields to remove that are common for V1 and V2
     fields_to_remove_common = {
-        'promotional_credits': {'amount_in_decimal'},
-        'invoices': {
+        'promotional_credits': {'amount_in_decimal'}, # not found in the UI
+        'invoices': { # not found in the UI
             'void_reason_code',
             'expected_payment_date',
             'voided_at',
@@ -20,7 +18,7 @@ class ChargebeeAllFieldsTest(ChargebeeBaseTest):
             'local_currency_code',
             'next_retry_at'
         },
-        'subscriptions': {
+        'subscriptions': { # not found in the UI
             'create_pending_invoices',
             'free_period',
             'contract_term',
@@ -28,7 +26,7 @@ class ChargebeeAllFieldsTest(ChargebeeBaseTest):
             'resume_date',
             'override_relationship',
             'auto_close_invoices',
-            'contract_term_billing_cycle_on_renewal',
+            'contract_term_billing_cycle_on_renewal', # Enable Contract terms feature
             'plan_amount_in_decimal',
             'plan_quantity_in_decimal',
             'has_scheduled_advance_invoices',
@@ -36,42 +34,42 @@ class ChargebeeAllFieldsTest(ChargebeeBaseTest):
             'referral_info',
             'pause_date',
             'plan_unit_price_in_decimal',
-            'trial_end_action'
+            'trial_end_action' # Enable Trial End Action feature
         },
-        'customers': {
+        'customers': { # not found in the UI
             'vat_number_validated_time',
             'referral_urls',
             'offline_payment_method',
-            'entity_code',
+            'entity_code', # Configure Avatax for Sales
             'billing_day_of_week_mode',
             'billing_date',
             'use_default_hierarchy_settings',
             'registered_for_gst',
-            'exemption_details',
+            'exemption_details', # Configure Avatax for Communications
             'fraud_flag',
-            'exempt_number',
+            'exempt_number', # Configure Avatax for Sales
             'vat_number_status',
             'billing_day_of_week',
             'parent_account_access',
             'child_account_access',
-            'client_profile_id',
+            'client_profile_id', # Configure Avatax for Communications
             'is_location_valid',
             'relationship',
             'billing_date_mode',
-            'customer_type',
+            'customer_type', # Configure Avatax for Communications
             'mrr',
-            'auto_close_invoices',
+            'auto_close_invoices', # Metered Billing must be enabled
             'vat_number_prefix',
-            'business_customer_without_vat_number'
+            'business_customer_without_vat_number' # Validate VAT
         },
-        'credit_notes': {
+        'credit_notes': { # not found in the UI
             'line_item_tiers',
             'vat_number_prefix',
             'total_in_local_currency',
             'sub_total_in_local_currency',
             'local_currency_code'
         },
-        'payment_sources': {
+        'payment_sources': { # not found in the UI
             'issuing_country',
             'paypal',
             'ip_address',
@@ -96,9 +94,10 @@ class ChargebeeAllFieldsTest(ChargebeeBaseTest):
             'reference_transaction_id'
         },
     }
+
     # fields to remove for V2
     fields_to_remove_V2 = {
-        'item_prices': {
+        'item_prices': { # not found in the UI
             'free_quantity_in_decimal',
             'archivable',
             'tax_detail',
@@ -110,7 +109,7 @@ class ChargebeeAllFieldsTest(ChargebeeBaseTest):
             'shipping_period',
             'archived_at'
         },
-        'invoices': {
+        'invoices': { # not found in the UI
             'line_item_discounts',
             'line_item_taxes',
             'taxes',
@@ -118,12 +117,12 @@ class ChargebeeAllFieldsTest(ChargebeeBaseTest):
             'dunning_status',
             'vat_number'
         },
-        'credit_notes': {
+        'credit_notes': { # not found in the UI
             'voided_at',
             'vat_number',
             'discounts'
         },
-        'items': {
+        'items': { # not found in the UI
             'archivable',
             'gift_claim_redirect_url',
             'applicable_items',
@@ -131,12 +130,12 @@ class ChargebeeAllFieldsTest(ChargebeeBaseTest):
             'usage_calculation',
             'included_in_mrr'
         },
-        'coupons': {
+        'coupons': { # not found in the UI
             'invoice_notes',
             'meta_data',
             'archived_at'
         },
-        'customers': {
+        'customers': { # not found in the UI
             'backup_payment_source_id',
             'meta_data',
             'cf_company_id',
@@ -146,7 +145,7 @@ class ChargebeeAllFieldsTest(ChargebeeBaseTest):
             'billing_day_of_week',
             'vat_number'
         },
-        'subscriptions': {
+        'subscriptions': { # not found in the UI
             'cancel_reason',
             'start_date',
             'meta_data',
@@ -160,40 +159,41 @@ class ChargebeeAllFieldsTest(ChargebeeBaseTest):
             'coupon',
             'coupons'
         },
-        'transactions': {
+        'transactions': { # not found in the UI
             'error_text',
             'reference_number',
             'error_code',
             'refunded_txn_id'
         },
-        'promotional_credits': {
+        'promotional_credits': { # not found in the UI
             'reference'
         },
-        'events': {
+        'events': { # not found in the UI
             'user'
         }
     }
+
     # fields to remove for V1
     fields_to_remove_V1 = {
         'coupons': {
-            'included_in_mrr'
+            'included_in_mrr' # Enable Monthly Recurring Revenue setting
         },
-        'addons': {
-            'avalara_service_type',
+        'addons': { # not found in the UI
+            'avalara_service_type', # configure Avatax for Communications
             'accouting_category1',
             'accouting_category3',
-            'taxjar_product_code',
+            'taxjar_product_code', # TaxJar should be enabled
             'accouting_category4',
-            'avalara_transaction_type',
+            'avalara_transaction_type', # configure Avatax for Communications
             'tiers',
             'accouting_category2',
             'tax_code',
-            'price_in_decimal',
-            'included_in_mrr',
+            'price_in_decimal', # Multi decimal feature is disabled
+            'included_in_mrr', # Enable Monthly Recurring Revenue setting
             'tax_profile_id',
-            'avalara_sale_type'
+            'avalara_sale_type' # configure Avatax for Communications
         },
-        'quotes': {
+        'quotes': { # not found in the UI
             'contract_term_start',
             'line_item_tiers',
             'vat_number_prefix',
@@ -201,27 +201,27 @@ class ChargebeeAllFieldsTest(ChargebeeBaseTest):
             'contract_term_termination_fee',
             'contract_term_end'
         },
-        'plans': {
-            'avalara_service_type',
+        'plans': { # not found in the UI
+            'avalara_service_type', # configure Avatax for Communications
             'account_code',
             'event_based_addons',
             'free_quantity_in_decimal',
-            'taxjar_product_code',
+            'taxjar_product_code', # configure Avatax for Communications
             'applicable_addons',
             'accounting_category4',
-            'avalara_transaction_type',
+            'avalara_transaction_type', # configure Avatax for Communications
             'claim_url',
             'tiers',
             'tax_profile_id',
             'tax_code',
             'accounting_category3',
-            'price_in_decimal',
+            'price_in_decimal', # Multi decimal feature is disabled
             'archived_at',
             'attached_addons',
-            'avalara_sale_type',
+            'avalara_sale_type', # configure Avatax for Sales
             'trial_end_action'
         },
-        'subscriptions': {
+        'subscriptions': { # not found in the UI
             'offline_payment_method',
             'gift_id'
         }
