@@ -8,7 +8,16 @@
     "name": {
       "type": ["null", "string"]
     },
+    "channel":{
+      "type": ["null", "string"]
+    },
     "invoice_name": {
+      "type": ["null", "string"]
+    },
+    "accounting_category3": {
+      "type": ["null", "string"]
+    },
+    "accounting_category4": {
       "type": ["null", "string"]
     },
     "description": {

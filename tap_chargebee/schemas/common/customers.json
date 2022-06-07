@@ -49,6 +49,15 @@
     "billing_date": {
       "type": ["null", "boolean"]
     },
+    "is_einvoice_enabled": {
+      "type": ["null", "boolean"]
+    },
+    "entity_identifier_scheme": {
+      "type": ["null", "string"]
+    },
+    "entity_identifier_standard": {
+      "type": ["null", "string"]
+    },
     "billing_date_mode": {
       "type": ["null", "string"]
     },
@@ -392,6 +401,26 @@
         },
         "send_payment_emails": {
           "type": ["null", "boolean"]
+        }
+      }
+    },
+    "entity_identifiers": {
+      "type": ["null", "array"],
+      "items": {
+        "type": ["null", "object"],
+        "properties": {
+          "id": {
+            "type": ["null", "string"]
+          },
+          "value": {
+            "type": ["null", "string"]
+          },
+          "scheme": {
+            "type": ["null", "string"]
+          },
+          "standard": {
+            "type": ["null", "string"]
+          }
         }
       }
     }

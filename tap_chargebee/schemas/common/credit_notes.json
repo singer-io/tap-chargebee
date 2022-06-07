@@ -8,6 +8,13 @@
     "customer_id": {
       "type": ["null", "string"]
     },
+    "generated_at": {
+      "type": ["null", "string"],
+      "format": "date-time"
+    },
+    "channel":{
+      "type": ["null", "string"]
+    },
     "subscription_id": {
       "type": ["null", "string"]
     },
@@ -376,6 +383,20 @@
           "invoice_status": {
             "type": ["null", "string"]
           }
+        }
+      }
+    },
+    "einvoice": {
+      "type": ["null", "object"],
+      "properties":{
+        "id": {
+          "type": ["null", "string"]
+        },
+        "status": {
+          "type": ["null", "string"]
+        },
+        "message": {
+          "type": ["null", "string"]
         }
       }
     }

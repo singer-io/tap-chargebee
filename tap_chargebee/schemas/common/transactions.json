@@ -20,6 +20,12 @@
     "payment_method": {
       "type": ["null", "string"]
     },
+    "iin": {
+      "type": ["null", "string"]
+    },
+    "last4": {
+      "type": ["null", "string"]
+    },
     "reference_number": {
       "type": ["null", "string"]
     },

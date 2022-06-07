@@ -96,6 +96,32 @@
           "type": ["null", "string"]
         }
       }
+    },
+    "upi": {
+      "type": ["null", "object"],
+      "properties": {
+        "vpa": {
+          "type": ["null", "string"]
+        }
+      }
+    },
+    "mandates": {
+      "type": ["null", "array"],
+      "items": {
+        "type": ["null", "object"],
+        "properties": {
+          "id": {
+            "type": ["null", "string"]
+          },
+          "subscription_id": {
+            "type": ["null", "string"]
+          },
+          "created_at": {
+            "type": ["null", "string"],
+            "format": "date-time"
+          }
+        }
+      }
     }
   }
 }

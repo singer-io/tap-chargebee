@@ -16,6 +16,12 @@
             "string"
          ]
       },
+      "channel":{
+         "type":[
+            "null",
+            "string"
+         ]
+       },
       "item_family_id":{
          "type":[
             "null",

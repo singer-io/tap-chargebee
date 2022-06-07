@@ -24,6 +24,13 @@
          ],
          "format":"date-time"
       },
+      "changes_scheduled_at":{
+         "type":[
+            "null",
+            "string"
+         ],
+         "format":"date-time"
+      },
       "trial_end":{
          "type":[
             "null",

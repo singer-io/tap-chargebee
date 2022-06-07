@@ -16,6 +16,18 @@
             "string"
          ]
       },
+      "channel":{
+         "type":[
+            "null",
+            "string"
+         ]
+       },
+      "external_name":{
+         "type":[
+            "null",
+            "string"
+         ]
+       },
       "description":{
          "type":[
             "null",
