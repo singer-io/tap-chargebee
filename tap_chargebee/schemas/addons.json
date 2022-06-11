@@ -25,23 +25,19 @@
       "type": ["null", "string"]
     },
     "price": {
-      "type": ["null", "integer"],
-      "minimum": 0
+      "type": ["null", "integer"]
     },
     "currency_code": {
-      "type": ["null", "string"],
-      "maxLength": 3
+      "type": ["null", "string"]
     },
     "period": {
-      "type": ["null", "integer"],
-      "minimum": 1
+      "type": ["null", "integer"]
     },
     "period_unit": {
       "type": ["null", "string"]
     },
     "unit": {
-      "type": ["null", "string"],
-      "maxLength": 30
+      "type": ["null", "string"]
     },
     "status": {
       "type": ["null", "string"]
@@ -86,8 +82,7 @@
       "type": ["null", "boolean"]
     },
     "shipping_frequency_period": {
-      "type": ["null", "integer"],
-      "minimum": 1
+      "type": ["null", "integer"]
     },
     "shipping_frequency_period_unit": {
       "type": ["null", "string"]
@@ -100,15 +95,13 @@
       "format": "date-time"
     },
     "invoice_notes": {
-      "type": ["null", "string"],
-      "maxLength": 1000
+      "type": ["null", "string"]
     },
     "taxable": {
       "type": ["null", "boolean"]
     },
     "tax_profile_id": {
-      "type": ["null", "string"],
-      "maxLength": 50
+      "type": ["null", "string"]
     },
     "object": {
       "type": ["null", "string"]
@@ -128,15 +121,13 @@
         "type": ["null","object"],
         "properties": {
           "starting_unit": {
-            "type": ["null", "integer"],
-            "minimum": 1
+            "type": ["null", "integer"]
           },
           "ending_unit": {
             "type": ["null", "integer"]
           },
           "price ": {
-            "type": ["null", "integer"],
-            "minimum": 0
+            "type": ["null", "integer"]
           }
         }
       }

@@ -94,8 +94,7 @@
             "type": ["null", "integer"]
           },
           "price ": {
-            "type": ["null", "integer"],
-            "minimum": 0
+            "type": ["null", "integer"]
           }
         }
       }
