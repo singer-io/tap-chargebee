@@ -29,8 +29,7 @@
     	"type": ["null", "string"]
     },
     "closing_balance": {
-    	"type": ["null", "integer"],
-    	"minimum": 0
+    	"type": ["null", "integer"]
     },
     "done_by": {
     	"type": ["null", "string"],

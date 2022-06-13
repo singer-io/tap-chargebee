@@ -57,16 +57,14 @@
               "type": ["null", "string"]
             },
             "price": {
-              "type": ["null", "integer"],
-              "minimum": 0
+              "type": ["null", "integer"]
             },
             "currency_code": {
               "type": ["null", "string"],
               "maxLength": 3
             },
             "period": {
-              "type": ["null", "integer"],
-              "minimum": 1
+              "type": ["null", "integer"]
             },
             "period_unit": {
               "type": ["null", "string"]
@@ -118,8 +116,7 @@
               "type": ["null", "boolean"]
             },
             "shipping_frequency_period": {
-              "type": ["null", "integer"],
-              "minimum": 1
+              "type": ["null", "integer"]
             },
             "shipping_frequency_period_unit": {
               "type": ["null", "string"]
@@ -160,15 +157,13 @@
                 "type": ["null","object"],
                 "properties": {
                   "starting_unit": {
-                    "type": ["null", "integer"],
-                    "minimum": 1
+                    "type": ["null", "integer"]
                   },
                   "ending_unit": {
                     "type": ["null", "integer"]
                   },
                   "price ": {
-                    "type": ["null", "integer"],
-                    "minimum": 0
+                    "type": ["null", "integer"]
                   }
                 }
               }
@@ -310,20 +305,16 @@
               "maxLength": 3
             },
             "total": {
-              "type": ["null", "integer"],
-              "minimum": 0
+              "type": ["null", "integer"]
             },
             "amount_allocated": {
-              "type": ["null", "integer"],
-              "minimum": 0
+              "type": ["null", "integer"]
             },
             "amount_refunded": {
-              "type": ["null", "integer"],
-              "minimum": 0
+              "type": ["null", "integer"]
             },
             "amount_available": {
-              "type": ["null", "integer"],
-              "minimum": 0
+              "type": ["null", "integer"]
             },
             "refunded_at": {
               "type": ["null", "string"],
@@ -341,8 +332,7 @@
               "format": "date-time"
             },
             "sub_total": {
-              "type": ["null", "integer"],
-              "minimum": 0
+              "type": ["null", "integer"]
             },
             "round_off_amount": {
               "type": ["null", "integer"]
@@ -386,21 +376,16 @@
                     "type": ["null", "boolean"]
                   },
                   "tax_amount": {
-                    "type": ["null", "integer"],
-                    "minimum": 0
+                    "type": ["null", "integer"]
                   },
                   "tax_rate": {
-                    "type": ["null", "number"],
-                    "minimum": 0,
-                    "maximum": 100
+                    "type": ["null", "number"]
                   },
                   "discount_amount": {
-                    "type": ["null", "integer"],
-                    "minimum": 0
+                    "type": ["null", "integer"]
                   },
                   "item_level_discount_amount": {
-                    "type": ["null", "integer"],
-                    "minimum": 0
+                    "type": ["null", "integer"]
                   },
                   "description": {
                     "type": ["null", "string"],
@@ -425,8 +410,7 @@
                 "type": ["null", "object"],
                 "properties": {
                   "amount": {
-                    "type": ["null", "integer"],
-                    "minimum": 0
+                    "type": ["null", "integer"]
                   },
                   "description": {
                     "type": ["null", "string"],
@@ -459,8 +443,7 @@
                     "maxLength": 50
                   },
                   "discount_amount": {
-                    "type": ["null", "integer"],
-                    "minimum": 0
+                    "type": ["null", "integer"]
                   }
                 }
               }
@@ -475,19 +458,16 @@
                     "maxLength": 40
                   },
                   "starting_unit": {
-                    "type": ["null", "integer"],
-                    "minimum": 1
+                    "type": ["null", "integer"]
                   },
                   "ending_unit": {
                     "type": ["null", "integer"]
                   },
                   "quantity_used": {
-                    "type": ["null", "integer"],
-                    "minimum": 1
+                    "type": ["null", "integer"]
                   },
                   "unit_amount": {
-                    "type": ["null", "integer"],
-                    "minimum": 0
+                    "type": ["null", "integer"]
                   }
                 }
               }
@@ -502,8 +482,7 @@
                     "maxLength": 100
                   },
                   "amount": {
-                    "type": ["null", "integer"],
-                    "minimum": 0
+                    "type": ["null", "integer"]
                   },
                   "description": {
                     "type": ["null", "string"],
@@ -526,9 +505,7 @@
                     "maxLength": 100
                   },
                   "tax_rate": {
-                    "type": ["null", "number"],
-                    "minimum": 0,
-                    "maximum": 100
+                    "type": ["null", "number"]
                   },
                   "is_partial_tax_applied": {
                     "type": ["null", "boolean"]
@@ -537,12 +514,10 @@
                     "type": ["null", "boolean"]
                   },
                   "taxable_amount": {
-                    "type": ["null", "integer"],
-                    "minimum": 0
+                    "type": ["null", "integer"]
                   },
                   "tax_amount": {
-                    "type": ["null", "integer"],
-                    "minimum": 0
+                    "type": ["null", "integer"]
                   },
                   "tax_juris_type": {
                     "type": ["null", "string"]
@@ -568,8 +543,7 @@
                     "maxLength": 40
                   },
                   "applied_amount": {
-                    "type": ["null", "integer"],
-                    "minimum": 0
+                    "type": ["null", "integer"]
                   },
                   "applied_at": {
                     "type": ["null", "string"],
@@ -583,8 +557,7 @@
                     "format": "date-time"
                   },
                   "txn_amount": {
-                    "type": ["null", "integer"],
-                    "minimum": 1
+                    "type": ["null", "integer"]
                   }
                 }
               }
@@ -599,8 +572,7 @@
                     "maxLength": 50
                   },
                   "allocated_amount": {
-                    "type": ["null", "integer"],
-                    "minimum": 0
+                    "type": ["null", "integer"]
                   },
                   "allocated_at": {
                     "type": ["null", "string"],
@@ -2284,8 +2256,7 @@
               "type": ["null", "string"]
             },
             "closing_balance": {
-              "type": ["null", "integer"],
-              "minimum": 0
+              "type": ["null", "integer"]
             },
             "done_by": {
               "type": ["null", "string"],
@@ -2998,19 +2969,16 @@
                   "type": ["null","object"],
                   "properties": {
                     "starting_unit": {
-                      "type": ["null", "integer"],
-                      "minimum": 1
+                      "type": ["null", "integer"]
                     },
                     "ending_unit": {
                       "type": ["null", "integer"]
                     },
                     "quantity_used ": {
-                      "type": ["null", "integer"],
-                      "minimum": 1
+                      "type": ["null", "integer"]
                     },
                     "unit_amount ": {
-                      "type": ["null", "integer"],
-                      "minimum": 0
+                      "type": ["null", "integer"]
                     }
                   }
                 }
@@ -3114,24 +3082,19 @@
               "format": "date-time"
             },
             "sub_total": {
-              "type": ["null", "integer"],
-              "minimum": 0
+              "type": ["null", "integer"]
             },
             "total": {
-              "type": ["null", "integer"],
-              "minimum": 0
+              "type": ["null", "integer"]
             },
             "credits_applied": {
-              "type": ["null", "integer"],
-              "minimum": 0
+              "type": ["null", "integer"]
             },
             "amount_paid": {
-              "type": ["null", "integer"],
-              "minimum": 0
+              "type": ["null", "integer"]
             },
             "amount_due": {
-              "type": ["null", "integer"],
-              "minimum": 0
+              "type": ["null", "integer"]
             },
             "resource_version": {
               "type": ["null", "integer"]
@@ -3179,21 +3142,16 @@
                     "type": ["null", "boolean"]
                   },
                   "tax_amount": {
-                    "type": ["null", "integer"],
-                    "minimum": 0
+                    "type": ["null", "integer"]
                   },
                   "tax_rate": {
-                    "type": ["null", "number"],
-                    "minimum": 0,
-                    "maximum": 100
+                    "type": ["null", "number"]
                   },
                   "discount_amount": {
-                    "type": ["null", "integer"],
-                    "minimum": 0
+                    "type": ["null", "integer"]
                   },
                   "item_level_discount_amount": {
-                    "type": ["null", "integer"],
-                    "minimum": 0
+                    "type": ["null", "integer"]
                   },
                   "description": {
                     "type": ["null", "string"],
@@ -3222,8 +3180,7 @@
                 "type": ["null", "object"],
                 "properties": {
                   "amount": {
-                    "type": ["null", "integer"],
-                    "minimum": 0
+                    "type": ["null", "integer"]
                   },
                   "description": {
                     "type": ["null", "string"],
@@ -3256,8 +3213,7 @@
                     "maxLength": 50
                   },
                   "discount_amount": {
-                    "type": ["null", "integer"],
-                    "minimum": 0
+                    "type": ["null", "integer"]
                   }
                 }
               }
@@ -3272,8 +3228,7 @@
                     "maxLength": 100
                   },
                   "amount": {
-                    "type": ["null", "integer"],
-                    "minimum": 0
+                    "type": ["null", "integer"]
                   },
                   "description": {
                     "type": ["null", "string"],
@@ -3296,9 +3251,7 @@
                     "maxLength": 100
                   },
                   "tax_rate": {
-                    "type": ["null", "number"],
-                    "minimum": 0,
-                    "maximum": 100
+                    "type": ["null", "number"]
                   },
                   "is_partial_tax_applied": {
                     "type": ["null", "boolean"]
@@ -3307,12 +3260,10 @@
                     "type": ["null", "boolean"]
                   },
                   "taxable_amount": {
-                    "type": ["null", "integer"],
-                    "minimum": 0
+                    "type": ["null", "integer"]
                   },
                   "tax_amount": {
-                    "type": ["null", "integer"],
-                    "minimum": 0
+                    "type": ["null", "integer"]
                   },
                   "tax_juris_type": {
                     "type": ["null", "string"]
