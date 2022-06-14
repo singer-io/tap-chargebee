@@ -16,7 +16,7 @@ from tap_chargebee.state import get_last_record_value_for_table, incorporate, \
 LOGGER = singer.get_logger()
 
 
-class BaseChargebeeStream(BaseStream): # pylint: disable=no-member
+class BaseChargebeeStream(BaseStream):
 
     def write_schema(self):
         singer.write_schema(
