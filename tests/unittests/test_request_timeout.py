@@ -135,6 +135,7 @@ class TestRequestTimeoutBackoff(unittest.TestCase):
             chargebee_client.make_request('/abc', 'GET')
         except requests.exceptions.Timeout:
             pass
+
         # Verify that requests.request is called 5 times
         self.assertEqual(mocked_request.call_count, 5)
 
@@ -154,5 +155,6 @@ class TestConnectionErrorBackoff(unittest.TestCase):
             chargebee_client.make_request('/abc', 'GET')
         except requests.exceptions.ConnectionError:
             pass
+
         # Verify that requests.request is called 5 times
         self.assertEqual(mocked_request.call_count, 5)
