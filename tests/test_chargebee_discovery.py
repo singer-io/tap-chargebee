@@ -127,9 +127,9 @@ class ChargebeeDiscoveryTest(ChargebeeBaseTest):
     def test_run(self):
 
         # Discovery test for Product Catalog version 1
-        self.product_catalog_v1 = True
+        self.is_product_catalog_v1 = True
         self.discovery_test_run()
 
         # Discovery test for Product Catalog version 2
-        self.product_catalog_v1 = False
+        self.is_product_catalog_v1 = False
         self.discovery_test_run()

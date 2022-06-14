@@ -3,7 +3,9 @@ from base import ChargebeeBaseTest
 
 class ChargebeeAllFieldsTest(ChargebeeBaseTest):
 
-    # fields to remove that are common for V1 and V2
+    # list of fields that are common between V1 and V2 for which data is not generated, we cannot find some fields in the UI,
+    #   some fields require to enable, Monthly Recurring Revenue setting, TaxJar, Contract terms feature,
+    #   configure Avatax for Communications, Configure Avatax for Sales, Multi decimal feature
     fields_to_remove_common = {
         'promotional_credits': {'amount_in_decimal'}, # not found in the UI
         'invoices': { # not found in the UI
@@ -95,13 +97,12 @@ class ChargebeeAllFieldsTest(ChargebeeBaseTest):
         },
     }
 
-    # fields to remove for V2
+    # fields to remove for V2, we cannot find some fields in the UI
     fields_to_remove_V2 = {
         'item_prices': { # not found in the UI
             'free_quantity_in_decimal',
             'archivable',
             'tax_detail',
-            'billing_cycles',
             'trial_end_action',
             'price_in_decimal',
             'accounting_detail',
@@ -110,10 +111,8 @@ class ChargebeeAllFieldsTest(ChargebeeBaseTest):
             'archived_at'
         },
         'invoices': { # not found in the UI
-            'line_item_discounts',
             'line_item_taxes',
             'taxes',
-            'discounts',
             'dunning_status',
             'vat_number'
         },
@@ -126,20 +125,15 @@ class ChargebeeAllFieldsTest(ChargebeeBaseTest):
             'archivable',
             'gift_claim_redirect_url',
             'applicable_items',
-            'redirect_url',
             'usage_calculation',
-            'included_in_mrr'
+            'included_in_mrr' # Enable Monthly Recurring Revenue setting
         },
         'coupons': { # not found in the UI
-            'invoice_notes',
-            'meta_data',
             'archived_at'
         },
         'customers': { # not found in the UI
             'backup_payment_source_id',
-            'meta_data',
             'cf_company_id',
-            'custom_fields',
             'created_from_ip',
             'consolidated_invoicing',
             'billing_day_of_week',
@@ -148,32 +142,23 @@ class ChargebeeAllFieldsTest(ChargebeeBaseTest):
         'subscriptions': { # not found in the UI
             'cancel_reason',
             'start_date',
-            'meta_data',
             'remaining_billing_cycles',
             'payment_source_id',
-            'custom_fields',
             'item_tiers',
             'invoice_notes',
             'created_from_ip',
-            'cancel_reason_code',
-            'coupon',
-            'coupons'
+            'cancel_reason_code'
         },
         'transactions': { # not found in the UI
             'error_text',
             'reference_number',
             'error_code',
             'refunded_txn_id'
-        },
-        'promotional_credits': { # not found in the UI
-            'reference'
-        },
-        'events': { # not found in the UI
-            'user'
         }
     }
 
-    # fields to remove for V1
+    # fields to remove for V1, we cannot find some fields in the UI, some fields require to enable
+    #   Monthly Recurring Revenue setting, TaxJar, configure Avatax for Communications, Multi decimal feature
     fields_to_remove_V1 = {
         'coupons': {
             'included_in_mrr' # Enable Monthly Recurring Revenue setting
@@ -242,7 +227,7 @@ class ChargebeeAllFieldsTest(ChargebeeBaseTest):
         expected_streams = self.expected_streams() - {'virtual_bank_accounts', 'gifts', 'orders'}
 
         # skip quotes for product catalog V2
-        if not self.product_catalog_v1:
+        if not self.is_product_catalog_v1:
             expected_streams = expected_streams - untestable_streams_of_v2
 
         expected_automatic_fields = self.expected_automatic_fields()
@@ -297,7 +282,7 @@ class ChargebeeAllFieldsTest(ChargebeeBaseTest):
                 self.assertTrue(expected_automatic_keys.issubset(expected_all_keys), msg=f'{expected_automatic_keys-expected_all_keys} is not in "expected_all_keys"')
 
                 # get fields to remove for the version
-                if self.product_catalog_v1:
+                if self.is_product_catalog_v1:
                     stream_fields_as_per_version = self.fields_to_remove_V1.get(stream, set())
                 else:
                     stream_fields_as_per_version = self.fields_to_remove_V2.get(stream, set())
@@ -310,9 +295,9 @@ class ChargebeeAllFieldsTest(ChargebeeBaseTest):
     def test_run(self):
 
         # All fields test for Product Catalog version 1
-        self.product_catalog_v1 = True
+        self.is_product_catalog_v1 = True
         self.all_fields_test_run()
 
         # All fields test for Product Catalog version 2
-        self.product_catalog_v1 = False
+        self.is_product_catalog_v1 = False
         self.all_fields_test_run()

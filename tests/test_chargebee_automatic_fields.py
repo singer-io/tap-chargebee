@@ -18,7 +18,7 @@ class ChargebeeAutomaticFieldsTest(ChargebeeBaseTest):
         expected_streams = self.expected_streams() - {'virtual_bank_accounts', 'gifts', 'orders'}
 
         # skip quotes for product catalog V2
-        if not self.product_catalog_v1:
+        if not self.is_product_catalog_v1:
             expected_streams = expected_streams - untestable_streams
 
         conn_id = connections.ensure_connection(self)
@@ -58,9 +58,9 @@ class ChargebeeAutomaticFieldsTest(ChargebeeBaseTest):
     def test_run(self):
 
         # Automatic fields test for Product Catalog v1
-        self.product_catalog_v1 = True
+        self.is_product_catalog_v1 = True
         self.automatic_fields_test_run()
 
         # Automatic fields test for Product Catalog v2
-        self.product_catalog_v1 = False
+        self.is_product_catalog_v1 = False
         self.automatic_fields_test_run()

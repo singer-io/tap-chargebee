@@ -18,7 +18,7 @@ class ChargebeeStartDateTest(ChargebeeBaseTest):
         """Instantiate start date according to the desired data set and run the test"""
 
         self.start_date_1 = self.get_properties().get('start_date')
-        if self.product_catalog_v1:
+        if self.is_product_catalog_v1:
             self.start_date_2 = '2021-03-03T00:00:00Z'
         else:
             self.start_date_2 = '2021-06-22T00:00:00Z'
@@ -133,9 +133,9 @@ class ChargebeeStartDateTest(ChargebeeBaseTest):
     def test_run(self):
 
         #Start date test Product Catalog version 1
-        self.product_catalog_v1 = True
+        self.is_product_catalog_v1 = True
         self.start_date_test_run()
 
         #Start date test Product Catalog version 1
-        self.product_catalog_v1 = False
+        self.is_product_catalog_v1 = False
         self.start_date_test_run()

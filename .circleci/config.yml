@@ -19,6 +19,12 @@ jobs:
             source /usr/local/share/virtualenvs/tap-tester/bin/activate
             stitch-validate-json tap_chargebee/schemas/*/*.json
       - run:
+          name: 'Pylint'
+          command: |
+            source /usr/local/share/virtualenvs/tap-chargebee/bin/activate
+            pip install pylint==2.14.1
+            pylint tap_tiktok_ads --disable C,W,R,no-member
+      - run:
           name: 'Unit Tests'
           command: |
             source /usr/local/share/virtualenvs/tap-chargebee/bin/activate

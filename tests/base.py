@@ -28,7 +28,7 @@ class ChargebeeBaseTest(unittest.TestCase):
         "%Y-%m-%dT%H:%M:%S.000000Z"
     }
     start_date = ""
-    product_catalog_v1 = True
+    is_product_catalog_v1 = True
     properties_v1 = {
 	    "site": "TAP_CHARGEBEE_SITE"
     }
@@ -58,7 +58,7 @@ class ChargebeeBaseTest(unittest.TestCase):
             'start_date': '2019-06-24T00:00:00Z'
         }
         props = self.properties_v2
-        if self.product_catalog_v1:
+        if self.is_product_catalog_v1:
             props = self.properties_v1
         for prop in props:
             properties_dict[prop] = os.getenv(props[prop])
@@ -73,7 +73,7 @@ class ChargebeeBaseTest(unittest.TestCase):
         """Authentication information for the test account."""
         credentials_dict = {}
         creds = self.credentials_v2
-        if self.product_catalog_v1:
+        if self.is_product_catalog_v1:
             creds = self.credentials_v1
         for cred in creds:
             credentials_dict[cred] = os.getenv(creds[cred])
@@ -191,7 +191,7 @@ class ChargebeeBaseTest(unittest.TestCase):
     def expected_metadata(self):
         """The expected primary key of the streams"""
         common_streams = self.common_metadata()
-        if self.product_catalog_v1:
+        if self.is_product_catalog_v1:
             plan_model_stream = self.plan_model_metadata()
             return {**common_streams, **plan_model_stream}
         item_model_stream = self.item_model_metadata()
@@ -343,6 +343,7 @@ class ChargebeeBaseTest(unittest.TestCase):
 
     @staticmethod
     def get_selected_fields_from_metadata(metadata):
+        """return selected fields from metedata"""
         selected_fields = set()
         for field in metadata:
             is_field_metadata = len(field['breadcrumb']) > 1
@@ -370,20 +371,15 @@ class ChargebeeBaseTest(unittest.TestCase):
             connections.select_catalog_and_fields_via_metadata(
                 conn_id, catalog, schema, [], non_selected_properties)
 
-    def timedelta_formatted(self, dtime, days=0):
-        date_stripped = dt.strptime(dtime, self.START_DATE_FORMAT)
-        return_date = date_stripped + timedelta(days=days)
-
-        return dt.strftime(return_date, self.START_DATE_FORMAT)
-
     ##########################################################################
     ### Tap Specific Methods
     ##########################################################################
 
     def is_incremental(self, stream):
+        """return is stream is incremental or not"""
         return self.expected_metadata()[stream][self.REPLICATION_METHOD] == self.INCREMENTAL
 
-    # convert datetime with a format to timestamp
     def dt_to_ts(self, dtime, format):
+        """convert datetime with a format to timestamp"""
         date_stripped = int(time.mktime(dt.strptime(dtime, format).timetuple()))
         return date_stripped

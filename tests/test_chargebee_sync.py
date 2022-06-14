@@ -37,9 +37,9 @@ class ChargebeeSyncTest(ChargebeeBaseTest):
     def test_run(self):
 
         #Sync test for Product Catalog version 1
-        self.product_catalog_v1 = True
+        self.is_product_catalog_v1 = True
         self.sync_test_run()
 
         #Sync test for Product Catalog version 2
-        self.product_catalog_v1 = False
+        self.is_product_catalog_v1 = False
         self.sync_test_run()

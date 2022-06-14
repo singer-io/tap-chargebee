@@ -16,7 +16,7 @@ from tap_chargebee.state import get_last_record_value_for_table, incorporate, \
 LOGGER = singer.get_logger()
 
 
-class BaseChargebeeStream(BaseStream):
+class BaseChargebeeStream(BaseStream): # pylint: disable=no-member
 
     def write_schema(self):
         singer.write_schema(
@@ -195,9 +195,12 @@ class BaseChargebeeStream(BaseStream):
                     break
 
             records = response.get('list')
-            
+
+            to_write = self.get_stream_data(records)
+
             if self.config.get('include_deleted') not in ['false','False', False]:
                 if self.ENTITY == 'event':
+                    # parse "event_type" and deleted plan/addon/coupon from API records
                     for record in records:
                         event = record.get(self.ENTITY)
                         if event["event_type"] == 'plan_deleted':
@@ -206,17 +209,16 @@ class BaseChargebeeStream(BaseStream):
                             Util.addons.append(event['content']['addon'])
                         elif event['event_type'] == 'coupon_deleted':
                             Util.coupons.append(event['content']['coupon'])
+                # we need additional transform for deleted records as "to_write" already contains transformed data
                 if self.ENTITY == 'plan':
                     for plan in Util.plans:
-                        to_write.append(plan)
+                        to_write.append(self.transform_record(plan))
                 if self.ENTITY == 'addon':
                     for addon in Util.addons:
-                        to_write.append(addon)
+                        to_write.append(self.transform_record(addon))
                 if self.ENTITY == 'coupon':
                     for coupon in Util.coupons:
-                        to_write.append(coupon) 
-
-            to_write = self.get_stream_data(records)
+                        to_write.append(self.transform_record(coupon))
 
             with singer.metrics.record_counter(endpoint=table) as ctr:
                 singer.write_records(table, to_write)
