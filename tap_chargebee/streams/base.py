@@ -196,12 +196,12 @@ class BaseChargebeeStream(BaseStream):
 
             records = response.get('list')
 
-            # list of deleted records
+            # List of deleted "plans, addons and coupons" from the /events endpoint
             deleted_records = []
 
             if self.config.get('include_deleted') not in ['false','False', False]:
                 if self.ENTITY == 'event':
-                    # parse "event_type" and deleted plan/addon/coupon from API records
+                    # Parse "event_type" from events records and collect deleted plan/addon/coupon from events
                     for record in records:
                         event = record.get(self.ENTITY)
                         if event["event_type"] == 'plan_deleted':
@@ -210,7 +210,7 @@ class BaseChargebeeStream(BaseStream):
                             Util.addons.append(event['content']['addon'])
                         elif event['event_type'] == 'coupon_deleted':
                             Util.coupons.append(event['content']['coupon'])
-                # we need additional transform for deleted records as "to_write" already contains transformed data
+                # We need additional transform for deleted records as "to_write" already contains transformed data
                 if self.ENTITY == 'plan':
                     for plan in Util.plans:
                         deleted_records.append(self.transform_record(plan))
@@ -221,11 +221,11 @@ class BaseChargebeeStream(BaseStream):
                     for coupon in Util.coupons:
                         deleted_records.append(self.transform_record(coupon))
 
-            # get records from API response and transform
+            # Get records from API response and transform
             to_write = self.get_stream_data(records)
 
             with singer.metrics.record_counter(endpoint=table) as ctr:
-                # combine transformed records and deleted records for "plan, addon and coupon"
+                # Combine transformed records and deleted data of  "plan, addon and coupon" collected from events endpoint
                 to_write = to_write + deleted_records
                 singer.write_records(table, to_write)
 
