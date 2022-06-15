@@ -3,8 +3,9 @@ from base import ChargebeeBaseTest
 
 class ChargebeeAllFieldsTest(ChargebeeBaseTest):
 
-    # list of fields that are common between V1 and V2 for which data is not generated, we cannot find some fields in the UI,
-    #   some fields require to enable, Monthly Recurring Revenue setting, TaxJar, Contract terms feature,
+    # list of fields that are common between V1 and V2 for which data is not generated
+    # we are removing this because we cannot find some fields in the UI, some fields require
+    #   to enable Monthly Recurring Revenue setting, TaxJar, Contract terms feature,
     #   configure Avatax for Communications, Configure Avatax for Sales, Multi decimal feature
     fields_to_remove_common = {
         'promotional_credits': {'amount_in_decimal'}, # not found in the UI
@@ -157,7 +158,8 @@ class ChargebeeAllFieldsTest(ChargebeeBaseTest):
         }
     }
 
-    # fields to remove for V1, we cannot find some fields in the UI, some fields require to enable
+    # fields to remove for V1
+    # we are removing this because we cannot find some fields in the UI, some fields require to enable
     #   Monthly Recurring Revenue setting, TaxJar, configure Avatax for Communications, Multi decimal feature
     fields_to_remove_V1 = {
         'coupons': {
