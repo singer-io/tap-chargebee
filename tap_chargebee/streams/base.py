@@ -196,7 +196,8 @@ class BaseChargebeeStream(BaseStream):
 
             records = response.get('list')
 
-            to_write = self.get_stream_data(records)
+            # list of deleted records
+            deleted_records = []
 
             if self.config.get('include_deleted') not in ['false','False', False]:
                 if self.ENTITY == 'event':
@@ -212,15 +213,20 @@ class BaseChargebeeStream(BaseStream):
                 # we need additional transform for deleted records as "to_write" already contains transformed data
                 if self.ENTITY == 'plan':
                     for plan in Util.plans:
-                        to_write.append(self.transform_record(plan))
+                        deleted_records.append(self.transform_record(plan))
                 if self.ENTITY == 'addon':
                     for addon in Util.addons:
-                        to_write.append(self.transform_record(addon))
+                        deleted_records.append(self.transform_record(addon))
                 if self.ENTITY == 'coupon':
                     for coupon in Util.coupons:
-                        to_write.append(self.transform_record(coupon))
+                        deleted_records.append(self.transform_record(coupon))
+
+            # get records from API response and transform
+            to_write = self.get_stream_data(records)
 
             with singer.metrics.record_counter(endpoint=table) as ctr:
+                # combine transformed records and deleted records for "plan, addon and coupon"
+                to_write = to_write + deleted_records
                 singer.write_records(table, to_write)
 
                 ctr.increment(amount=len(to_write))
