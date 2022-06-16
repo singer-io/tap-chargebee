@@ -19,7 +19,8 @@ class ChargebeeAllFieldsTest(ChargebeeBaseTest):
             'total_in_local_currency',
             'sub_total_in_local_currency',
             'local_currency_code',
-            'next_retry_at'
+            'next_retry_at',
+            'einvoice'
         },
         'subscriptions': { # not found in the UI
             'create_pending_invoices',
@@ -37,7 +38,8 @@ class ChargebeeAllFieldsTest(ChargebeeBaseTest):
             'referral_info',
             'pause_date',
             'plan_unit_price_in_decimal',
-            'trial_end_action' # Enable Trial End Action feature
+            'trial_end_action', # Enable Trial End Action feature
+            'changes_scheduled_at'
         },
         'customers': { # not found in the UI
             'vat_number_validated_time',
@@ -63,21 +65,28 @@ class ChargebeeAllFieldsTest(ChargebeeBaseTest):
             'mrr',
             'auto_close_invoices', # Metered Billing must be enabled
             'vat_number_prefix',
-            'business_customer_without_vat_number' # Validate VAT
+            'business_customer_without_vat_number', # Validate VAT
+            'entity_identifier_standard',
+            'is_einvoice_enabled',
+            'entity_identifiers',
+            'entity_identifier_scheme'
         },
         'credit_notes': { # not found in the UI
             'line_item_tiers',
             'vat_number_prefix',
             'total_in_local_currency',
             'sub_total_in_local_currency',
-            'local_currency_code'
+            'local_currency_code',
+            'einvoice'
         },
         'payment_sources': { # not found in the UI
             'issuing_country',
             'paypal',
             'ip_address',
             'bank_account',
-            'amazon_payment'
+            'amazon_payment',
+            'upi',
+            'mandates'
         },
         'transactions': {
             'fraud_flag',
@@ -94,12 +103,15 @@ class ChargebeeAllFieldsTest(ChargebeeBaseTest):
             'validated_at',
             'fraud_reason',
             'amount_capturable',
-            'reference_transaction_id'
+            'reference_transaction_id',
+            'iin',
+            'last4'
         },
     }
 
     # fields to remove for V2, we cannot find some fields in the UI
     fields_to_remove_V2 = {
+        'item_families': {'channel'},
         'item_prices': { # not found in the UI
             'free_quantity_in_decimal',
             'archivable',
@@ -167,13 +179,11 @@ class ChargebeeAllFieldsTest(ChargebeeBaseTest):
         },
         'addons': { # not found in the UI
             'avalara_service_type', # configure Avatax for Communications
-            'accouting_category1',
-            'accouting_category3',
+            'accounting_category3',
             'taxjar_product_code', # TaxJar should be enabled
-            'accouting_category4',
+            'accounting_category4',
             'avalara_transaction_type', # configure Avatax for Communications
             'tiers',
-            'accouting_category2',
             'tax_code',
             'price_in_decimal', # Multi decimal feature is disabled
             'included_in_mrr', # Enable Monthly Recurring Revenue setting
