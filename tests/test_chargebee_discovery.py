@@ -76,6 +76,14 @@ class ChargebeeDiscoveryTest(ChargebeeBaseTest):
                 ### metadata assertions
                 ##########################################################################
 
+                actual_fields = []
+                for md_entry in metadata:
+                    if md_entry['breadcrumb'] != []:
+                        actual_fields.append(md_entry['breadcrumb'][1])
+
+                # verify there are no duplicate metadata entries
+                self.assertEqual(len(actual_fields), len(set(actual_fields)), msg = "duplicates in the metadata entries retrieved")
+
                 # verify there is only 1 top level breadcrumb in metadata
                 self.assertTrue(len(stream_properties) == 1,
                                 msg="There is NOT only one top level breadcrumb for {}".format(stream) + \
@@ -118,10 +126,10 @@ class ChargebeeDiscoveryTest(ChargebeeBaseTest):
 
     def test_run(self):
 
-        #Discovery test for Product Catalog version 1
-        self.product_catalog_v1 = True
+        # Discovery test for Product Catalog version 1
+        self.is_product_catalog_v1 = True
         self.discovery_test_run()
 
-        #Discovery test for Product Catalog version 1
-        self.product_catalog_v1 = False
+        # Discovery test for Product Catalog version 2
+        self.is_product_catalog_v1 = False
         self.discovery_test_run()

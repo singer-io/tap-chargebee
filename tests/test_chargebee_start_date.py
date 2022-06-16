@@ -18,17 +18,18 @@ class ChargebeeStartDateTest(ChargebeeBaseTest):
         """Instantiate start date according to the desired data set and run the test"""
 
         self.start_date_1 = self.get_properties().get('start_date')
-        if self.product_catalog_v1:
+        if self.is_product_catalog_v1:
             self.start_date_2 = '2021-03-03T00:00:00Z'
         else:
             self.start_date_2 = '2021-06-22T00:00:00Z'
 
-        start_date_1_epoch = self.dt_to_ts(self.start_date_1)
-        start_date_2_epoch = self.dt_to_ts(self.start_date_2)
+        start_date_1_epoch = self.dt_to_ts(self.start_date_1, self.START_DATE_FORMAT)
+        start_date_2_epoch = self.dt_to_ts(self.start_date_2, self.START_DATE_FORMAT)
 
         self.start_date = self.start_date_1
 
-        expected_streams = self.expected_streams()
+        # WE ARE NOT ABLE TO GENERATE TEST DATA SO SKIPPING THREE STREAMS(orders, gifts, virtual_bank_accounts)
+        expected_streams = self.expected_streams() - {'orders', 'gifts', 'virtual_bank_accounts', 'quotes'}
 
         ##########################################################################
         ### First Sync
@@ -81,10 +82,6 @@ class ChargebeeStartDateTest(ChargebeeBaseTest):
 
         for stream in expected_streams:
 
-            # WE ARE NOT ABLE TO GENERATE TEST DATA SO SKIPPING THREE STREAMS(orders, gifts, virtual_bank_accounts)
-            if stream in ['orders', 'gifts', 'virtual_bank_accounts', 'quotes']:
-                continue
-
             with self.subTest(stream=stream):
 
                 # expected values
@@ -117,11 +114,11 @@ class ChargebeeStartDateTest(ChargebeeBaseTest):
 
                 # Verify bookmark key values are greater than or equal to start date of sync 1
                 for bookmark_key_value in bookmark_key_sync_1:
-                    self.assertGreaterEqual(self.dt_to_ts(bookmark_key_value), start_date_1_epoch)
+                    self.assertGreaterEqual(self.dt_to_ts(bookmark_key_value, self.RECORD_REPLICATION_KEY_FORMAT), start_date_1_epoch)
 
                 # Verify bookmark key values are greater than or equal to start date of sync 2
                 for bookmark_key_value in bookmark_key_sync_2:
-                    self.assertGreaterEqual(self.dt_to_ts(bookmark_key_value), start_date_2_epoch)
+                    self.assertGreaterEqual(self.dt_to_ts(bookmark_key_value, self.RECORD_REPLICATION_KEY_FORMAT), start_date_2_epoch)
 
                 # Verify the number of records replicated in sync 1 is greater than or equal to the number
                 # of records replicated in sync 2 for stream
@@ -133,9 +130,9 @@ class ChargebeeStartDateTest(ChargebeeBaseTest):
     def test_run(self):
 
         #Start date test Product Catalog version 1
-        self.product_catalog_v1 = True
+        self.is_product_catalog_v1 = True
         self.start_date_test_run()
 
         #Start date test Product Catalog version 1
-        self.product_catalog_v1 = False
+        self.is_product_catalog_v1 = False
         self.start_date_test_run()
