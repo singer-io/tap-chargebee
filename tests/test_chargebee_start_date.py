@@ -28,7 +28,8 @@ class ChargebeeStartDateTest(ChargebeeBaseTest):
 
         self.start_date = self.start_date_1
 
-        expected_streams = self.expected_streams()
+        # WE ARE NOT ABLE TO GENERATE TEST DATA SO SKIPPING THREE STREAMS(orders, gifts, virtual_bank_accounts)
+        expected_streams = self.expected_streams() - {'orders', 'gifts', 'virtual_bank_accounts', 'quotes'}
 
         ##########################################################################
         ### First Sync
@@ -80,10 +81,6 @@ class ChargebeeStartDateTest(ChargebeeBaseTest):
         self.assertGreater(sum(record_count_by_stream_1.values()), sum(record_count_by_stream_2.values()))
 
         for stream in expected_streams:
-
-            # WE ARE NOT ABLE TO GENERATE TEST DATA SO SKIPPING THREE STREAMS(orders, gifts, virtual_bank_accounts)
-            if stream in ['orders', 'gifts', 'virtual_bank_accounts', 'quotes']:
-                continue
 
             with self.subTest(stream=stream):
 
