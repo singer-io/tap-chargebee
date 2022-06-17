@@ -44,7 +44,7 @@ class TestBookmarking(unittest.TestCase):
 
     def test_max_replication_key_bookmark(self, mocked_save_state, mocked_records, mocked_make_request, mocked_transform_record):
         """
-            Test case to verify we are setting max replication key as bookmark as we have max replication key lesser than (now - 2 min)
+            Test case to verify we are setting (now - 2 min) as bookmark when we have max replication key lesser than (now - 2 min)
         """
         mocked_make_request.return_value = {
             "list": [
@@ -53,4 +53,4 @@ class TestBookmarking(unittest.TestCase):
         self.events.sync_data()
         args, kwargs = mocked_save_state.call_args
         bookmark = args[0]
-        self.assertEqual(bookmark.get("bookmarks").get("events").get("bookmark_date"), "2022-01-01T05:02:00Z")
+        self.assertEqual(bookmark.get("bookmarks").get("events").get("bookmark_date"), "2022-01-01T05:03:00Z")
