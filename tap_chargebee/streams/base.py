@@ -134,6 +134,7 @@ class BaseChargebeeStream(BaseStream):
         # Convert bookmarked start date to POSIX.
         bookmark_date_posix = int(bookmark_date.timestamp())
 
+        sync_failures = False
         # Create params for filtering
         if self.ENTITY == 'event':
             params = {"occurred_at[after]": bookmark_date_posix}
@@ -141,6 +142,10 @@ class BaseChargebeeStream(BaseStream):
         elif self.ENTITY == 'promotional_credit':
             params = {"created_at[after]": bookmark_date_posix}
             bookmark_key = 'created_at'
+        elif self.ENTITY == 'transaction':
+            params = {"updated_at[after]": bookmark_date_posix, "status[is_not]": "failure"}
+            bookmark_key = 'updated_at'
+            sync_failures = True
         else:
             params = {"updated_at[after]": bookmark_date_posix}
             bookmark_key = 'updated_at'
@@ -201,8 +206,12 @@ class BaseChargebeeStream(BaseStream):
                     self.state, table, 'bookmark_date', max_date)
 
             if not response.get('next_offset'):
-                LOGGER.info("Final offset reached. Ending sync.")
-                done = True
+                if sync_failures:
+                    params = {"date[after]": bookmark_date_posix, "status[is]": "failure"}
+                    sync_failures = False
+                else:
+                    LOGGER.info("Final offset reached. Ending sync.")
+                    done = True
             else:
                 LOGGER.info("Advancing by one offset.")
                 params['offset'] = response.get('next_offset')
