@@ -237,6 +237,10 @@ class BaseChargebeeStream(BaseStream):
 
                 ctr.increment(amount=len(to_write))
 
+            # update max_date with minimum of (max_replication_key) or (now - 2 minutes)
+            # this will make sure that bookmark does not go beyond (now - 2 minutes)
+            # so, no data will be missed due to API latency
+            max_date = min(max_date, to_date)
             self.state = incorporate(
                 self.state, table, 'bookmark_date', max_date)
 
