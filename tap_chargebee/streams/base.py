@@ -175,7 +175,7 @@ class BaseChargebeeStream(BaseStream):
             params = {"occurred_at[between]": sync_window}
             bookmark_key = 'occurred_at'
         elif self.ENTITY in ['promotional_credit','comment']:
-            params = {"occurred_at[between]": sync_window}
+            params = {"created_at[between]": sync_window}
             bookmark_key = 'created_at'
         else:
             params = {"updated_at[between]": sync_window}

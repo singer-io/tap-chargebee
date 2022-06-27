@@ -39,7 +39,8 @@ class ChargebeeAllFieldsTest(ChargebeeBaseTest):
             'pause_date',
             'plan_unit_price_in_decimal',
             'trial_end_action', # Enable Trial End Action feature
-            'changes_scheduled_at'
+            'changes_scheduled_at',
+            'event_based_addons'
         },
         'customers': { # not found in the UI
             'vat_number_validated_time',

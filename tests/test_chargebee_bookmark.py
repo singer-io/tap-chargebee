@@ -9,13 +9,28 @@ class ChargebeeBookmarkTest(ChargebeeBaseTest):
     def name(self):
         return "chargebee_bookmark_test"
 
-    def get_simulated_states(self, state):
+    def get_max_replication_value(self, records, replication_key):
+        """
+            Return maximum replication value for the stream
+        """
+        max_val = records[0].get(replication_key)
+        for record in records[1:]:
+            max_val = max(max_val, record.get(replication_key))
+        return max_val
+
+    def get_simulated_states(self, state, records):
         """
             Subtract 12 hours from all bookmarks in the state file
         """
         new_state = deepcopy(state)
         for stream_name, bookmark in new_state.get("bookmarks").items():
-            bookmark_date = bookmark["bookmark_date"]
+            stream_records = [record.get('data') for record in records.get(stream_name, {}).get('messages', [])
+                              if record.get('action') == 'upsert']
+            # as these streams are skipped the state file will contain the start date as bookmark
+            if stream_name in self.streams_to_skip | {'quotes'}:
+                bookmark_date = bookmark["bookmark_date"]
+            else:
+                bookmark_date = self.get_max_replication_value(stream_records, list(self.expected_replication_keys().get(stream_name))[0])
             new_bookmark_date = dateutil.parser.parse(bookmark_date) - timedelta(hours=12)
             bookmark["bookmark_date"] = datetime.strftime(new_bookmark_date, self.BOOKMARK_FORMAT)
 
@@ -34,7 +49,8 @@ class ChargebeeBookmarkTest(ChargebeeBaseTest):
 
         untestable_streams = {'quotes'} # For V2, we have 0 records for 'quotes' stream
         # Skipping streams virtual_bank_accounts, gifts and orders as we are not able to generate data
-        expected_streams = self.expected_streams() - {'virtual_bank_accounts', 'gifts', 'orders'}
+        self.streams_to_skip = {'virtual_bank_accounts', 'gifts', 'orders'}
+        expected_streams = self.expected_streams() - self.streams_to_skip
 
         # skip quotes for product catalog V2
         if not self.is_product_catalog_v1:
@@ -59,7 +75,7 @@ class ChargebeeBookmarkTest(ChargebeeBaseTest):
 
         ####################### Update State Between Syncs #########################
 
-        new_states = self.get_simulated_states(first_sync_bookmarks)
+        new_states = self.get_simulated_states(first_sync_bookmarks, first_sync_records)
         menagerie.set_state(conn_id, new_states)
 
         ################################# Second Sync #########################################
