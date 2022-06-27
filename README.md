@@ -42,7 +42,8 @@ This tap:
         "start_date": "2010-01-01T00:00:00Z",
         "api_key": "<Chargebee API Key>",
         "site": "<Chargebee Site>",
-        "include_deleted": "True|False"
+        "include_deleted": "True|False",
+        "request_timeout": 300
     }
     ```
 
@@ -53,7 +54,9 @@ This tap:
 
    The `site` parameter represents the name of your specific Chargebee site (e.g. `https://{site}.chargebee.com/api/v2/subscriptions`)
 
-   The 'include_deleted' is an optional flag to ask if you want deleted records of all streams or not. Default: true 
+   The `include_deleted` is an optional flag to ask if you want deleted records of all streams or not. Default: true 
+
+   The `request_timeout` is an optional paramater to set timeout for requests. Default: 300 seconds
 
 4. Run the Tap in Discovery Mode
 

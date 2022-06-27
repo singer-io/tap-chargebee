@@ -201,30 +201,38 @@ class BaseChargebeeStream(BaseStream):
                     break
 
             records = response.get('list')
-            
-            to_write = self.get_stream_data(records)
-            
+
+            # List of deleted "plans, addons and coupons" from the /events endpoint
+            deleted_records = []
+
             if self.config.get('include_deleted') not in ['false','False', False]:
                 if self.ENTITY == 'event':
-                    for event in to_write:
+                    # Parse "event_type" from events records and collect deleted plan/addon/coupon from events
+                    for record in records:
+                        event = record.get(self.ENTITY)
                         if event["event_type"] == 'plan_deleted':
                             Util.plans.append(event['content']['plan'])
                         elif event['event_type'] == 'addon_deleted':
                             Util.addons.append(event['content']['addon'])
                         elif event['event_type'] == 'coupon_deleted':
                             Util.coupons.append(event['content']['coupon'])
+                # We need additional transform for deleted records as "to_write" already contains transformed data
                 if self.ENTITY == 'plan':
                     for plan in Util.plans:
-                        to_write.append(plan)
+                        deleted_records.append(self.transform_record(plan))
                 if self.ENTITY == 'addon':
                     for addon in Util.addons:
-                        to_write.append(addon)
+                        deleted_records.append(self.transform_record(addon))
                 if self.ENTITY == 'coupon':
                     for coupon in Util.coupons:
-                        to_write.append(coupon) 
+                        deleted_records.append(self.transform_record(coupon))
 
-            
+            # Get records from API response and transform
+            to_write = self.get_stream_data(records)
+
             with singer.metrics.record_counter(endpoint=table) as ctr:
+                # Combine transformed records and deleted data of  "plan, addon and coupon" collected from events endpoint
+                to_write = to_write + deleted_records
                 singer.write_records(table, to_write)
 
                 ctr.increment(amount=len(to_write))
