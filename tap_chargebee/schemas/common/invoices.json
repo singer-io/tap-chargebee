@@ -8,6 +8,13 @@
     "po_number": {
       "type": ["null", "string"]
     },
+    "channel":{
+      "type": ["null", "string"]
+    },
+    "generated_at": {
+      "type": ["null", "string"],
+      "format": "date-time"
+    },
     "customer_id": {
       "type": ["null", "string"]
     },
@@ -654,6 +661,20 @@
     },
     "subscription_id": {
       "type": ["null", "string"]
+    },
+    "einvoice": {
+      "type": ["null", "object"],
+      "properties":{
+        "id": {
+          "type": ["null", "string"]
+        },
+        "status": {
+          "type": ["null", "string"]
+        },
+        "message": {
+          "type": ["null", "string"]
+        }
+      }
     }
   }
 }

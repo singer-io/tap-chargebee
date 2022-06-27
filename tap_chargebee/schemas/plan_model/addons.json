@@ -8,6 +8,9 @@
     "name": {
       "type": ["null", "string"]
     },
+    "channel":{
+      "type": ["null", "string"]
+    },
     "invoice_name": {
       "type": ["null", "string"]
     },
@@ -66,16 +69,16 @@
     "accounting_code": {
       "type": ["null", "string"]
     },
-    "accouting_category1": {
+    "accounting_category1": {
       "type": ["null", "string"]
     },
-    "accouting_category2": {
+    "accounting_category2": {
       "type": ["null", "string"]
     },
-    "accouting_category3": {
+    "accounting_category3": {
       "type": ["null", "string"]
     },
-    "accouting_category4": {
+    "accounting_category4": {
       "type": ["null", "string"]
     },
     "is_shippable": {

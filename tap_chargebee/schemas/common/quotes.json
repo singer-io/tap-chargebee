@@ -192,6 +192,9 @@
           "coupon_id": {
             "type": ["null", "string"]
           },
+          "entity_id": {
+            "type": ["null", "string"]
+          },
           "discount_amount": {
             "type": ["null", "integer"]
           }

@@ -11,6 +11,9 @@
     "invoice_name": {
       "type": ["null", "string"]
     },
+    "channel":{
+      "type": ["null", "string"]
+    },
     "description": {
       "type": ["null", "string"]
     },

@@ -16,6 +16,12 @@
             "string"
          ]
       },
+      "channel":{
+         "type":[
+            "null",
+            "string"
+         ]
+       },
       "description":{
          "type":[
             "null",
