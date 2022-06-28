@@ -1,5 +1,12 @@
 # Changelog
 
+## 1.3.3
+  * Implement request timeout #[78](https://github.com/singer-io/tap-chargebee/pull/78)
+  * Add missing tap-tester tests #[83](https://github.com/singer-io/tap-chargebee/pull/83)
+  * Add custom exception handling #[85](https://github.com/singer-io/tap-chargebee/pull/85)
+  * Add missing fields to schema #[87](https://github.com/singer-io/tap-chargebee/pull/87)
+  * Revert back bookmark logic #[88](https://github.com/singer-io/tap-chargebee/pull/88)
+
 ##1.3.2
   * Revert back bookmarking logic [#86](https://github.com/singer-io/tap-chargebee/pull/86)
 
