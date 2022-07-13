@@ -27,6 +27,9 @@
     "status": {
       "type": ["null", "string"]
     },
+    "fractional_correction": {
+      "type": ["null", "string"]
+    },
     "vat_number": {
       "type": ["null", "string"],
       "maxLength": 20
