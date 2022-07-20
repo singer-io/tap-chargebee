@@ -9,22 +9,19 @@
             "type": [
                 "null",
                 "string"
-            ],
-            "maxLength": 50
+            ]
         },
         "customer_id": {
             "type": [
                 "null",
                 "string"
-            ],
-            "maxLength": 50
+            ]
         },
         "subscription_id": {
             "type": [
                 "null",
                 "string"
-            ],
-            "maxLength": 50
+            ]
         },
         "date_from": {
             "type": [

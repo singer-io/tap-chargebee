@@ -3,20 +3,16 @@
   "additionalProperties": false,
   "properties": {
     "id": {
-      "type": ["null", "string"],
-      "maxLength": 100
+      "type": ["null", "string"]
     },
     "name": {
-      "type": ["null", "string"],
-      "maxLength": 50
+      "type": ["null", "string"]
     },
     "invoice_name": {
-      "type": ["null", "string"],
-      "maxLength": 100
+      "type": ["null", "string"]
     },
     "description": {
-      "type": ["null", "string"],
-      "maxLength": 500
+      "type": ["null", "string"]
     },
     "pricing_model": {
       "type": ["null", "string"]
@@ -50,8 +46,7 @@
       "type": ["null", "boolean"]
     },
     "tax_code": {
-      "type": ["null", "string"],
-      "maxLength": 50
+      "type": ["null", "string"]
     },
     "avalara_sale_type": {
       "type": ["null", "string"]
@@ -63,20 +58,16 @@
       "type": ["null", "integer"]
     },
     "sku": {
-      "type": ["null", "string"],
-      "maxLength": 100
+      "type": ["null", "string"]
     },
     "accounting_code": {
-      "type": ["null", "string"],
-      "maxLength": 100
+      "type": ["null", "string"]
     },
     "accouting_category1": {
-      "type": ["null", "string"],
-      "maxLength": 100
+      "type": ["null", "string"]
     },
     "accouting_category2": {
-      "type": ["null", "string"],
-      "maxLength": 100
+      "type": ["null", "string"]
     },
     "is_shippable": {
       "type": ["null", "boolean"]
