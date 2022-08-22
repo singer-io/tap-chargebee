@@ -196,6 +196,9 @@
     "auto_close_invoices": {
       "type": ["null", "boolean"]
     },
+    "business_entity_id": {
+      "type": ["null", "string"]
+    },
     "addons": {
       "type": ["null", "array"],
       "items": {

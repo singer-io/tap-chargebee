@@ -121,6 +121,9 @@
     "amount_capturable": {
       "type": ["null", "string"]
     },
+    "business_entity_id": {
+      "type": ["null", "string"]
+    },
     "linked_invoices": {
       "type": ["null", "array"],
       "items": {
