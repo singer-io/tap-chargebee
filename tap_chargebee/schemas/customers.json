@@ -97,6 +97,9 @@
     "taxability": {
       "type": ["null", "string"]
     },
+    "business_entity_id": {
+      "type": ["null", "string"]
+    },
     "vat_number_validated_time": {
       "type": ["null", "string"],
       "format": "date-time"

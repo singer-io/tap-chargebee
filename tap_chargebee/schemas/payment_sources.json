@@ -49,6 +49,9 @@
     "card": {
       "$ref": "cards.json#/"
     },
+    "business_entity_id": {
+      "type": ["null", "string"]
+    },
     "bank_account": {
       "type": ["null", "object"],
       "properties": {

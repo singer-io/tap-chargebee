@@ -78,6 +78,9 @@
     "deleted": {
       "type": ["null", "boolean"]
     },
+    "business_entity_id": {
+      "type": ["null", "string"]
+    },
     "line_items": {
       "type": ["null", "array"],
       "items": {
