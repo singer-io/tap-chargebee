@@ -212,6 +212,12 @@
             "string"
          ]
       },
+      "custom_fields": {
+         "type": [
+            "null",
+            "string"
+         ]
+      },
       "tiers":{
          "type":[
             "null",
