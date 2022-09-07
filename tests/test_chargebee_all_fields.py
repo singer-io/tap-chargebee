@@ -14,7 +14,6 @@ class ChargebeeAllFieldsTest(ChargebeeBaseTest):
             'expected_payment_date',
             'voided_at',
             'payment_owner',
-            'line_item_tiers',
             'vat_number_prefix',
             'total_in_local_currency',
             'sub_total_in_local_currency',
@@ -33,7 +32,6 @@ class ChargebeeAllFieldsTest(ChargebeeBaseTest):
             'contract_term_billing_cycle_on_renewal', # Enable Contract terms feature
             'plan_amount_in_decimal',
             'plan_quantity_in_decimal',
-            'has_scheduled_advance_invoices',
             'free_period_unit',
             'referral_info',
             'pause_date',
@@ -158,7 +156,6 @@ class ChargebeeAllFieldsTest(ChargebeeBaseTest):
             'start_date',
             'remaining_billing_cycles',
             'payment_source_id',
-            'item_tiers',
             'invoice_notes',
             'created_from_ip',
             'cancel_reason_code'
@@ -199,6 +196,7 @@ class ChargebeeAllFieldsTest(ChargebeeBaseTest):
             'contract_term_termination_fee',
             'contract_term_end'
         },
+        'invoices': {'line_item_tiers'},
         'plans': { # not found in the UI
             'avalara_service_type', # configure Avatax for Communications
             'account_code',
