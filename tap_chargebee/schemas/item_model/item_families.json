@@ -52,6 +52,12 @@
             "null",
             "string"
          ]
+      },
+      "custom_fields": {
+         "type": [
+            "null",
+            "string"
+         ]
       }
    }
 }
