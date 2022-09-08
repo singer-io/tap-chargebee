@@ -1,5 +1,9 @@
 # Changelog
 
+## 1.3.4
+  * Custom field support for Item Model entities #[92](https://github.com/singer-io/tap-chargebee/pull/92)
+  * Updated integration test #[93](https://github.com/singer-io/tap-chargebee/pull/93)
+
 ## 1.3.3
   * Implement request timeout #[78](https://github.com/singer-io/tap-chargebee/pull/78)
   * Add missing tap-tester tests #[83](https://github.com/singer-io/tap-chargebee/pull/83)
