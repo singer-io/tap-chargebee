@@ -81,6 +81,9 @@
     "business_entity_id": {
       "type": ["null", "string"]
     },
+    "create_reason_code": {
+      "type": ["null", "string"]
+    },
     "line_items": {
       "type": ["null", "array"],
       "items": {
