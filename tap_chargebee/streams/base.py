@@ -213,8 +213,8 @@ class BaseChargebeeStream(BaseStream):
                     LOGGER.info("Final offset reached. Ending sync.")
                     done = True
             else:
-                LOGGER.info("Advancing by one offset.")
                 params['offset'] = response.get('next_offset')
                 bookmark_date = max_date
+                LOGGER.info(f"Advancing by one offset [{params}]")
 
         save_state(self.state)
