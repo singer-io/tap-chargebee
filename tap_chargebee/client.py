@@ -22,11 +22,11 @@ class Server429Error(Exception):
 
 class ChargebeeClient(BaseClient):
 
-    def __init__(self, config, api_result_limit=100, include_deleted=True):
+    def __init__(self, config, api_result_limit=100):
         super().__init__(config)
 
         self.api_result_limit = api_result_limit
-        self.include_deleted = include_deleted
+        self.include_deleted = self.config.get('include_deleted', True)
         self.user_agent = self.config.get('user_agent')
 
     def get_headers(self):
