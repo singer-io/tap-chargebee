@@ -151,6 +151,28 @@
                     }
                 }
             }
+        },
+        "unit_amount_in_decimal" : {
+            "type": [
+                "null", 
+                "string"
+            ]
+
+        },
+        "quantity_in_decimal" : {
+            "type": [
+                "null", 
+                "string"
+            ]
+
+        },
+        "amount_in_decimal" : {
+            "type": [
+                "null", 
+                "string"
+            ]
+
         }
+
     }
 }
