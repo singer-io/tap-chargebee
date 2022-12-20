@@ -490,7 +490,7 @@
           "charge_on_option": {
             "type": ["null", "string"]
           },
-          "unit_amount_in_decimal" : {
+          "unit_price_in_decimal" : {
             "type": ["null", "string"]
       
           },
