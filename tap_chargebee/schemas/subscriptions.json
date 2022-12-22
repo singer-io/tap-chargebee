@@ -225,6 +225,16 @@
           },
           "object": {
             "type": ["null", "string"]
+          },
+          "unit_amount_in_decimal" : {
+            "type": ["null", "string"]
+      
+          },
+          "quantity_in_decimal" : {
+            "type": ["null", "string"]
+          },
+         "amount_in_decimal" : {
+            "type": ["null", "string"]
           }
         }
       }
@@ -250,6 +260,12 @@
             "type": ["null", "boolean"]
           },
           "object": {
+            "type": ["null", "string"]
+          },
+          "quantity_in_decimal": {
+            "type": ["null", "string"]
+          },
+          "unit_price_in_decimal": {
             "type": ["null", "string"]
           }
         }
@@ -472,6 +488,16 @@
             "type": ["null", "boolean"]
           },
           "charge_on_option": {
+            "type": ["null", "string"]
+          },
+          "unit_price_in_decimal" : {
+            "type": ["null", "string"]
+      
+          },
+          "quantity_in_decimal" : {
+            "type": ["null", "string"]
+          },
+         "amount_in_decimal" : {
             "type": ["null", "string"]
           }
         }

@@ -26,10 +26,10 @@ This tap:
 
 ## Quick Start
 
-1. Install
+1. Install the tap locally
 
     ```bash
-    pip install tap-chargebee
+    pip install -e .
     ```
 
 2. Create the config file
