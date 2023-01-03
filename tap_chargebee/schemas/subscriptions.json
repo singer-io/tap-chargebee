@@ -233,7 +233,10 @@
           "quantity_in_decimal" : {
             "type": ["null", "string"]
           },
-         "amount_in_decimal" : {
+          "amount_in_decimal" : {
+            "type": ["null", "string"]
+          },
+          "unit_price_in_decimal" : {
             "type": ["null", "string"]
           }
         }
