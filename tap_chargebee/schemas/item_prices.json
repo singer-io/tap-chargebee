@@ -82,6 +82,12 @@
     "show_description_in_quotes": {
       "type": ["null", "boolean"]
     },
+    "cf_product_code": {
+      "type": ["null", "string"]
+    },
+    "channel": {
+      "type": ["null", "string"]
+    },
     "tiers": {
       "type": ["null", "array"],
       "items": {
@@ -135,6 +141,9 @@
           "type": ["null", "string"]
         },
         "accounting_category2": {
+          "type": ["null", "string"]
+        },
+        "accounting_category3": {
           "type": ["null", "string"]
         }
       }
