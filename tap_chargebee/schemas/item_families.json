@@ -1,0 +1,28 @@
+{
+    "type": ["null", "object"],
+    "additionalProperties": false,
+    "properties": {
+      "id": {
+        "type": ["null", "string"]
+      },
+      "name": {
+        "type": ["null", "string"]
+      },
+      "description": {
+        "type": ["null", "string"]
+      },
+      "status": {
+        "type": ["null", "string"]
+      },
+      "resource_version": {
+        "type": ["null", "integer"]
+      },
+      "updated_at": {
+        "type": ["null", "string"],
+        "format": "date-time"
+      },
+      "channel": {
+        "type": ["null", "string"]
+      }
+    }
+  }
