@@ -17,6 +17,7 @@ from .item_prices import ItemPricesStream
 from .items import ItemsStream
 from .unbilled_charges import UnbilledChargesStream
 from .invoiced_unbilled_charges import InvoicedUnbilledChargesStream
+from .item_families import ItemFamiliesStream
 
 AVAILABLE_STREAMS = [
     EventsStream,
@@ -42,7 +43,8 @@ AVAILABLE_STREAMS_1_0_ONLY = [
 
 AVAILABLE_STREAMS_2_0_ONLY = [
     ItemsStream,
-    ItemPricesStream
+    ItemPricesStream,
+    ItemFamiliesStream
 ]
 
 AVAILABLE_STREAMS_1_0 = AVAILABLE_STREAMS + AVAILABLE_STREAMS_1_0_ONLY
