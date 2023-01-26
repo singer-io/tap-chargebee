@@ -115,6 +115,9 @@
     "giftable": {
       "type": ["null", "boolean"]
     },
+    "accounting_code": {
+      "type": ["null", "string"]
+    },
     "claim_url": {
       "type": ["null", "string"]
     },
