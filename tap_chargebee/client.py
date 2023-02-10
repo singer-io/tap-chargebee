@@ -49,8 +49,8 @@ class ChargebeeClient(BaseClient):
 
     @backoff.on_exception(backoff.expo,
                           (Server4xxError, Server429Error, JSONDecodeError),
-                          max_tries=12,
-                          factor=3)
+                          max_tries=6,
+                          factor=2)
     @utils.ratelimit(100, 60)
     def make_request(self, url, method, params=None, body=None):
 
@@ -67,14 +67,14 @@ class ChargebeeClient(BaseClient):
             params=self.get_params(params),
             json=body)
 
-        response_json = response.json()
-
         if response.status_code == 429:
             sleep_time = response.headers.get("Retry-After", 60)
             time.sleep(int(sleep_time))
             raise Server429Error()
 
         if response.status_code >= 400:
-            raise Server4xxError(response_json)
+            raise Server4xxError(response.text)
+
+        response_json = response.json()
 
         return response_json

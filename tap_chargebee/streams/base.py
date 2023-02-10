@@ -4,6 +4,7 @@ import json
 import os
 
 from .util import Util
+from datetime import datetime
 from dateutil.parser import parse
 from tap_framework.streams import BaseStream
 from tap_framework.schemas import load_schema_by_name
@@ -15,6 +16,8 @@ LOGGER = singer.get_logger()
 
 
 class BaseChargebeeStream(BaseStream):
+
+    START_TIMESTAP = int(datetime.utcnow().timestamp())
 
     def write_schema(self):
         singer.write_schema(
@@ -137,20 +140,20 @@ class BaseChargebeeStream(BaseStream):
         sync_failures = False
         # Create params for filtering
         if self.ENTITY == 'event':
-            params = {"occurred_at[after]": bookmark_date_posix}
+            params = {"occurred_at[after]": bookmark_date_posix, "occurred_at[before]": self.START_TIMESTAP}
             bookmark_key = 'occurred_at'
         elif self.ENTITY == 'promotional_credit':
-            params = {"created_at[after]": bookmark_date_posix}
+            params = {"created_at[after]": bookmark_date_posix, "occurred_at[before]": self.START_TIMESTAP}
             bookmark_key = 'created_at'
         elif self.ENTITY == 'transaction':
-            params = {"updated_at[after]": bookmark_date_posix, "status[is_not]": "failure"}
+            params = {"updated_at[after]": bookmark_date_posix, "updated_at[before]": self.START_TIMESTAP, "status[is_not]": "failure"}
             bookmark_key = 'updated_at'
             sync_failures = True
-        elif self.ENTITY == 'customer':
-            params = {"updated_at[after]": bookmark_date_posix, "sort_by[asc]": "updated_at"}
+        elif self.ENTITY in ['customer', 'invoice', 'unbilled_charge']:
+            params = {"updated_at[after]": bookmark_date_posix, "updated_at[before]": self.START_TIMESTAP, "sort_by[asc]": "updated_at"}
             bookmark_key = 'updated_at'
         else:
-            params = {"updated_at[after]": bookmark_date_posix}
+            params = {"updated_at[after]": bookmark_date_posix, "updated_at[before]": self.START_TIMESTAP}
             bookmark_key = 'updated_at'
 
         LOGGER.info("Querying {} starting at {}".format(table, bookmark_date))
