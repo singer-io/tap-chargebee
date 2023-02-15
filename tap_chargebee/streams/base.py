@@ -152,6 +152,8 @@ class BaseChargebeeStream(BaseStream):
         elif self.ENTITY in ['customer', 'invoice', 'unbilled_charge']:
             params = {"updated_at[after]": bookmark_date_posix, "updated_at[before]": self.START_TIMESTAP, "sort_by[asc]": "updated_at"}
             bookmark_key = 'updated_at'
+            if self.ENTITY in ['invoice'] and self.config.get('exclude_zero_invoices'):
+                params['total[is_not]'] = 0
         else:
             params = {"updated_at[after]": bookmark_date_posix, "updated_at[before]": self.START_TIMESTAP}
             bookmark_key = 'updated_at'
