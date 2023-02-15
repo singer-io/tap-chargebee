@@ -57,7 +57,7 @@ class ChargebeeClient(BaseClient):
         if params is None:
             params = {}
 
-        LOGGER.info("Making {} request to {}".format(method, url))
+        LOGGER.info("Making {} request to {} with the following params {}".format(method, url, params))
 
         response = requests.request(
             method,
