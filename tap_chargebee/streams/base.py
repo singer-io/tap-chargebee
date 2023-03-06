@@ -15,6 +15,26 @@ from tap_chargebee.state import get_last_record_value_for_table, incorporate, \
 LOGGER = singer.get_logger()
 
 
+class CbTransformer(singer.Transformer):
+
+    def log_warning(self):
+        if self.filtered:
+            LOGGER.debug("Filtered %s paths during transforms "
+                        "as they were unsupported or not selected:\n\t%s",
+                        len(self.filtered),
+                        "\n\t".join(sorted(self.filtered)))
+            # Output list format to parse for reporting
+            LOGGER.debug("Filtered paths list: %s",
+                        sorted(self.filtered))
+
+        if self.removed:
+            LOGGER.debug("Removed %s paths during transforms:\n\t%s",
+                           len(self.removed),
+                           "\n\t".join(sorted(self.removed)))
+            # Output list format to parse for reporting
+            LOGGER.debug("Removed paths list: %s", sorted(self.removed))
+
+
 class BaseChargebeeStream(BaseStream):
 
     START_TIMESTAP = int(datetime.utcnow().timestamp())
@@ -101,7 +121,7 @@ class BaseChargebeeStream(BaseStream):
 
     # This overrides the transform_record method in the Fistown Analytics tap-framework package
     def transform_record(self, record):
-        with singer.Transformer(integer_datetime_fmt="unix-seconds-integer-datetime-parsing") as tx:
+        with CbTransformer(integer_datetime_fmt="unix-seconds-integer-datetime-parsing") as tx:
             metadata = {}
             
             record = self.appendCustomFields(record)
