@@ -166,7 +166,7 @@ class BaseChargebeeStream(BaseStream):
             params = {"created_at[after]": bookmark_date_posix, "occurred_at[before]": self.START_TIMESTAP}
             bookmark_key = 'created_at'
         elif self.ENTITY == 'transaction':
-            params = {"updated_at[after]": bookmark_date_posix, "updated_at[before]": self.START_TIMESTAP, "status[is_not]": "failure"}
+            params = {"updated_at[after]": bookmark_date_posix, "updated_at[before]": self.START_TIMESTAP, "status[is_not]": "failure", "sort_by[asc]": "updated_at"}
             bookmark_key = 'updated_at'
             sync_failures = True
         elif self.ENTITY in ['customer', 'invoice', 'unbilled_charge']:
