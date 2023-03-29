@@ -436,6 +436,9 @@
         "total_contract_value": {
           "type": ["null", "integer"]
         },
+        "total_contract_value_before_tax": {
+          "type": ["null", "integer"]
+        },
         "cancellation_cutoff_period": {
           "type": ["null", "integer"]
         },
