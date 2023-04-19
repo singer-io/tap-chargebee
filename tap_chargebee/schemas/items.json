@@ -14,6 +14,9 @@
     "status": {
       "type": ["null", "string"]
     },
+    "channel": {
+      "type": ["null", "string"]
+    },
     "resource_version": {
       "type": ["null", "integer"]
     },

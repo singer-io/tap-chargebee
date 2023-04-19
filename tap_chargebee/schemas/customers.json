@@ -14,6 +14,9 @@
     "email": {
       "type": ["null", "string"]
     },
+    "channel": {
+      "type": ["null", "string"]
+    },
     "phone": {
       "type": ["null", "string"]
     },

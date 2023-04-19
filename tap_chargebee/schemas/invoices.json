@@ -20,6 +20,9 @@
     "vat_number": {
       "type": ["null", "string"]
     },
+    "channel": {
+      "type": ["null", "string"]
+    },
     "price_type": {
       "type": ["null", "string"]
     },
