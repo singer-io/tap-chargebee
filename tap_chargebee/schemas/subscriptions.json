@@ -17,6 +17,9 @@
     "plan_quantity": {
       "type": ["null", "integer"]
     },
+    "channel": {
+      "type": ["null", "string"]
+    },
     "plan_unit_price": {
       "type": ["null", "integer"]
     },
