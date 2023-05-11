@@ -17,6 +17,9 @@
     "pricing_model": {
       "type": ["null", "string"]
     },
+    "channel": {
+      "type": ["null", "string"]
+    },
     "charge_type": {
       "type": ["null", "string"]
     },

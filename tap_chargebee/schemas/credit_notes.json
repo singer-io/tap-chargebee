@@ -29,6 +29,9 @@
     "vat_number": {
       "type": ["null", "string"]
     },
+    "channel": {
+      "type": ["null", "string"]
+    },
     "date": {
       "type": ["null", "string"],
       "format": "date-time"
