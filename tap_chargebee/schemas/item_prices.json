@@ -85,6 +85,9 @@
     "cf_product_code": {
       "type": ["null", "string"]
     },
+    "cf_exclude_from_revrec": { 
+      "type" : ["null","string"]
+    },
     "channel": {
       "type": ["null", "string"]
     },
