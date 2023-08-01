@@ -95,6 +95,9 @@
           "id": {
             "type": ["null", "string"]
           },
+          "reference_line_item_id": {
+            "type": ["null", "string"]
+          },
           "subscription_id": {
             "type": ["null", "string"]
           },

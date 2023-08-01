@@ -130,6 +130,9 @@
             "type": ["null", "string"],
             "format": "date-time"
           },
+          "reference_line_item_id": {
+            "type": ["null", "string"]
+          },
           "unit_amount": {
             "type": ["null", "integer"]
           },
