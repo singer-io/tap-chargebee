@@ -76,6 +76,9 @@
     "item_type": {
       "type": ["null", "string"]
     },
+    "cf_intacct_location": {
+      "type": ["null", "string"]
+    },
     "show_description_in_invoices": {
       "type": ["null", "boolean"]
     },
