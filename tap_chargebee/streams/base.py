@@ -4,7 +4,8 @@ import json
 import os
 
 from .util import Util
-from datetime import datetime
+from datetime import datetime, timedelta
+import dateutil.tz as dtz
 from dateutil.parser import parse
 from tap_framework.streams import BaseStream
 from tap_framework.schemas import load_schema_by_name
@@ -38,6 +39,20 @@ class CbTransformer(singer.Transformer):
 class BaseChargebeeStream(BaseStream):
 
     START_TIMESTAP = int(datetime.utcnow().timestamp())
+
+    def __init__(self, config, state, catalog, client):
+        super().__init__(config, state, catalog, client)
+
+        # Only do this if it's a scheduled job
+        if config.get("timezone") and os.environ.get("SCHEDULED_JOB"):
+            # Calculate yesterday based on the timezone set in the tap-chargebee config
+            timezone = config["timezone"]
+            tz = dtz.gettz(timezone)
+            yesterday = datetime.now(tz) - timedelta(days=1)
+            # set the endDate to 11:59:59 yesterday
+            end_date = yesterday.replace(hour=11, minute=59, second=59)
+            # update the start_timestamp
+            self.START_TIMESTAP = int(end_date.timestamp())
 
     def write_schema(self):
         singer.write_schema(
