@@ -5,6 +5,12 @@
     "id": {
       "type": ["null", "string"]
     },
+    "cf_revenue_category": {
+      "type": ["null", "string"]
+    },
+    "cf_cost_center": {
+      "type": ["null", "string"]
+    },
     "name": {
       "type": ["null", "string"]
     },
