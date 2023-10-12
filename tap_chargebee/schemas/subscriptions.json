@@ -361,7 +361,7 @@
         "zip": {
           "type": ["null", "string"]
         },
-        "validation_status,": {
+        "validation_status": {
           "type": ["null", "string"]
         }
       }
