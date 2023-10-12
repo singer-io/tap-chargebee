@@ -11,6 +11,9 @@
     "cf_cost_center": {
       "type": ["null", "string"]
     },
+    "cf_product_type": { 
+      "type" : ["null","string"]
+    },
     "name": {
       "type": ["null", "string"]
     },
