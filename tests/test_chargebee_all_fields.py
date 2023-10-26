@@ -69,7 +69,10 @@ class ChargebeeAllFieldsTest(ChargebeeBaseTest):
             'is_einvoice_enabled',
             'entity_identifiers',
             'entity_identifier_scheme',
-            'invoice_notes'
+            'cf_people_id',
+            'invoice_notes',
+            'business_entity_id'
+
         },
         'credit_notes': { # not found in the UI
             'line_item_tiers',
@@ -223,7 +226,8 @@ class ChargebeeAllFieldsTest(ChargebeeBaseTest):
         'subscriptions': { # not found in the UI
             'offline_payment_method',
             'gift_id'
-        }
+        },
+        'events': {'user'}
     }
 
     def name(self):
