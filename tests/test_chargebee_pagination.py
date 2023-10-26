@@ -85,8 +85,8 @@ class ChargebeePaginationTest(ChargebeeBaseTest):
 
         #Pagination test for Product Catalog version 1
         # BUG TDL-24425: skip pagination test because we don't have enough test data for testing
-        # self.is_product_catalog_v1 = True
-        # self.pagination_test_run()
+        self.is_product_catalog_v1 = True
+        self.pagination_test_run()
 
         #Pagintaion test for Product Catalog version 2
         self.is_product_catalog_v1 = False
