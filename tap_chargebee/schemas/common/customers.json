@@ -91,6 +91,9 @@
     "cf_company_id": {
       "type": ["null", "integer", "string"]
     },
+    "cf_people_id": {
+      "type": ["null", "integer", "string"]
+    },
     "allow_direct_debit": {
       "type": ["null", "boolean"]
     },
@@ -107,6 +110,9 @@
       "type": ["null", "string"]
     },
     "taxability": {
+      "type": ["null", "string"]
+    },
+    "tax_providers_fields": {
       "type": ["null", "string"]
     },
     "vat_number_validated_time": {
@@ -154,6 +160,9 @@
     },
     "business_customer_without_vat_number": {
       "type": ["null", "boolean"]
+    },
+    "business_entity_id": {
+      "type": ["null", "integer", "string"]
     },
     "client_profile_id": {
       "type": ["null", "string"]
