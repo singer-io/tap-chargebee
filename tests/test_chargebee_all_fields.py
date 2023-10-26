@@ -226,8 +226,7 @@ class ChargebeeAllFieldsTest(ChargebeeBaseTest):
         'subscriptions': { # not found in the UI
             'offline_payment_method',
             'gift_id'
-        },
-        'events': {'user'}
+        }
     }
 
     def name(self):
