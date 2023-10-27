@@ -17,7 +17,7 @@ class ChargebeePaginationTest(ChargebeeBaseTest):
 
     def generate_events(self):
         # Generate events for product catalog v1
-        url = 'https://{}.chargebee.com/api/v2/customers/cbdemo_dave'.format(os.getenv("TAP_CHARGEBEE_SITE"))
+        url = 'https://{}.chargebee.com/api/v1/customers/cbdemo_dave'.format(os.getenv("TAP_CHARGEBEE_SITE"))
         payload = 'first_name=Dave'
         # Update customer 20 times which will generate 20 events
         product_v1_api_key = os.getenv("TAP_CHARGEBEE_API_KEY")
@@ -63,8 +63,8 @@ class ChargebeePaginationTest(ChargebeeBaseTest):
                 # collect information for assertions from syncs 1 & 2 base on expected values
                 record_count_sync = record_count_by_stream.get(stream, 0)
                 primary_keys_list = [tuple(message.get('data').get(expected_pk) for expected_pk in expected_primary_keys)
-                                       for message in synced_records.get(stream).get('messages')
-                                       if message.get('action') == 'upsert']
+                                     for message in synced_records.get(stream).get('messages')
+                                     if message.get('action') == 'upsert']
 
                 # verify records are more than page size so multiple page is working
                 self.assertGreater(record_count_sync, page_size)

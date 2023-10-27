@@ -5,7 +5,8 @@ from datetime import datetime as dt
 import time
 
 import singer
-from tap_tester import connections, menagerie, runner
+from tap_tester import connections, menagerie, runner, LOGGER
+
 
 class ChargebeeBaseTest(unittest.TestCase):
     """
@@ -30,10 +31,10 @@ class ChargebeeBaseTest(unittest.TestCase):
     start_date = ""
     is_product_catalog_v1 = True
     properties_v1 = {
-	    "site": "TAP_CHARGEBEE_SITE"
+        "site": "TAP_CHARGEBEE_SITE"
     }
     properties_v2 = {
-	    "site": "TAP_CHARGEBEE_SITE_V2"
+        "site": "TAP_CHARGEBEE_SITE_V2"
     }
     credentials_v1 = {
         "api_key": "TAP_CHARGEBEE_API_KEY",
@@ -41,7 +42,6 @@ class ChargebeeBaseTest(unittest.TestCase):
     credentials_v2 = {
         "api_key": "TAP_CHARGEBEE_API_KEY_V2",
     }
-
 
     @staticmethod
     def tap_name():
@@ -331,7 +331,7 @@ class ChargebeeBaseTest(unittest.TestCase):
                 # Verify all fields within each selected stream are selected
                 for field, field_props in catalog_entry.get('annotated-schema').get('properties').items():
                     field_selected = field_props.get('selected')
-                    print("\tValidating selection on {}.{}: {}".format(
+                    LOGGER.info("\tValidating selection on {}.{}: {}".format(
                         cat['stream_name'], field, field_selected))
                     self.assertTrue(field_selected, msg="Field not selected.")
             else:
@@ -354,7 +354,6 @@ class ChargebeeBaseTest(unittest.TestCase):
             if is_field_metadata and inclusion_automatic_or_selected:
                 selected_fields.add(field['breadcrumb'][1])
         return selected_fields
-
 
     @staticmethod
     def select_all_streams_and_fields(conn_id, catalogs, select_all_fields: bool = True):

@@ -1,6 +1,7 @@
 from tap_tester import connections, runner, menagerie
 from base import ChargebeeBaseTest
 
+
 class ChargebeeAllFieldsTest(ChargebeeBaseTest):
 
     # list of fields that are common between V1 and V2 for which data is not generated
@@ -61,14 +62,14 @@ class ChargebeeAllFieldsTest(ChargebeeBaseTest):
             'relationship',
             'billing_date_mode',
             'customer_type', # Configure Avatax for Communications
-            'mrr',
             'auto_close_invoices', # Metered Billing must be enabled
             'vat_number_prefix',
             'business_customer_without_vat_number', # Validate VAT
             'entity_identifier_standard',
             'is_einvoice_enabled',
             'entity_identifiers',
-            'entity_identifier_scheme'
+            'entity_identifier_scheme',
+            'invoice_notes'
         },
         'credit_notes': { # not found in the UI
             'line_item_tiers',
@@ -158,7 +159,9 @@ class ChargebeeAllFieldsTest(ChargebeeBaseTest):
             'payment_source_id',
             'invoice_notes',
             'created_from_ip',
-            'cancel_reason_code'
+            'cancel_reason_code',
+            'coupon',
+            'coupons'
         },
         'transactions': { # not found in the UI
             'error_text',
@@ -262,7 +265,7 @@ class ChargebeeAllFieldsTest(ChargebeeBaseTest):
 
         record_count_by_stream = self.run_and_verify_sync(conn_id)
         synced_records = runner.get_records_from_target_output()
-        
+
         # Verify no unexpected streams were replicated
         synced_stream_names = set(synced_records.keys())
         self.assertSetEqual(expected_streams, synced_stream_names)

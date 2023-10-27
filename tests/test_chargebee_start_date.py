@@ -3,6 +3,7 @@ import os
 from tap_tester import connections, runner
 
 from base import ChargebeeBaseTest
+from tap_tester import LOGGER
 
 
 class ChargebeeStartDateTest(ChargebeeBaseTest):
@@ -54,7 +55,7 @@ class ChargebeeStartDateTest(ChargebeeBaseTest):
         ### Update START DATE Between Syncs
         ##########################################################################
 
-        print("REPLICATION START DATE CHANGE: {} ===>>> {} ".format(self.start_date, self.start_date_2))
+        LOGGER.info("REPLICATION START DATE CHANGE: {} ===>>> {} ".format(self.start_date, self.start_date_2))
         self.start_date = self.start_date_2
 
         ##########################################################################
