@@ -69,7 +69,10 @@ class ChargebeeAllFieldsTest(ChargebeeBaseTest):
             'is_einvoice_enabled',
             'entity_identifiers',
             'entity_identifier_scheme',
-            'invoice_notes'
+            'cf_people_id',
+            'invoice_notes',
+            'business_entity_id'
+
         },
         'credit_notes': { # not found in the UI
             'line_item_tiers',
