@@ -1,5 +1,9 @@
 # Changelog
 
+## 1.3.5
+  * Add missing Business Entity Details from Chargebee customers details #[100](https://github.com/singer-io/tap-chargebee/pull/100)
+  * Prevent truncating invoice lineItem taxRates #[102](https://github.com/singer-io/tap-chargebee/pull/102)
+
 ## 1.3.4
   * Custom field support for Item Model entities #[92](https://github.com/singer-io/tap-chargebee/pull/92)
   * Updated integration test #[93](https://github.com/singer-io/tap-chargebee/pull/93)
