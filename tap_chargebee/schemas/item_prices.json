@@ -5,14 +5,17 @@
     "id": {
       "type": ["null", "string"]
     },
+    "custom_fields": {
+      "type": ["null", "string"]
+    },
     "cf_revenue_category": {
       "type": ["null", "string"]
     },
     "cf_cost_center": {
       "type": ["null", "string"]
     },
-    "cf_product_type": { 
-      "type" : ["null","string"]
+    "cf_product_type": {
+      "type": ["null", "string"]
     },
     "name": {
       "type": ["null", "string"]
@@ -97,8 +100,8 @@
     "cf_product_code": {
       "type": ["null", "string"]
     },
-    "cf_exclude_from_revrec": { 
-      "type" : ["null","string"]
+    "cf_exclude_from_revrec": {
+      "type": ["null", "string"]
     },
     "channel": {
       "type": ["null", "string"]
@@ -106,7 +109,7 @@
     "tiers": {
       "type": ["null", "array"],
       "items": {
-        "type": ["null","object"],
+        "type": ["null", "object"],
         "properties": {
           "starting_unit": {
             "type": ["null", "integer"]
@@ -121,7 +124,7 @@
       }
     },
     "tax_detail": {
-      "type": ["null","object"],
+      "type": ["null", "object"],
       "properties": {
         "tax_profile_id": {
           "type": ["null", "string"]
@@ -144,7 +147,7 @@
       }
     },
     "accounting_detail": {
-      "type": ["null","object"],
+      "type": ["null", "object"],
       "properties": {
         "sku": {
           "type": ["null", "string"]

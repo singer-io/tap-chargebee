@@ -9,7 +9,7 @@ setup(name='tap-chargebee',
       classifiers=['Programming Language :: Python :: 3 :: Only'],
       py_modules=['tap_chargebee'],
       install_requires=[
-          'tap-framework==0.1.1'
+          'tap-framework @ git+https://github.com/hotgluexyz/tap-framework.git#egg=tap-framework', # USING THE HOTGLUE VERSION
       ],
       entry_points='''
           [console_scripts]
