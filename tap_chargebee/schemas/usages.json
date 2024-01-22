@@ -1,0 +1,66 @@
+{
+    "$schema": "http://json-schema.org/schema#",
+    "type": "object",
+    "properties": {
+      "created_at": {
+        "type": [
+          "integer",
+          "null"
+        ]
+      },
+      "id": {
+        "type": [
+          "null",
+          "string"
+        ]
+      },
+      "item_price_id": {
+        "type": [
+          "null",
+          "string"
+        ]
+      },
+      "note": {
+        "type": [
+          "null",
+          "string"
+        ]
+      },
+      "object": {
+        "type": [
+          "null",
+          "string"
+        ]
+      },
+      "quantity": {
+        "type": [
+          "null",
+          "string"
+        ]
+      },
+      "resource_version": {
+        "type": [
+          "integer",
+          "null"
+        ]
+      },
+      "subscription_id": {
+        "type": [
+          "null",
+          "string"
+        ]
+      },
+      "updated_at": {
+        "type": [
+          "integer",
+          "null"
+        ]
+      },
+      "usage_date": {
+        "type": [
+          "integer",
+          "null"
+        ]
+      }
+    }
+  }

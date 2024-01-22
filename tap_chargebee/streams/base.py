@@ -118,14 +118,14 @@ class BaseChargebeeStream(BaseStream):
             content = record['content']
             words = record['event_type'].split("_")
             sl = slice(len(words) - 1)
-            content_obj = "_".join(words[sl])     
-            
+            content_obj = "_".join(words[sl])
+
             if content_obj in listOfCustomFieldObj:
                 for k in record['content'][content_obj].keys():
                     if "cf_" in k:
                         event_custom_fields[k] = record['content'][content_obj][k]
-                record['content'][content_obj]['custom_fields'] = json.dumps(event_custom_fields)    
-        
+                record['content'][content_obj]['custom_fields'] = json.dumps(event_custom_fields)
+
 
         for key in record.keys():
             if "cf_" in key:
@@ -138,9 +138,9 @@ class BaseChargebeeStream(BaseStream):
     def transform_record(self, record):
         with CbTransformer(integer_datetime_fmt="unix-seconds-integer-datetime-parsing") as tx:
             metadata = {}
-            
+
             record = self.appendCustomFields(record)
-                
+
             if self.catalog.metadata is not None:
                 metadata = singer.metadata.to_map(self.catalog.metadata)
 
@@ -153,7 +153,7 @@ class BaseChargebeeStream(BaseStream):
         entity = self.ENTITY
         return [self.transform_record(item.get(entity)) for item in data]
 
-    def sync_data(self):
+    def sync_data(self, child_sync=False):
         table = self.TABLE
         api_method = self.API_METHOD
         done = False
@@ -209,9 +209,13 @@ class BaseChargebeeStream(BaseStream):
                     break
 
             records = response.get('list')
-            
+
+            if child_sync:
+                yield from records
+                return
+
             to_write = self.get_stream_data(records)
-            
+
             if self.ENTITY == 'event':
                 for event in to_write:
                     if event["event_type"] == 'plan_deleted':
@@ -228,9 +232,9 @@ class BaseChargebeeStream(BaseStream):
                     to_write.append(addon)
             if self.ENTITY == 'coupon':
                 for coupon in Util.coupons:
-                    to_write.append(coupon) 
+                    to_write.append(coupon)
 
-            
+
             with singer.metrics.record_counter(endpoint=table) as ctr:
                 singer.write_records(table, to_write)
 
@@ -261,3 +265,6 @@ class BaseChargebeeStream(BaseStream):
                 LOGGER.info(f"Advancing by one offset [{params}]")
 
         save_state(self.state)
+
+    def get_parent_stream_data(self):
+        yield from self.PARENT_STREAM_TYPE(self.config, self.state, self.catalog, self.client).sync_data(child_sync=True)
