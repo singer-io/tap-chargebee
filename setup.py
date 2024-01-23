@@ -3,12 +3,13 @@
 from setuptools import setup, find_packages
 
 setup(name='tap-chargebee',
-      version='1.3.5',
+      version='1.4.0',
       description='Singer.io tap for extracting data from the Chargebee API',
       author='dwallace@envoy.com',
       classifiers=['Programming Language :: Python :: 3 :: Only'],
       py_modules=['tap_chargebee'],
       install_requires=[
+          'singer-python==6.0.0',
           'tap-framework==0.1.1'
       ],
       entry_points='''

@@ -1,5 +1,8 @@
 # Changelog
 
+## 1.4.0
+  * Updates for python 3.11 #[104](https://github.com/singer-io/tap-chargebee/pull/104)
+
 ## 1.3.5
   * Add missing Business Entity Details from Chargebee customers details #[100](https://github.com/singer-io/tap-chargebee/pull/100)
   * Prevent truncating invoice lineItem taxRates #[102](https://github.com/singer-io/tap-chargebee/pull/102)
