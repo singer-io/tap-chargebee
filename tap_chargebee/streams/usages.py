@@ -17,7 +17,9 @@ class UsagesStream(BaseChargebeeStream):
     ENTITY = 'usage'
     KEY_PROPERTIES = ['id']
     SELECTED_BY_DEFAULT = True
+    REPLICATION_METHOD = "FULL"
     BOOKMARK_PROPERTIES = ['updated_at']
+    VALID_REPLICATION_KEYS = ['updated_at']
     INCLUSION = 'available'
     API_METHOD = 'GET'
     PARENT_STREAM_TYPE = SubscriptionsStream
