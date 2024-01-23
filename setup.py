@@ -9,7 +9,7 @@ setup(name='tap-chargebee',
       classifiers=['Programming Language :: Python :: 3 :: Only'],
       py_modules=['tap_chargebee'],
       install_requires=[
-          'singer-python=6.0.0',
+          'singer-python==6.0.0',
           'tap-framework==0.1.1'
       ],
       entry_points='''
