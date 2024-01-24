@@ -153,7 +153,7 @@ class BaseChargebeeStream(BaseStream):
         entity = self.ENTITY
         return [self.transform_record(item.get(entity)) for item in data]
 
-    def sync_data(self, child_sync=False):
+    def sync_data(self, sync_data_for_child_stream=False):
         table = self.TABLE
         api_method = self.API_METHOD
         done = False
@@ -210,10 +210,6 @@ class BaseChargebeeStream(BaseStream):
 
             records = response.get('list')
 
-            if child_sync:
-                yield from records
-                return
-
             to_write = self.get_stream_data(records)
 
             if self.ENTITY == 'event':
@@ -235,36 +231,52 @@ class BaseChargebeeStream(BaseStream):
                     to_write.append(coupon)
 
 
-            with singer.metrics.record_counter(endpoint=table) as ctr:
-                singer.write_records(table, to_write)
+            if not sync_data_for_child_stream:
+                with singer.metrics.record_counter(endpoint=table) as ctr:
+                    singer.write_records(table, to_write)
 
-                ctr.increment(amount=len(to_write))
+                    ctr.increment(amount=len(to_write))
+
+                    if bookmark_key is not None:
+                        for item in to_write:
+                            if item.get(bookmark_key) is not None:
+                                try:
+                                    max_date = max(
+                                        max_date,
+                                        parse(item.get(bookmark_key))
+                                    )
+                                except TypeError:
+                                    max_date = max(
+                                        max_date,
+                                        datetime.fromtimestamp(item.get(bookmark_key), tz=dtz.gettz('UTC')
+                                    ))
 
                 if bookmark_key is not None:
-                    for item in to_write:
-                        if item.get(bookmark_key) is not None:
-                            max_date = max(
-                                max_date,
-                                parse(item.get(bookmark_key))
-                            )
+                    self.state = incorporate(
+                        self.state, table, 'bookmark_date', max_date)
 
-            if bookmark_key is not None:
-                self.state = incorporate(
-                    self.state, table, 'bookmark_date', max_date)
-
-            if not response.get('next_offset'):
-                if sync_failures:
-                    params = {"date[after]": bookmark_date_posix, "status[is]": "failure"}
-                    sync_failures = False
+                if not response.get('next_offset'):
+                    if sync_failures:
+                        params = {"date[after]": bookmark_date_posix, "status[is]": "failure"}
+                        sync_failures = False
+                    else:
+                        LOGGER.info("Final offset reached. Ending sync.")
+                        done = True
                 else:
-                    LOGGER.info("Final offset reached. Ending sync.")
-                    done = True
-            else:
-                params['offset'] = response.get('next_offset')
-                bookmark_date = max_date
-                LOGGER.info(f"Advancing by one offset [{params}]")
+                    params['offset'] = response.get('next_offset')
+                    bookmark_date = max_date
+                    LOGGER.info(f"Advancing by one offset [{params}]")
 
-        save_state(self.state)
+            if not sync_data_for_child_stream:
+                save_state(self.state)
+                return
+
+            else:
+                return to_write
+
+        if sync_data_for_child_stream:
+            return child_records
 
     def get_parent_stream_data(self):
-        yield from self.PARENT_STREAM_TYPE(self.config, self.state, self.catalog, self.client).sync_data(child_sync=True)
+        data = self.PARENT_STREAM_TYPE(self.config, self.state, self.catalog, self.client).sync_data(sync_data_for_child_stream=True)
+        return data
