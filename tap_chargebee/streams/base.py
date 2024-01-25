@@ -153,7 +153,7 @@ class BaseChargebeeStream(BaseStream):
         entity = self.ENTITY
         return [self.transform_record(item.get(entity)) for item in data]
 
-    def sync_data(self, sync_data_for_child_stream=False):
+    def sync_data(self):
         table = self.TABLE
         api_method = self.API_METHOD
         done = False
@@ -265,8 +265,7 @@ class BaseChargebeeStream(BaseStream):
                 bookmark_date = max_date
                 LOGGER.info(f"Advancing by one offset [{params}]")
 
-            if not sync_data_for_child_stream:
-                save_state(self.state)
+            save_state(self.state)
 
     def sync_parent_data(self):
         table = self.TABLE
