@@ -230,53 +230,101 @@ class BaseChargebeeStream(BaseStream):
                 for coupon in Util.coupons:
                     to_write.append(coupon)
 
+            with singer.metrics.record_counter(endpoint=table) as ctr:
+                singer.write_records(table, to_write)
 
-            if not sync_data_for_child_stream:
-                with singer.metrics.record_counter(endpoint=table) as ctr:
-                    singer.write_records(table, to_write)
-
-                    ctr.increment(amount=len(to_write))
-
-                    if bookmark_key is not None:
-                        for item in to_write:
-                            if item.get(bookmark_key) is not None:
-                                try:
-                                    max_date = max(
-                                        max_date,
-                                        parse(item.get(bookmark_key))
-                                    )
-                                except TypeError:
-                                    max_date = max(
-                                        max_date,
-                                        datetime.fromtimestamp(item.get(bookmark_key), tz=dtz.gettz('UTC')
-                                    ))
+                ctr.increment(amount=len(to_write))
 
                 if bookmark_key is not None:
-                    self.state = incorporate(
-                        self.state, table, 'bookmark_date', max_date)
+                    for item in to_write:
+                        if item.get(bookmark_key) is not None:
+                            try:
+                                max_date = max(
+                                    max_date,
+                                    parse(item.get(bookmark_key))
+                                )
+                            except TypeError:
+                                max_date = max(
+                                    max_date,
+                                    datetime.fromtimestamp(item.get(bookmark_key), tz=dtz.gettz('UTC')
+                                ))
 
-                if not response.get('next_offset'):
-                    if sync_failures:
-                        params = {"date[after]": bookmark_date_posix, "status[is]": "failure"}
-                        sync_failures = False
-                    else:
-                        LOGGER.info("Final offset reached. Ending sync.")
-                        done = True
+            if bookmark_key is not None:
+                self.state = incorporate(
+                    self.state, table, 'bookmark_date', max_date)
+
+            if not response.get('next_offset'):
+                if sync_failures:
+                    params = {"date[after]": bookmark_date_posix, "status[is]": "failure"}
+                    sync_failures = False
                 else:
-                    params['offset'] = response.get('next_offset')
-                    bookmark_date = max_date
-                    LOGGER.info(f"Advancing by one offset [{params}]")
+                    LOGGER.info("Final offset reached. Ending sync.")
+                    done = True
+            else:
+                params['offset'] = response.get('next_offset')
+                bookmark_date = max_date
+                LOGGER.info(f"Advancing by one offset [{params}]")
 
             if not sync_data_for_child_stream:
                 save_state(self.state)
-                return
 
+    def sync_parent_data(self):
+        table = self.TABLE
+        api_method = self.API_METHOD
+        done = False
+
+        # Attempt to get the bookmark date from the state file (if one exists and is supplied).
+        LOGGER.info('Attempting to get the most recent bookmark_date for entity {}.'.format(self.ENTITY))
+        bookmark_date = get_last_record_value_for_table(self.state, table, 'bookmark_date')
+
+        # If there is no bookmark date, fall back to using the start date from the config file.
+        if bookmark_date is None:
+            LOGGER.info('Could not locate bookmark_date from STATE file. Falling back to start_date from config.json instead.')
+            bookmark_date = get_config_start_date(self.config)
+        else:
+            bookmark_date = parse(bookmark_date)
+
+        # Convert bookmarked start date to POSIX.
+        bookmark_date_posix = int(bookmark_date.timestamp())
+
+        sync_failures = False
+        # Create params for filtering
+        if self.ENTITY == 'event':
+            params = {"occurred_at[after]": bookmark_date_posix, "occurred_at[before]": self.START_TIMESTAP}
+        elif self.ENTITY == 'promotional_credit':
+            params = {"created_at[after]": bookmark_date_posix, "occurred_at[before]": self.START_TIMESTAP}
+        elif self.ENTITY == 'transaction':
+            params = {"updated_at[after]": bookmark_date_posix, "updated_at[before]": self.START_TIMESTAP, "status[is_not]": "failure", "sort_by[asc]": "updated_at"}
+            sync_failures = True
+        elif self.ENTITY in ['customer', 'invoice', 'unbilled_charge']:
+            params = {"updated_at[after]": bookmark_date_posix, "updated_at[before]": self.START_TIMESTAP, "sort_by[asc]": "updated_at"}
+            if self.ENTITY in ['invoice'] and self.config.get('exclude_zero_invoices'):
+                params['total[is_not]'] = 0
+        else:
+            params = {"updated_at[after]": bookmark_date_posix, "updated_at[before]": self.START_TIMESTAP}
+
+        LOGGER.info("Querying {} starting at {}".format(table, bookmark_date))
+
+        while not done:
+            try:
+                response = self.client.make_request(
+                    url=self.get_url(),
+                    method=api_method,
+                    params=params)
+            except:
+                response = {}
+
+            records = response.get('list', [])
+
+            for record in records:
+                yield record
+
+            if not response.get('next_offset'):
+                if sync_failures:
+                    params = {"date[after]": bookmark_date_posix, "status[is]": "failure"}
+                    sync_failures = False
+                else:
+                    LOGGER.info("Final offset reached. Ending sync.")
+                    done = True
             else:
-                return to_write
-
-        if sync_data_for_child_stream:
-            return child_records
-
-    def get_parent_stream_data(self):
-        data = self.PARENT_STREAM_TYPE(self.config, self.state, self.catalog, self.client).sync_data(sync_data_for_child_stream=True)
-        return data
+                params['offset'] = response.get('next_offset')

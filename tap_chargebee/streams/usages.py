@@ -22,9 +22,12 @@ class UsagesStream(BaseChargebeeStream):
     VALID_REPLICATION_KEYS = ['updated_at']
     INCLUSION = 'available'
     API_METHOD = 'GET'
-    PARENT_STREAM_TYPE = SubscriptionsStream
     _already_checked_subscription = []
     sync_data_for_child_stream = True
+
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self.PARENT_STREAM_INSTANCE = SubscriptionsStream(*args, **kwargs)
 
     def get_url(self):
         return 'https://{}/api/v2/usages'.format(self.config.get('full_site'))
@@ -52,9 +55,10 @@ class UsagesStream(BaseChargebeeStream):
 
         # Gets parent stream data
         to_write = []
-        for subscription in self.get_parent_stream_data():
+        # total = 0
+        for subscription in self.PARENT_STREAM_INSTANCE.sync_parent_data():
             # Sets the url params
-            subscription_id = subscription["id"]
+            subscription_id = subscription["subscription"]["id"]
             if subscription_id in self._already_checked_subscription:
                 continue
 
@@ -64,12 +68,16 @@ class UsagesStream(BaseChargebeeStream):
             self._already_checked_subscription.append(subscription_id)
 
             # Gets the data
-            response = self.client.make_request(self.get_url(), api_method, params=params)
+            try:
+                response = self.client.make_request(self.get_url(), api_method, params=params)
+            except Exception as e:
+                response = {}
 
             for obj in response.get('list', []):
                 to_write.append(obj.get("usage"))
 
-        # Writes the data
         with singer.metrics.record_counter(endpoint=table) as ctr:
             singer.write_records(table, to_write)
             ctr.increment(amount=len(to_write))
+
+        # Writes the data
