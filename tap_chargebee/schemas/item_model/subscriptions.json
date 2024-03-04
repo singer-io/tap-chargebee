@@ -351,6 +351,146 @@
             "string"
          ]
       },
+      "discounts":{
+         "type":[
+            "null",
+            "array"
+         ],
+         "items":{
+            "type":[
+               "null",
+               "object"
+            ],
+            "properties":{
+               "id": {
+                  "type": [
+                     "null",
+                     "string"
+                  ]
+                },
+                "invoice_name": {
+                  "type": [
+                     "null",
+                     "string"
+                  ]
+                },
+                "type": {
+                  "type": [
+                     "null",
+                     "string"
+                  ]
+                },
+                "percentage": {
+                  "type": [
+                     "null",
+                     "number"
+                  ]
+                },
+                "amount": {
+                  "type": [
+                     "null",
+                     "number"
+                  ]
+                },
+                "currency_code": {
+                  "type": [
+                     "null",
+                     "string"
+                  ]
+                },
+                "duration_type": {
+                  "type": [
+                     "null",
+                     "string"
+                  ]
+                },
+                "period": {
+                  "type": [
+                     "null",
+                     "integer"
+                  ]
+                },
+                "period_unit": {
+                  "type": [
+                     "null",
+                     "string"
+                  ]
+                },
+                "included_in_mrr": {
+                  "type": [
+                     "null",
+                     "boolean"
+                  ]
+                },
+                "apply_on": {
+                  "type": [
+                     "null",
+                     "string"
+                  ]
+                },
+                "item_price_id": {
+                  "type": [
+                     "null",
+                     "string"
+                  ]
+                },
+                "created_at": {
+                  "type": [
+                     "null",
+                     "integer"
+                  ]
+                },
+                "name": {
+                  "type": [
+                     "null",
+                     "string"
+                  ]
+                },
+                "updated_at": {
+                  "type": [
+                     "null",
+                     "integer"
+                  ]
+                },
+                "resource_version": {
+                  "type": [
+                     "null",
+                     "integer"
+                  ]
+                },
+                "applied_count": {
+                  "type": [
+                     "null",
+                     "integer"
+                  ]
+                },
+                "coupon_id": {
+                  "type": [
+                     "null",
+                     "string"
+                  ]
+                },
+                "index": {
+                  "type": [
+                     "null",
+                     "integer"
+                  ]
+                },
+                "apply_till": {
+                  "type": [
+                     "null",
+                     "integer"
+                  ]
+                },
+                "object": {
+                  "type": [
+                    "null",
+                    "string"
+                  ]
+                }
+            }
+         }
+      },
       "subscription_items":{
          "type":[
             "null",
