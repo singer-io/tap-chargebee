@@ -22,7 +22,7 @@ class ChargebeeAllFieldsTest(ChargebeeBaseTest):
             'next_retry_at',
             'einvoice'
         },
-        'events': 'user',
+        'events': {'user'},
         'subscriptions': { # not found in the UI
             'create_pending_invoices',
             'free_period',
