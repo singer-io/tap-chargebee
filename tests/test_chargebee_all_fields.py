@@ -22,6 +22,7 @@ class ChargebeeAllFieldsTest(ChargebeeBaseTest):
             'next_retry_at',
             'einvoice'
         },
+        'events': 'user',
         'subscriptions': { # not found in the UI
             'create_pending_invoices',
             'free_period',
@@ -39,6 +40,7 @@ class ChargebeeAllFieldsTest(ChargebeeBaseTest):
             'plan_unit_price_in_decimal',
             'trial_end_action', # Enable Trial End Action feature
             'changes_scheduled_at',
+            'discounts',
             'event_based_addons'
         },
         'customers': { # not found in the UI
@@ -71,6 +73,7 @@ class ChargebeeAllFieldsTest(ChargebeeBaseTest):
             'entity_identifier_scheme',
             'cf_people_id',
             'invoice_notes',
+            'tax_providers_fields',
             'business_entity_id'
 
         },
