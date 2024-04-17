@@ -22,7 +22,6 @@ class ChargebeeAllFieldsTest(ChargebeeBaseTest):
             'next_retry_at',
             'einvoice'
         },
-        'events': {'user'},
         'subscriptions': { # not found in the UI
             'create_pending_invoices',
             'free_period',
@@ -135,6 +134,7 @@ class ChargebeeAllFieldsTest(ChargebeeBaseTest):
             'dunning_status',
             'vat_number'
         },
+        'events': {'user'},
         'credit_notes': { # not found in the UI
             'voided_at',
             'vat_number',

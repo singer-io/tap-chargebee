@@ -38,7 +38,7 @@ class ChargebeePaginationTest(ChargebeeBaseTest):
         Testing that sync creates the appropriate catalog with valid metadata.
         • Verify that all fields and all streams have selected set to True in the metadata
         """
-        page_size = 100 # Page size for events
+        page_size = 10 # Page size for events
         conn_id = connections.ensure_connection(self)
 
         # Expected stream is only events
