@@ -134,7 +134,6 @@ class ChargebeeAllFieldsTest(ChargebeeBaseTest):
             'dunning_status',
             'vat_number'
         },
-        'events': {'user'},
         'credit_notes': { # not found in the UI
             'voided_at',
             'vat_number',
@@ -205,6 +204,7 @@ class ChargebeeAllFieldsTest(ChargebeeBaseTest):
             'contract_term_termination_fee',
             'contract_term_end'
         },
+        'events': {'user'},
         'invoices': {'line_item_tiers'},
         'plans': { # not found in the UI
             'avalara_service_type', # configure Avatax for Communications
