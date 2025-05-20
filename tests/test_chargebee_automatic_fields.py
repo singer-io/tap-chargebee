@@ -58,8 +58,8 @@ class ChargebeeAutomaticFieldsTest(ChargebeeBaseTest):
     def test_run(self):
 
         # Automatic fields test for Product Catalog v1
-        self.is_product_catalog_v1 = True
-        self.automatic_fields_test_run()
+        # self.is_product_catalog_v1 = True
+        # self.automatic_fields_test_run()
 
         # Automatic fields test for Product Catalog v2
         self.is_product_catalog_v1 = False

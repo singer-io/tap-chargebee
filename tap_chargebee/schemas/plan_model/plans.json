@@ -88,6 +88,9 @@
     "addon_applicability": {
       "type": ["null", "string"]
     },
+    "hsn_code": {
+      "type": ["null", "string"]
+    },
     "tax_code": {
       "type": ["null", "string"]
     },
@@ -181,6 +184,23 @@
             "type": ["null", "string"]
           },
           "price_in_decimal": {
+            "type": ["null", "string"]
+          }
+        }
+      }
+    },
+    "tax_providers_fields": {
+      "type": ["null", "array"],
+      "items": {
+        "type": ["null", "object"],
+        "properties": {
+          "provider_name": {
+            "type": ["null", "string"]
+          },
+          "field_id": {
+            "type": ["null", "string"]
+          },
+          "field_value": {
             "type": ["null", "string"]
           }
         }

@@ -2,12 +2,11 @@ from tap_chargebee.streams.base import BaseChargebeeStream
 
 
 class PromotionalCreditsStream(BaseChargebeeStream):
-    TABLE = 'promotional_credits'
-    ENTITY = 'promotional_credit'
+    STREAM = 'promotional_credits'
     REPLICATION_METHOD = 'INCREMENTAL'
     REPLICATION_KEY = 'created_at'
     KEY_PROPERTIES = ['id']
-    BOOKMARK_PROPERTIES = ['created_at']
+    ENTITY = 'promotional_credit'
     SELECTED_BY_DEFAULT = True
     VALID_REPLICATION_KEYS = ['created_at']
     INCLUSION = 'available'

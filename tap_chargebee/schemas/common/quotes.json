@@ -77,7 +77,13 @@
     "currency_code": {
       "type": ["null", "string"]
     },
+    "tax_category": {
+      "type": ["null", "string"]
+    },
     "notes": {
+      "type": ["null", "string"]
+    },
+    "business_entity_id": {
       "type": ["null", "string"]
     },
     "contract_term_start": {
@@ -322,6 +328,9 @@
           "type": ["null", "string"]
         },
         "validation_status,": {
+          "type": ["null", "string"]
+        },
+        "index": {
           "type": ["null", "string"]
         }
       }

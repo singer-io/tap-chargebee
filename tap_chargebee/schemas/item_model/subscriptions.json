@@ -327,6 +327,12 @@
             "string"
          ]
       },
+      "business_entity_id": {
+         "type": [
+            "null",
+            "string"
+         ]
+      },
       "create_pending_invoices": {
          "type": [
             "null",
@@ -340,6 +346,12 @@
          ]
       },
       "channel": {
+         "type": [
+            "null",
+            "string"
+         ]
+      },
+      "active_id": {
          "type": [
             "null",
             "string"

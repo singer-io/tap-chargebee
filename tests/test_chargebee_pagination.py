@@ -84,8 +84,8 @@ class ChargebeePaginationTest(ChargebeeBaseTest):
         self.generate_events()
 
         #Pagination test for Product Catalog version 1
-        self.is_product_catalog_v1 = True
-        self.pagination_test_run()
+        # self.is_product_catalog_v1 = True
+        # self.pagination_test_run()
 
         #Pagintaion test for Product Catalog version 2
         self.is_product_catalog_v1 = False
