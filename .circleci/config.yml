@@ -22,7 +22,7 @@ jobs:
           command: |
             source /usr/local/share/virtualenvs/tap-chargebee/bin/activate
             uv pip install pylint==2.14.1
-            uv pylint tap_chargebee --disable C,W,R,no-member
+            pylint tap_chargebee --disable C,W,R,no-member
       - run:
           name: 'Unit Tests'
           command: |
