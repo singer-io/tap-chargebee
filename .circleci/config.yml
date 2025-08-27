@@ -28,7 +28,7 @@ jobs:
           command: |
             source /usr/local/share/virtualenvs/tap-chargebee/bin/activate
             uv pip install pytest coverage
-            uv pip install --upgrade urllib3
+            uv pip install --upgrade 'urllib3<2'
             coverage run -m pytest tests/unittests
             coverage html
       - store_test_results:
