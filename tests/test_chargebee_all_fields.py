@@ -39,7 +39,6 @@ class ChargebeeAllFieldsTest(ChargebeeBaseTest):
             'plan_unit_price_in_decimal',
             'trial_end_action', # Enable Trial End Action feature
             'changes_scheduled_at',
-            'discounts',
             'event_based_addons'
         },
         'customers': { # not found in the UI
@@ -72,7 +71,6 @@ class ChargebeeAllFieldsTest(ChargebeeBaseTest):
             'entity_identifier_scheme',
             'cf_people_id',
             'invoice_notes',
-            'tax_providers_fields',
             'business_entity_id'
 
         },
@@ -204,7 +202,6 @@ class ChargebeeAllFieldsTest(ChargebeeBaseTest):
             'contract_term_termination_fee',
             'contract_term_end'
         },
-        'events': {'user'},
         'invoices': {'line_item_tiers'},
         'plans': { # not found in the UI
             'avalara_service_type', # configure Avatax for Communications
