@@ -2,12 +2,11 @@ from tap_chargebee.streams.base import BaseChargebeeStream
 
 
 class CreditNotesStream(BaseChargebeeStream):
-    TABLE = 'credit_notes'
-    ENTITY = 'credit_note'
+    STREAM = 'credit_notes'
     REPLICATION_METHOD = 'INCREMENTAL'
     REPLICATION_KEY = 'updated_at'
     KEY_PROPERTIES = ['id']
-    BOOKMARK_PROPERTIES = ['updated_at']
+    ENTITY = 'credit_note'
     SELECTED_BY_DEFAULT = True
     VALID_REPLICATION_KEYS = ['updated_at']
     INCLUSION = 'available'

@@ -2,12 +2,11 @@ from tap_chargebee.streams.base import BaseChargebeeStream
 
 
 class ItemPricesStream(BaseChargebeeStream):
-    TABLE = 'item_prices'
-    ENTITY = 'item_price'
+    STREAM = 'item_prices'
     REPLICATION_METHOD = 'INCREMENTAL'
     REPLICATION_KEY = 'updated_at'
     KEY_PROPERTIES = ['id']
-    BOOKMARK_PROPERTIES = ['updated_at']
+    ENTITY = 'item_price'
     SELECTED_BY_DEFAULT = True
     VALID_REPLICATION_KEYS = ['updated_at']
     INCLUSION = 'available'

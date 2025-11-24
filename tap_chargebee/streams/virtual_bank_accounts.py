@@ -2,12 +2,11 @@ from tap_chargebee.streams.base import BaseChargebeeStream
 
 
 class VirtualBankAccountsStream(BaseChargebeeStream):
-    TABLE = 'virtual_bank_accounts'
+    STREAM = 'virtual_bank_accounts'
     ENTITY = 'virtual_bank_account'
     REPLICATION_METHOD = 'INCREMENTAL'
     REPLICATION_KEY = 'updated_at'
     KEY_PROPERTIES = ['id']
-    BOOKMARK_PROPERTIES = ['updated_at']
     SELECTED_BY_DEFAULT = True
     VALID_REPLICATION_KEYS = ['updated_at']
     INCLUSION = 'available'

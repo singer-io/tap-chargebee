@@ -155,6 +155,9 @@
 		"resend_reason": {
 			"type": ["null", "string"]
 		},
+		"business_entity_id": {
+			"type": ["null", "string"]
+		},
 		"order_line_items": {
 			"type": ["null", "array"],
 			"items": {

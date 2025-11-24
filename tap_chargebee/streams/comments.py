@@ -1,12 +1,11 @@
 from tap_chargebee.streams.base import BaseChargebeeStream
 
 class CommentsStream(BaseChargebeeStream):
-    TABLE = 'comments'
+    STREAM = 'comments'
     ENTITY = 'comment'
     REPLICATION_METHOD = 'INCREMENTAL'
     REPLICATION_KEY = 'created_at'
     KEY_PROPERTIES = ['id']
-    BOOKMARK_PROPERTIES = ['created_at']
     SELECTED_BY_DEFAULT = True
     VALID_REPLICATION_KEYS = ['created_at']
     INCLUSION = 'available'

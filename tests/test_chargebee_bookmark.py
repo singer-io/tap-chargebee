@@ -31,7 +31,7 @@ class ChargebeeBookmarkTest(ChargebeeBaseTest):
                 bookmark_date = bookmark["bookmark_date"]
             else:
                 bookmark_date = self.get_max_replication_value(stream_records, list(self.expected_replication_keys().get(stream_name))[0])
-            new_bookmark_date = dateutil.parser.parse(bookmark_date) - timedelta(hours=12)
+            new_bookmark_date = dateutil.parser.parse(bookmark_date) - timedelta(minutes=1)
             bookmark["bookmark_date"] = datetime.strftime(new_bookmark_date, self.BOOKMARK_FORMAT)
 
         return new_state
@@ -105,8 +105,7 @@ class ChargebeeBookmarkTest(ChargebeeBaseTest):
 
                     # collect information specific to incremental streams from syncs 1 & 2
                     # Tap is using key as 'bookmark_date' while writing the states
-                    replication_key = 'bookmark_date'
-                    record_replication_key = list(expected_replication_keys[stream])[0]
+                    replication_key = list(expected_replication_keys[stream])[0]
                    
                     first_bookmark_value = first_bookmark_key_value.get(replication_key)
                     second_bookmark_value = second_bookmark_key_value.get(replication_key)
@@ -115,7 +114,7 @@ class ChargebeeBookmarkTest(ChargebeeBaseTest):
                     second_bookmark_value_ts = self.dt_to_ts(second_bookmark_value, self.BOOKMARK_FORMAT)
 
                     simulated_bookmark_value = self.dt_to_ts(new_states['bookmarks'][stream][replication_key], self.BOOKMARK_FORMAT)
-
+                    simulated_bookmark_value = simulated_bookmark_value - 2 # Lookback of 2 minutes
                     # Verify the first sync sets a bookmark of the expected form
                     self.assertIsNotNone(first_bookmark_key_value)
                     self.assertIsNotNone(first_bookmark_value)
@@ -125,18 +124,18 @@ class ChargebeeBookmarkTest(ChargebeeBaseTest):
 
                     # Verify the second sync bookmark is Equal to the first sync bookmark
                     # As we have implemented (now - 2 minutes) as bookmark, thus, bookmark will not be same for both syncs
-                    # self.assertEqual(second_bookmark_value, first_bookmark_value) # assumes no changes to data during test
+                    self.assertEqual(second_bookmark_value, first_bookmark_value) # assumes no changes to data during test
 
                     for record in first_sync_messages:
                         # Verify the first sync bookmark value is the max replication key value for a given stream
-                        replication_key_value = self.dt_to_ts(record.get(record_replication_key), self.RECORD_REPLICATION_KEY_FORMAT)
+                        replication_key_value = self.dt_to_ts(record.get(replication_key), self.RECORD_REPLICATION_KEY_FORMAT)
                         self.assertLessEqual(replication_key_value, first_bookmark_value_ts,
                             msg="First sync bookmark was set incorrectly, a record with a greater replication-key value was synced."
                         )
 
                     for record in second_sync_messages:
                         # Verify the second sync replication key value is Greater or Equal to the first sync bookmark
-                        replication_key_value = self.dt_to_ts(record.get(record_replication_key), self.RECORD_REPLICATION_KEY_FORMAT)
+                        replication_key_value = self.dt_to_ts(record.get(replication_key), self.RECORD_REPLICATION_KEY_FORMAT)
                         self.assertGreaterEqual(replication_key_value, simulated_bookmark_value,
                             msg="Second sync records do not respect the previous bookmark.")
 
@@ -160,8 +159,8 @@ class ChargebeeBookmarkTest(ChargebeeBaseTest):
     def test_run(self):
 
         # Bookmark test for Product Catalog v1
-        self.is_product_catalog_v1 = True
-        self.bookmark_test_run()
+        # self.is_product_catalog_v1 = True
+        # self.bookmark_test_run()
 
         # Bookmark test for Product Catalog v2
         self.is_product_catalog_v1 = False

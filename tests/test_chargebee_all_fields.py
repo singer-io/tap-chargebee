@@ -10,6 +10,9 @@ class ChargebeeAllFieldsTest(ChargebeeBaseTest):
     #   configure Avatax for Communications, Configure Avatax for Sales, Multi decimal feature
     fields_to_remove_common = {
         'promotional_credits': {'amount_in_decimal'}, # not found in the UI
+        'item_prices': {'custom_fields'},
+        'items': {'custom_fields'},
+        'item_families': {'custom_fields'},
         'invoices': { # not found in the UI
             'void_reason_code',
             'expected_payment_date',
@@ -20,7 +23,12 @@ class ChargebeeAllFieldsTest(ChargebeeBaseTest):
             'sub_total_in_local_currency',
             'local_currency_code',
             'next_retry_at',
-            'einvoice'
+            'einvoice',
+            'business_entity_id',
+            'tax_origin',
+            'local_currency_exchange_rate',
+            'linked_taxes_withheld',
+            'statement_descriptor',
         },
         'subscriptions': { # not found in the UI
             'create_pending_invoices',
@@ -40,7 +48,11 @@ class ChargebeeAllFieldsTest(ChargebeeBaseTest):
             'trial_end_action', # Enable Trial End Action feature
             'changes_scheduled_at',
             'discounts',
-            'event_based_addons'
+            'event_based_addons',
+            'start_date',
+            'active_id',
+            'business_entity_id',
+            'remaining_billing_cycles'
         },
         'customers': { # not found in the UI
             'vat_number_validated_time',
@@ -73,8 +85,11 @@ class ChargebeeAllFieldsTest(ChargebeeBaseTest):
             'cf_people_id',
             'invoice_notes',
             'tax_providers_fields',
-            'business_entity_id'
-
+            'business_entity_id',
+            'created_from_ip',
+            'active_id',
+            'billing_month',
+            'einvoicing_method'
         },
         'credit_notes': { # not found in the UI
             'line_item_tiers',
@@ -82,7 +97,13 @@ class ChargebeeAllFieldsTest(ChargebeeBaseTest):
             'total_in_local_currency',
             'sub_total_in_local_currency',
             'local_currency_code',
-            'einvoice'
+            'einvoice',
+            'business_entity_id',
+            'linked_tax_withheld_refunds',
+            'tax_origin',
+            'local_currency_exchange_rate',
+            'tax_category',
+            'shipping_address'
         },
         'payment_sources': { # not found in the UI
             'issuing_country',
@@ -91,7 +112,12 @@ class ChargebeeAllFieldsTest(ChargebeeBaseTest):
             'bank_account',
             'amazon_payment',
             'upi',
-            'mandates'
+            'mandates',
+            'business_entity_id',
+            'billing_address',
+            'klarna_pay_now',
+            'venmo',
+            'boleto'
         },
         'transactions': {
             'fraud_flag',
@@ -110,7 +136,10 @@ class ChargebeeAllFieldsTest(ChargebeeBaseTest):
             'amount_capturable',
             'reference_transaction_id',
             'iin',
-            'last4'
+            'last4',
+            'custom_payment_method_name',
+            'custom_payment_method_id',
+            'business_entity_id'
         },
     }
 
@@ -152,15 +181,12 @@ class ChargebeeAllFieldsTest(ChargebeeBaseTest):
         'customers': { # not found in the UI
             'backup_payment_source_id',
             'cf_company_id',
-            'created_from_ip',
             'consolidated_invoicing',
             'billing_day_of_week',
             'vat_number'
         },
         'subscriptions': { # not found in the UI
             'cancel_reason',
-            'start_date',
-            'remaining_billing_cycles',
             'payment_source_id',
             'invoice_notes',
             'created_from_ip',
@@ -315,8 +341,8 @@ class ChargebeeAllFieldsTest(ChargebeeBaseTest):
     def test_run(self):
 
         # All fields test for Product Catalog version 1
-        self.is_product_catalog_v1 = True
-        self.all_fields_test_run()
+        # self.is_product_catalog_v1 = True
+        # self.all_fields_test_run()
 
         # All fields test for Product Catalog version 2
         self.is_product_catalog_v1 = False

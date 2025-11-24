@@ -46,3 +46,25 @@ ITEM_MODEL_AVAILABLE_STREAMS = COMMON_AVAILABLE_STREAMS + [
     ItemPricesStream,
     ItemFamiliesStream
 ]
+
+STREAMS = {
+    'events' : EventsStream,
+    'comments' : CommentsStream,
+    'coupons' : CouponsStream,
+    'credit_notes' : CreditNotesStream,
+    'customers' : CustomersStream,
+    'gifts' : GiftsStream,
+    'invoices' : InvoicesStream,
+    'orders' : OrdersStream,
+    'payment_sources' : PaymentSourcesStream,
+    'quotes' : QuotesStream,
+    'promotional_credits' : PromotionalCreditsStream,
+    'subscriptions' : SubscriptionsStream,
+    'transactions' : TransactionsStream,
+    'virtual_bank_accounts' : VirtualBankAccountsStream,
+    'addons' : AddonsStream,
+    'plans' : PlansStream,
+    'items' : ItemsStream,
+    'item_prices' : ItemPricesStream,
+    'item_families': ItemFamiliesStream
+}

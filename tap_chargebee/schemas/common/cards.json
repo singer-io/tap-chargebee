@@ -2,6 +2,47 @@
   "type": ["null", "object"],
   "additionalProperties": false,
   "properties": {
+    "payment_source_id": {
+      "type": ["null", "string"]
+    },
+    "status": {
+      "type": ["null", "string"]
+    },
+    "gateway": {
+      "type": ["null", "string"]
+    },
+    "gateway_account_id": {
+      "type": ["null", "string"]
+    },
+    "ref_tx_id": {
+      "type": ["null", "string"]
+    },
+    "card_type": {
+      "type": ["null", "string"]
+    },
+    "issuing_country": {
+      "type": ["null", "string"]
+    },
+    "resource_version": {
+      "type": ["null", "integer"]
+    },
+    "created_at": {
+			"type": ["null", "string"],
+			"format": "date-time"
+		},
+    "updated_at": {
+			"type": ["null", "string"],
+			"format": "date-time"
+		},
+    "ip_address": {
+      "type": ["null", "string"]
+    },
+    "powered_by": {
+      "type": ["null", "string"]
+    },
+    "customer_id": {
+      "type": ["null", "string"]
+    },
     "first_name": {
       "type": ["null", "string"]
     },

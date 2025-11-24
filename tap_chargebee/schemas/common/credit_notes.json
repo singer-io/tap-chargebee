@@ -97,6 +97,15 @@
     "vat_number_prefix": {
       "type": ["null", "string"]
     },
+    "tax_category": {
+      "type": ["null", "string"]
+    },
+    "local_currency_exchange_rate": {
+      "type": ["null", "string"]
+    },
+    "business_entity_id": {
+      "type": ["null", "string"]
+    },
     "base_currency_code": {
       "type": ["null", "string"]
     },
@@ -397,6 +406,205 @@
         },
         "message": {
           "type": ["null", "string"]
+        },
+        "reference_number": {
+          "type": ["null", "string"]
+        }
+      }
+    },
+    "linked_tax_withheld_refunds": {
+      "type": ["null", "array"],
+      "items": {
+        "type": ["null", "object"],
+        "properties":{
+          "id": {
+            "type": ["null", "string"]
+          },
+          "amount": {
+            "type": ["null", "integer"]
+          },
+          "date": {
+            "type": ["null", "string"]
+          },
+          "invoice_date": {
+            "type": ["null", "string"],
+            "format": "date-time"
+          },
+          "reference_number": {
+            "type": ["null", "string"]
+          }
+        }
+      }
+    },
+    "tax_origin": {
+      "type": ["null", "object"],
+      "properties":{
+        "country": {
+          "type": ["null", "string"]
+        },
+        "registration_number": {
+          "type": ["null", "string"]
+        }
+      }
+    },
+    "shipping_address": {
+      "type": ["null","object"],
+      "properties": {
+        "first_name": {
+          "type": ["null", "string"]
+        },
+        "last_name": {
+          "type": ["null", "string"]
+        },
+        "email": {
+          "type": ["null", "string"]
+        },
+        "company": {
+          "type": ["null", "string"]
+        },
+        "phone": {
+          "type": ["null", "string"]
+        },
+        "line1": {
+          "type": ["null", "string"]
+        },
+        "line2": {
+          "type": ["null", "string"]
+        },
+        "line3": {
+          "type": ["null", "string"]
+        },
+        "city": {
+          "type": ["null", "string"]
+        },
+        "state_code": {
+          "type": ["null", "string"]
+        },
+        "state": {
+          "type": ["null", "string"]
+        },
+        "country": {
+          "type": ["null", "string"]
+        },
+        "zip": {
+          "type": ["null", "string"]
+        },
+        "validation_status": {
+          "type": ["null", "string"]
+        },
+        "index": {
+          "type": ["null", "integer"]
+        },
+        "object": {
+          "type": ["null", "string"]
+        }
+      }
+    },
+    "billing_address": {
+      "type": ["null","object"],
+      "properties": {
+        "first_name": {
+          "type": ["null", "string"]
+        },
+        "last_name": {
+          "type": ["null", "string"]
+        },
+        "email": {
+          "type": ["null", "string"]
+        },
+        "company": {
+          "type": ["null", "string"]
+        },
+        "phone": {
+          "type": ["null", "string"]
+        },
+        "line1": {
+          "type": ["null", "string"]
+        },
+        "line2": {
+          "type": ["null", "string"]
+        },
+        "line3": {
+          "type": ["null", "string"]
+        },
+        "city": {
+          "type": ["null", "string"]
+        },
+        "state_code": {
+          "type": ["null", "string"]
+        },
+        "state": {
+          "type": ["null", "string"]
+        },
+        "country": {
+          "type": ["null", "string"]
+        },
+        "zip": {
+          "type": ["null", "string"]
+        },
+        "validation_status": {
+          "type": ["null", "string"]
+        },
+        "object": {
+          "type": ["null", "string"]
+        }
+      }
+    },
+    "site_details_at_creation": {
+      "type": ["null", "object"],
+      "properties":{
+        "timezone": {
+          "type": ["null", "string"]
+        },
+        "organization_address": {
+          "type": ["null","object"],
+          "properties": {
+            "first_name": {
+              "type": ["null", "string"]
+            },
+            "last_name": {
+              "type": ["null", "string"]
+            },
+            "email": {
+              "type": ["null", "string"]
+            },
+            "company": {
+              "type": ["null", "string"]
+            },
+            "phone": {
+              "type": ["null", "string"]
+            },
+            "line1": {
+              "type": ["null", "string"]
+            },
+            "line2": {
+              "type": ["null", "string"]
+            },
+            "line3": {
+              "type": ["null", "string"]
+            },
+            "city": {
+              "type": ["null", "string"]
+            },
+            "state_code": {
+              "type": ["null", "string"]
+            },
+            "state": {
+              "type": ["null", "string"]
+            },
+            "country": {
+              "type": ["null", "string"]
+            },
+            "zip": {
+              "type": ["null", "string"]
+            },
+            "validation_status": {
+              "type": ["null", "string"]
+            },
+            "object": {
+              "type": ["null", "string"]
+            }
+          }
         }
       }
     }

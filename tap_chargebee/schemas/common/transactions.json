@@ -130,6 +130,18 @@
     "merchant_reference_id": {
       "type": ["null", "string"]
     },
+    "custom_payment_method_id": {
+      "type": ["null", "string"]
+    },
+    "business_entity_id": {
+      "type": ["null", "string"]
+    },
+    "payment_method_details": {
+      "type": ["null", "string"]
+    },
+    "custom_payment_method_name": {
+      "type": ["null", "string"]
+    },
     "linked_invoices": {
       "type": ["null", "array"],
       "items": {
@@ -234,6 +246,50 @@
             "type": ["null", "string"],
             "format": "date-time"
           }
+        }
+      }
+    }
+  },
+  "error_detail": {
+    "type": ["null", "array"],
+    "items": {
+      "type": ["null", "object"],
+      "properties": {
+        "request_id": {
+          "type": ["null", "string"]
+        },
+        "error_category": {
+          "type": ["null", "string"]
+        },
+        "error_message": {
+          "type": ["null", "integer"]
+        },
+        "decline_code": {
+          "type": ["null", "string"]
+        },
+        "decline_message": {
+          "type": ["null", "string"]
+        },
+        "network_error_code": {
+          "type": ["null", "integer"]
+        },
+        "network_error_message": {
+          "type": ["null", "string"]
+        },
+        "error_field": {
+          "type": ["null", "string"]
+        },
+        "recommendation_code": {
+          "type": ["null", "integer"]
+        },
+        "recommendation_message": {
+          "type": ["null", "string"]
+        },
+        "processor_error_code": {
+          "type": ["null", "string"]
+        },
+        "processor_error_message": {
+          "type": ["null", "integer"]
         }
       }
     }

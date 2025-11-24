@@ -192,6 +192,12 @@
     "offline_payment_method" : {
       "type": ["null", "string"]
     },
+    "business_entity_id" : {
+      "type": ["null", "string"]
+    },
+    "active_id" : {
+      "type": ["null", "string"]
+    },
     "cancel_reason_code" : {
       "type": ["null", "string"]
     },

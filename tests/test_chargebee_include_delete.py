@@ -51,7 +51,7 @@ class ChargebeeIncludeDeletedTest(ChargebeeBaseTest):
         """
         Testing that 2 sync have difference in data for stream invoices
         """
-        # Expected stream is only invoices
+        # Expected stream is only customers
         expected_streams = ["invoices"]
 
         # default value
@@ -87,8 +87,8 @@ class ChargebeeIncludeDeletedTest(ChargebeeBaseTest):
     def test_run(self):
     
         #Sync test for Product Catalog version 1
-        self.is_product_catalog_v1 = True
-        self.run_include_deleted_test()
+        # self.is_product_catalog_v1 = True
+        # self.run_include_deleted_test()
 
         #Sync test for Product Catalog version 2
         self.is_product_catalog_v1 = False

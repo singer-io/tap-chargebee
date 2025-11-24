@@ -11,6 +11,9 @@
     "channel":{
       "type": ["null", "string"]
     },
+    "proration_type":{
+      "type": ["null", "string"]
+    },
     "invoice_name": {
       "type": ["null", "string"]
     },
@@ -52,6 +55,9 @@
       "type": ["null", "string"]
     },
     "taxjar_product_code": {
+      "type": ["null", "string"]
+    },
+    "hsn_code": {
       "type": ["null", "string"]
     },
     "avalara_sale_type": {

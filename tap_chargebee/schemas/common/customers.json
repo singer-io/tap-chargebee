@@ -43,11 +43,17 @@
     "locale": {
       "type": ["null", "string"]
     },
+    "einvoicing_method": {
+      "type": ["null", "string"]
+    },
     "consolidated_invoicing": {
       "type": ["null", "boolean"]
     },
     "billing_date": {
-      "type": ["null", "boolean"]
+      "type": ["null", "integer"]
+    },
+    "billing_month": {
+      "type": ["null", "integer"]
     },
     "is_einvoice_enabled": {
       "type": ["null", "boolean"]
@@ -113,7 +119,21 @@
       "type": ["null", "string"]
     },
     "tax_providers_fields": {
-      "type": ["null", "string"]
+      "type": ["null", "array"],
+      "items": {
+        "type": ["null", "object"],
+        "properties": {
+          "provider_name": {
+            "type": ["null", "string"]
+          },
+          "field_id": {
+            "type": ["null", "string"]
+          },
+          "field_value": {
+            "type": ["null", "string"]
+          }
+        }
+      }
     },
     "vat_number_validated_time": {
       "type": ["null", "string"],
@@ -174,6 +194,9 @@
       "type": ["null", "string"]
     },
     "channel": {
+      "type": ["null", "string"]
+    },
+    "active_id": {
       "type": ["null", "string"]
     },
     "mrr": {
@@ -404,6 +427,9 @@
         },
         "send_subscription_emails": {
           "type": ["null", "boolean"]
+        },
+        "portal_download_invoices": {
+          "type": ["null", "string"]
         },
         "send_invoice_emails": {
           "type": ["null", "boolean"]
