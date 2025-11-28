@@ -1,5 +1,10 @@
 # Changelog
 
+## 1.5.0
+
+- Refactored the tap #[113](https://github.com/singer-io/tap-chargebee/pull/113)
+- Python upgrade to 3.12 #[117](https://github.com/singer-io/tap-chargebee/pull/117)
+
 ## 1.4.0
 
 - Added discounts field in subscriptions schema #[107](https://github.com/singer-io/tap-chargebee/pull/107)
