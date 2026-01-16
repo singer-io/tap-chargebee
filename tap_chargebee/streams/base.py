@@ -269,4 +269,8 @@ class BaseChargebeeStream:
 
                 # Write state after each page
                 singer.write_state(self.state)
+
+            # If no records were sync, update bookmark to today
+            current_time = datetime.today().strftime(DATETIME_FORMAT)
+            self.update_bookmark(current_time)
             return counter.value
