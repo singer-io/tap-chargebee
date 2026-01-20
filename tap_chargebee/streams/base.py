@@ -270,10 +270,8 @@ class BaseChargebeeStream:
                 # Write state after each page
                 singer.write_state(self.state)
 
-            # If no records were synced, update bookmark 
-            current_bookmark = singer.get_bookmark(
-                self.state, self.STREAM, self.REPLICATION_KEY)
-            if not current_bookmark:
+            # If no records were synced, update bookmark
+            if not replication_key_value:
                 current_time = datetime.today().strftime(DATETIME_FORMAT)
                 self.update_bookmark(current_time)
             return counter.value
