@@ -230,6 +230,10 @@ class BaseChargebeeStream:
             last_bookmark_value, LOOKBACK_WINDOW
         )
 
+        # If no records are written use now as new bookmark
+        current_time = datetime.now(pytz.UTC).strftime(DATETIME_FORMAT)
+        bookmark_not_updated = True
+        
         # Filtering parameters
         params = {f"{self.REPLICATION_KEY}[after]": lookback_evaluated_bookmark}
 
@@ -238,7 +242,6 @@ class BaseChargebeeStream:
         pages = self.client.get_offset_based_pages(
             self.get_url(), self.API_METHOD, self.SORT_BY, params
         )
-        bookmark_not_updated = True
         with metrics.record_counter(self.STREAM) as counter, Transformer(
             integer_datetime_fmt=UNIX_SECONDS_INTEGER_DATETIME_PARSING
         ) as transformer:
@@ -271,6 +274,5 @@ class BaseChargebeeStream:
                 singer.write_state(self.state)
 
             if bookmark_not_updated:
-                current_time = datetime.today().strftime(DATETIME_FORMAT)
                 self.update_bookmark(current_time)
             return counter.value
