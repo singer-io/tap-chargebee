@@ -238,7 +238,7 @@ class BaseChargebeeStream:
         pages = self.client.get_offset_based_pages(
             self.get_url(), self.API_METHOD, self.SORT_BY, params
         )
-
+        bookmark_not_updated = True
         with metrics.record_counter(self.STREAM) as counter, Transformer(
             integer_datetime_fmt=UNIX_SECONDS_INTEGER_DATETIME_PARSING
         ) as transformer:
@@ -266,12 +266,11 @@ class BaseChargebeeStream:
                     singer.write_record(self.STREAM, transformed_record)
                     self.update_bookmark(replication_key_value)
                     counter.increment()
-
+                    bookmark_not_updated = False
                 # Write state after each page
                 singer.write_state(self.state)
 
-            # If no records were synced, update bookmark
-            if not replication_key_value:
+            if bookmark_not_updated:
                 current_time = datetime.today().strftime(DATETIME_FORMAT)
                 self.update_bookmark(current_time)
             return counter.value
