@@ -233,7 +233,7 @@ class BaseChargebeeStream:
         # If no records are written use now as new bookmark
         current_time = datetime.now(pytz.UTC).strftime(DATETIME_FORMAT)
         bookmark_not_updated = True
-        
+
         # Filtering parameters
         params = {f"{self.REPLICATION_KEY}[after]": lookback_evaluated_bookmark}
 
