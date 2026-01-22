@@ -1,5 +1,8 @@
 # Changelog
 
+## 1.6.0
+- Update incremental streams to write bookmarks when no data is synced #[120](https://github.com/singer-io/tap-chargebee/pull/120)
+
 ## 1.5.0
 
 - Refactored the tap #[113](https://github.com/singer-io/tap-chargebee/pull/113)
