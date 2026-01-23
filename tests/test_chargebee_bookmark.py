@@ -26,11 +26,11 @@ class ChargebeeBookmarkTest(ChargebeeBaseTest):
         for stream_name, bookmark in new_state.get("bookmarks").items():
             stream_records = [record.get('data') for record in records.get(stream_name, {}).get('messages', [])
                               if record.get('action') == 'upsert']
-            # as these streams are skipped the state file will contain the start date as bookmark
-            if stream_name in self.streams_to_skip | {'quotes'}:
-                bookmark_date = bookmark["bookmark_date"]
+            replication_key = list(self.expected_replication_keys().get(stream_name))[0]
+            if stream_records:
+                bookmark_date = self.get_max_replication_value(stream_records, replication_key)
             else:
-                bookmark_date = self.get_max_replication_value(stream_records, list(self.expected_replication_keys().get(stream_name))[0])
+                bookmark_date = bookmark[replication_key]
             new_bookmark_date = dateutil.parser.parse(bookmark_date) - timedelta(minutes=1)
             bookmark["bookmark_date"] = datetime.strftime(new_bookmark_date, self.BOOKMARK_FORMAT)
 

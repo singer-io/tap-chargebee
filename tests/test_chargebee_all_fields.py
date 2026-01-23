@@ -83,7 +83,6 @@ class ChargebeeAllFieldsTest(ChargebeeBaseTest):
             'entity_identifiers',
             'entity_identifier_scheme',
             'cf_people_id',
-            'invoice_notes',
             'tax_providers_fields',
             'business_entity_id',
             'created_from_ip',
