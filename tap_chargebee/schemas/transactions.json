@@ -124,6 +124,9 @@
     "business_entity_id": {
       "type": ["null", "string"]
     },
+    "custom_payment_method_name": {
+      "type": ["null", "string"]
+    },
     "linked_invoices": {
       "type": ["null", "array"],
       "items": {
