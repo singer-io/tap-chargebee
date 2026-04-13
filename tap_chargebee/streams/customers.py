@@ -17,17 +17,3 @@ class CustomersStream(BaseChargebeeStream):
 
     def get_url(self):
         return 'https://{}.chargebee.com/api/v2/customers'.format(self.config.get('site'))
-
-    def add_custom_fields(self, record: dict):
-        """
-        Adds custom fields to the record.
-        """
-        custom_fields = {}
-        for key in record.keys():
-            if "cf_" in key:
-                custom_fields[key] = record[key]
-
-        if custom_fields:
-            record["custom_fields"] = json.dumps(custom_fields)
-
-        return record

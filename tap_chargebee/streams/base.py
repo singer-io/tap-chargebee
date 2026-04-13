@@ -54,8 +54,16 @@ class BaseChargebeeStream:
 
     def add_custom_fields(self, record: dict):
         """
-        Placeholder for adding custom fields. Should be overridden by subclasses if needed.
+        Adds custom fields to the record.
         """
+        custom_fields = {}
+        for key in record.keys():
+            if "cf_" in key:
+                custom_fields[key] = record[key]
+
+        if custom_fields:
+            record['custom_fields'] = json.dumps(custom_fields)
+
         return record
 
     def load_shared_schema_refs(self):
