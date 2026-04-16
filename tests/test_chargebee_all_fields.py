@@ -10,9 +10,6 @@ class ChargebeeAllFieldsTest(ChargebeeBaseTest):
     #   configure Avatax for Communications, Configure Avatax for Sales, Multi decimal feature
     fields_to_remove_common = {
         'promotional_credits': {'amount_in_decimal'}, # not found in the UI
-        'item_prices': {'custom_fields'},
-        'items': {'custom_fields'},
-        'item_families': {'custom_fields'},
         'invoices': { # not found in the UI
             'void_reason_code',
             'expected_payment_date',
