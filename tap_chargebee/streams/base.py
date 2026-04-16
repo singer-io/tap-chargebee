@@ -54,8 +54,16 @@ class BaseChargebeeStream:
 
     def add_custom_fields(self, record: dict):
         """
-        Placeholder for adding custom fields. Should be overridden by subclasses if needed.
+        Adds custom fields to the record.
         """
+        custom_fields = {}
+        for key in record.keys():
+            if "cf_" in key:
+                custom_fields[key] = record[key]
+
+        if custom_fields:
+            record['custom_fields'] = json.dumps(custom_fields)
+
         return record
 
     def load_shared_schema_refs(self):
@@ -160,35 +168,6 @@ class BaseChargebeeStream:
                 "metadata": metadata.to_list(mdata),
             }
         ]
-
-    def appendCustomFields(self, record: dict):
-        """
-        Prepare custom fields for the record for objects like "addon", "plan", "subscription", "customer" from the /events endpoint
-        """
-        listOfCustomFieldObj = ["addon", "plan", "subscription", "customer"]
-        custom_fields = {}
-        event_custom_fields = {}
-
-        if self.ENTITY == "event":
-            # Extracting the object name from the event_type and adding custom fields for the object
-            words = record["event_type"].split("_")
-            content_obj = "_".join(words[:-1])
-            content_data = record["content"].get(content_obj, {})
-
-            # Add custom fields for specific objects
-            if content_obj in listOfCustomFieldObj:
-                for k, v in content_data.items():
-                    if "cf_" in k:
-                        event_custom_fields[k] = v
-                record["content"][content_obj]["custom_fields"] = json.dumps(
-                    event_custom_fields
-                )
-
-        for k, v in record.items():
-            if "cf_" in k:
-                custom_fields[k] = v
-        record["custom_fields"] = json.dumps(custom_fields)
-        return record
 
     def update_bookmark(self, bookmark_value: str):
         """

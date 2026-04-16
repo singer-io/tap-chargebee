@@ -2,7 +2,6 @@ import unittest
 from unittest.mock import patch, MagicMock
 from tap_chargebee.streams.base import BaseChargebeeStream
 from tap_chargebee.streams.comments import CommentsStream
-from tap_chargebee.streams.events import EventsStream
 from tap_chargebee.client import ChargebeeClient
 import json
 
@@ -66,7 +65,7 @@ class TestSyncMethods(unittest.TestCase):
         self.assertEqual(counter, 2)
 
 
-class TestAppendCustomFields(unittest.TestCase):
+class TestAddCustomFields(unittest.TestCase):
     def setUp(self) -> None:
         self.config = {
             "start_date": "2017-01-01T00:00:00Z",
@@ -74,54 +73,35 @@ class TestAppendCustomFields(unittest.TestCase):
             "item_model": True,
         }
 
-    def test_append_custom_fields_event_entity(self):
+    def test_add_custom_fields_with_custom_fields(self):
         """
-        Test appendCustomFields method for event entity
-        """
-        base_instance = EventsStream(
-            config=self.config, state={}, catalog=None, client=None
-        )
-        record = {
-            "event_type": "subscription_created",
-            "content": {
-                "subscription": {
-                    "cf_custom_field1": "value1",
-                    "cf_custom_field2": "value2",
-                }
-            },
-        }
-        expected_record = {
-            "event_type": "subscription_created",
-            "content": {
-                "subscription": {
-                    "cf_custom_field1": "value1",
-                    "cf_custom_field2": "value2",
-                    "custom_fields": json.dumps(
-                        {"cf_custom_field1": "value1", "cf_custom_field2": "value2"}
-                    ),
-                }
-            },
-            "custom_fields": "{}",
-        }
-        result = base_instance.appendCustomFields(record)
-        self.assertEqual(result, expected_record)
-
-    def test_append_custom_fields_non_event_entity(self):
-        """
-        Test appendCustomFields method for non-event entity
+        Test add_custom_fields method when custom fields are present
         """
         base_instance = CommentsStream(
             config=self.config, state={}, catalog=None, client=None
         )
-        record = {"cf_custom_field1": "value1", "cf_custom_field2": "value2"}
+        record = {"cf_custom_field1": "value1", "cf_custom_field2": "value2", "name": "test"}
         expected_record = {
             "cf_custom_field1": "value1",
             "cf_custom_field2": "value2",
+            "name": "test",
             "custom_fields": json.dumps(
                 {"cf_custom_field1": "value1", "cf_custom_field2": "value2"}
             ),
         }
-        result = base_instance.appendCustomFields(record)
+        result = base_instance.add_custom_fields(record)
+        self.assertEqual(result, expected_record)
+
+    def test_add_custom_fields_without_custom_fields(self):
+        """
+        Test add_custom_fields method when no custom fields are present
+        """
+        base_instance = CommentsStream(
+            config=self.config, state={}, catalog=None, client=None
+        )
+        record = {"name": "test", "status": "active"}
+        expected_record = {"name": "test", "status": "active"}
+        result = base_instance.add_custom_fields(record)
         self.assertEqual(result, expected_record)
 
 

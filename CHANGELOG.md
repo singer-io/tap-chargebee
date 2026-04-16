@@ -1,5 +1,8 @@
 # Changelog
 
+## 1.7.0
+- Add custom_fields support for all streams #[123](https://github.com/singer-io/tap-chargebee/pull/123)
+
 ## 1.6.0
 - Update incremental streams to write bookmarks when no data is synced #[120](https://github.com/singer-io/tap-chargebee/pull/120)
 

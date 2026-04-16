@@ -8,6 +8,9 @@
     "name": {
       "type": ["null", "string"]
     },
+    "custom_fields": {
+      "type": ["null", "string"]
+    },
     "invoice_name": {
       "type": ["null", "string"]
     },
