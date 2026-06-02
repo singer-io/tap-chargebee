@@ -1,5 +1,8 @@
 # Changelog
 
+## 1.7.1
+- Bump requests library to 2.33.0 #[124](https://github.com/singer-io/tap-chargebee/pull/124)
+
 ## 1.7.0
 - Add custom_fields support for all streams #[123](https://github.com/singer-io/tap-chargebee/pull/123)
 
