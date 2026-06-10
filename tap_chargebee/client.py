@@ -204,7 +204,9 @@ class ChargebeeClient:
     def check_access(self, url: str, method: str) -> bool:
         """
         Check whether a stream endpoint is accessible without triggering backoff retries.
-        Returns True if the response is not a 403 Forbidden, False otherwise.
+        Returns True if the endpoint is accessible (200), False if 403 Forbidden.
+        Raises typed exceptions for all other non-200 responses (e.g. 401, 5xx)
+        so that discovery fails fast on bad credentials or server errors.
         """
         response = requests.request(
             method,
@@ -214,7 +216,10 @@ class ChargebeeClient:
             params={"limit": 1},
             timeout=self.request_timeout,
         )
-        return response.status_code != 403
+        if response.status_code == 403:
+            return False
+        raise_for_error(response)
+        return True
 
     def get_offset_based_pages(
         self,
