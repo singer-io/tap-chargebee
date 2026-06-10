@@ -169,6 +169,13 @@ class BaseChargebeeStream:
             }
         ]
 
+    def check_access(self) -> bool:
+        """
+        Returns True if the stream endpoint is accessible with the provided credentials.
+        Returns False if a 403 Forbidden response is received.
+        """
+        return self.client.check_access(self.get_url(), self.API_METHOD)
+
     def update_bookmark(self, bookmark_value: str):
         """
         Updates the bookmark in the state if the new bookmark value is greater than the current one.

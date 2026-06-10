@@ -201,6 +201,21 @@ class ChargebeeClient:
             LOGGER.error("Request failed: %s", str(e))
             raise
 
+    def check_access(self, url: str, method: str) -> bool:
+        """
+        Check whether a stream endpoint is accessible without triggering backoff retries.
+        Returns True if the response is not a 403 Forbidden, False otherwise.
+        """
+        response = requests.request(
+            method,
+            url,
+            auth=(self.config.get("api_key"), ""),
+            headers=self.get_headers(),
+            params={"limit": 1},
+            timeout=self.request_timeout,
+        )
+        return response.status_code != 403
+
     def get_offset_based_pages(
         self,
         url: str,

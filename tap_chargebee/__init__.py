@@ -2,7 +2,7 @@ import singer
 import sys
 import json
 from singer import metadata, Catalog
-from tap_chargebee.client import ChargebeeClient
+from tap_chargebee.client import ChargebeeClient, ChargebeeForbiddenError
 import tap_chargebee.streams as streams
 
 LOGGER = singer.get_logger()
@@ -58,15 +58,51 @@ def get_available_streams(config: dict, cb_client: ChargebeeClient):
     return available_streams
 
 
-def do_discover(config: dict, state: dict, available_streams: list):
+def _apply_access_checks(
+    config: dict, state: dict, client: ChargebeeClient, available_streams: list
+) -> list:
     """
-    Generate the catalog
+    Probe each stream for read access and return only the accessible stream classes.
+    Logs a warning for each inaccessible stream.
+    Raises ChargebeeForbiddenError if no streams are accessible.
+    """
+    accessible = []
+    inaccessible = []
+
+    for stream_class in available_streams:
+        stream_instance = stream_class(config, state, None, client)
+        if stream_instance.check_access():
+            accessible.append(stream_class)
+        else:
+            inaccessible.append(stream_class.STREAM)
+
+    for stream_name in inaccessible:
+        LOGGER.warning(
+            "Stream '%s' is not accessible with the provided credentials (403). "
+            "Excluding from catalog.",
+            stream_name,
+        )
+
+    if not accessible:
+        raise ChargebeeForbiddenError(
+            "No streams are accessible with the provided credentials. "
+            "Cannot generate catalog."
+        )
+
+    return accessible
+
+
+def do_discover(config: dict, state: dict, available_streams: list, client: ChargebeeClient):
+    """
+    Generate the catalog, excluding any streams that return 403 Forbidden.
     """
     LOGGER.info("Starting discovery.")
+
+    accessible_streams = _apply_access_checks(config, state, client, available_streams)
     catalog = []
 
-    # Generate catalog for each stream based on the product catalog version
-    for available_stream in available_streams:
+    # Generate catalog for each accessible stream
+    for available_stream in accessible_streams:
         stream = available_stream(config, state, None, None)
         catalog += stream.generate_catalog()
 
@@ -113,7 +149,7 @@ def main():
     available_streams = get_available_streams(args.config, client)
 
     if args.discover:
-        do_discover(args.config, args.state, available_streams)
+        do_discover(args.config, args.state, available_streams, client)
     elif args.catalog:
         do_sync(args.config, args.catalog, args.state, client)
 

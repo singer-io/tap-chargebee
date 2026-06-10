@@ -1,6 +1,9 @@
 import unittest
 from unittest.mock import patch, MagicMock, mock_open
 from tap_chargebee.streams.comments import CommentsStream
+from tap_chargebee.streams.customers import CustomersStream
+from tap_chargebee import _apply_access_checks
+from tap_chargebee.client import ChargebeeClient, ChargebeeForbiddenError
 
 
 class TestLoadSharedSchemaMethods(unittest.TestCase):
@@ -83,3 +86,38 @@ class TestLoadSharedSchemaMethods(unittest.TestCase):
         self.assertEqual(
             result, {"schema1.json": {"key": "value"}, "schema1.json": {"key": "value"}}
         )
+
+
+class TestApplyAccessChecks(unittest.TestCase):
+
+    def setUp(self):
+        self.config = {
+            "start_date": "2017-01-01T00:00:00Z",
+            "include_deleted": "false",
+            "site": "test-site",
+            "api_key": "test-key",
+            "item_model": False,
+        }
+        self.mock_client = MagicMock(spec=ChargebeeClient)
+
+    def test_all_accessible_returns_all_streams(self):
+        self.mock_client.check_access.return_value = True
+        result = _apply_access_checks(self.config, {}, self.mock_client, [CommentsStream, CustomersStream])
+        self.assertEqual(result, [CommentsStream, CustomersStream])
+
+    def test_forbidden_stream_is_excluded(self):
+        self.mock_client.check_access.side_effect = lambda url, method: "comments" in url
+        result = _apply_access_checks(self.config, {}, self.mock_client, [CommentsStream, CustomersStream])
+        self.assertEqual(result, [CommentsStream])
+
+    def test_all_inaccessible_raises_forbidden_error(self):
+        self.mock_client.check_access.return_value = False
+        with self.assertRaises(ChargebeeForbiddenError):
+            _apply_access_checks(self.config, {}, self.mock_client, [CommentsStream, CustomersStream])
+
+    @patch("tap_chargebee.LOGGER")
+    def test_warning_logged_for_excluded_stream(self, mock_logger):
+        self.mock_client.check_access.side_effect = lambda url, method: "comments" in url
+        _apply_access_checks(self.config, {}, self.mock_client, [CommentsStream, CustomersStream])
+        mock_logger.warning.assert_called_once()
+        self.assertIn("customers", mock_logger.warning.call_args[0][1])
