@@ -2,6 +2,7 @@
 
 ## 1.8.0
 - Streams that cannot be accessed with the provided credentials (403) are now excluded from the catalog during discovery instead of raising an error [#125](https://github.com/singer-io/tap-chargebee/pull/125)
+- Bump singer-python to 6.8.0 and requests to 2.34.2
 
 ## 1.7.1
 - Bump requests library to 2.33.0 #[124](https://github.com/singer-io/tap-chargebee/pull/124)
