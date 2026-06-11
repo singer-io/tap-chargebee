@@ -66,30 +66,30 @@ def _apply_access_checks(
     Logs a warning for each inaccessible stream.
     Raises ChargebeeForbiddenError if no streams are accessible.
     """
-    accessible = []
-    inaccessible = []
+    accessible_streams = []
+    inaccessible_streams = []
 
     for stream_class in available_streams:
         stream_instance = stream_class(config, state, None, client)
         if stream_instance.check_access():
-            accessible.append(stream_class)
+            accessible_streams.append(stream_class)
         else:
-            inaccessible.append(stream_class.STREAM)
+            inaccessible_streams.append(stream_class.STREAM)
 
-    for stream_name in inaccessible:
+    for stream_name in inaccessible_streams:
         LOGGER.warning(
             "Stream '%s' is not accessible with the provided credentials (403). "
             "Excluding from catalog.",
             stream_name,
         )
 
-    if not accessible:
+    if not accessible_streams:
         raise ChargebeeForbiddenError(
             "No streams are accessible with the provided credentials. "
             "Cannot generate catalog."
         )
 
-    return accessible
+    return accessible_streams
 
 
 def do_discover(config: dict, state: dict, available_streams: list, client: ChargebeeClient):
