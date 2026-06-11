@@ -106,8 +106,8 @@ class TestApplyAccessChecks(unittest.TestCase):
         self.assertEqual(result, [CommentsStream, CustomersStream])
 
     def test_forbidden_stream_is_excluded(self):
-        # Simulate comments endpoint being forbidden/inaccessible
-        self.mock_client.check_access.side_effect = lambda url, method: "comments" not in url
+        # Deny access to the comments stream based on its canonical stream name
+        self.mock_client.check_access.side_effect = lambda url, method: CommentsStream.STREAM not in url
         result = _apply_access_checks(self.config, {}, self.mock_client, [CommentsStream, CustomersStream])
         self.assertEqual(result, [CustomersStream])
 
@@ -118,8 +118,8 @@ class TestApplyAccessChecks(unittest.TestCase):
 
     @patch("tap_chargebee.LOGGER")
     def test_warning_logged_for_excluded_stream(self, mock_logger):
-        # Simulate comments endpoint being forbidden/inaccessible
-        self.mock_client.check_access.side_effect = lambda url, method: "comments" not in url
+        # Deny access to the comments stream based on its canonical stream name
+        self.mock_client.check_access.side_effect = lambda url, method: CommentsStream.STREAM not in url
         _apply_access_checks(self.config, {}, self.mock_client, [CommentsStream, CustomersStream])
         mock_logger.warning.assert_called_once()
-        self.assertEqual("comments", mock_logger.warning.call_args[0][1])
+        self.assertEqual(CommentsStream.STREAM, mock_logger.warning.call_args[0][1])
