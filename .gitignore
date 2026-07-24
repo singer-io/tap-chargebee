@@ -10,3 +10,5 @@ singer-check-tap-data
 *.egg-info
 dist/
 __pycache__/
+venv/
+tmp/
